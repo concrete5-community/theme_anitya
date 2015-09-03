@@ -1,0 +1,44 @@
+
+// -- HR tag -- \\
+// Les classe se trouve POUR les HR (hr.class)
+// ainsi que pour les style de bloc (div.class > hr)
+hr {
+    border: 0;
+    height: 5px;
+    margin: (@space-l / 2)-2 auto (@space-l / 2)-3 auto;  // 79px height
+    background-color: @brand-quaternary-color; // darken(@brand-tertiary-color, 20%);
+
+    &.primary, .primary & { background: @brand-primary-color }
+    &.secondary, .secondary & { background: @brand-secondary-color }
+    &.tertiary, .tertiary & { background: @brand-tertiary-color }
+    &.quaternary, .quaternary & { background: @brand-quaternary-color }
+
+    &.thin, .thin & {
+        background:@brand-quaternary-color;// darken(@brand-tertiary-color,5%);
+        height:1px;
+    }
+    &.dotted, .dotted & {
+         border-bottom-style:dotted;
+    }
+    &.space-s, &.space-m, &.space-l, &.space-xl, .space-s &, .space-m &, .space-l &, .space-xl & {
+        background: none;
+    }
+    &.space-s, .space-s & { margin: @space-s auto (@space-s)-1 auto }  
+    &.space-m, .space-m & {} // Inherit from default
+    &.space-l, .space-l & { margin: @space-l auto (@space-l)-1 auto}
+    &.space-xl, .space-xl & { margin: @space-xl auto (@space-xl)-1 auto}
+}
+
+// HR under elements
+.hr-bold {
+    padding-bottom: 25px;
+    margin-bottom: 24px;
+    border-bottom: 5px solid @brand-quaternary-color;
+}
+
+// Element under Content block
+#horizontalrule {
+    height: 1px;
+    margin: (@space-l / 4) auto (@space-l / 4)-1 auto;  // 79px height
+}
+h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr {margin-top: 0!important; height: 1px;}

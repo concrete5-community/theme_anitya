@@ -1,0 +1,22 @@
+.stack-1-slide {
+  .gallery-cell {
+    width: 100%;
+    padding: 5px;
+  }
+}
+
+.slider-dots {
+  &-primary {
+    .slider-dots-mixin(@brand-primary-color);
+  }
+  &-white {
+    .slider-dots-mixin(@brand-white-color);
+  }
+  &-black {
+    .slider-dots-mixin(@brand-black-color);
+  }
+}
+
+.slider-dots-mixin (@color) {
+  .flickity-page-dots .dot {background-color: @color}
+}

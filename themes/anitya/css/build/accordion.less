@@ -1,0 +1,124 @@
+.anitya-accordion {
+  .title {
+    margin-left: 0;
+    a {
+      display: block;
+      padding: 15px;
+      padding-right: 30px;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+      .transition(all 0.3s ease-in-out);
+      overflow: hidden;
+      font-weight: 300;
+    i {
+      float: right;
+      position: relative;
+      left: -8px;
+      opacity: .3;
+      .transform(rotate(-90deg));
+      .transition(all 0.3s ease-in-out);
+      }
+    }
+     &.active i {
+      opacity: .9;
+      .transform(rotate(0deg));      
+    }
+  }
+
+
+  .content {
+    overflow: hidden;
+
+    .content-inner {
+      // .transition(transform .3s ease);
+      // .transform (scale(.5));  
+      padding: @space-s;
+
+    }
+    &.active {
+      display: block;
+      .content-inner {
+        // .transform (scale(1));  
+      }
+    }  
+    .page-list-accordion-thumbnail {
+      width: 20%;
+      float: left;
+      margin-right: @space-s;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+
+.anitya-accordion {
+    // -- content
+
+  // Default behavior
+  .accordion-mixin-color(@brand-white-color; @link-color; @brand-light-color);
+
+  .accordion-primary & {
+    .accordion-mixin-color(@brand-primary-color; @brand-primary-text-color; @brand-light-color);
+  }  // Customs Behavior 
+  .accordion-secondary & {
+    .accordion-mixin-color(@brand-secondary-color; @brand-secondary-text-color; @brand-light-color);
+  }
+  .accordion-tertiary & {
+    .accordion-mixin-color(@brand-tertiary-color; @brand-tertiary-text-color; @brand-light-color);
+  }
+  .accordion-quaternary & {
+    .accordion-mixin-color(@brand-quaternary-color; @brand-quaternary-text-color; @brand-light-color);
+  }
+  .accordion-light & {
+    .accordion-mixin-color(@brand-light-color; @brand-black-color; @brand-white-color);
+  } 
+
+  .ui-accordion-header {
+    border: 0;
+    margin: 0;
+    padding: 0 @space-m;
+    border-radius: 0;
+    outline: none;
+    font-size: @body-type-font-size;
+    line-height: @space-m;    
+  }
+  .ui-accordion-content {
+    border: 0;
+    border-radius: 0;
+
+  }
+
+}
+
+
+
+// -- Mixin -- \\
+
+
+.accordion-mixin-color (@color, @contrast, @light) {
+  .title {
+    a {
+      color: @contrast;
+      background-color:@color ;
+      &:hover {
+        background-color: darken(@color, 5%);
+    }
+    i {
+      color: @light;
+      }
+    }
+     &.active i {
+      color: @contrast;
+    }
+  }
+  .content {
+    .content-inner {
+      background-color: @light;
+      // color: @brand-primary-text-color;
+    }
+  }
+}

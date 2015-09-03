@@ -1,0 +1,40 @@
+
+.box-arrow-color (@bg-color; @text-color: fff;){
+	&:before {
+		border-color: transparent transparent @bg-color transparent;	
+	}
+	background-color: @bg-color;
+	color: @text-color;
+	&:hover {
+		box-shadow: inset 0 0 0 4px darken(@bg-color, 10%), 0 0 1px rgba(0, 0, 0, 0);
+		&:before {
+			border-color: transparent transparent darken(@bg-color, 10%) transparent;	
+		}	
+	}
+}
+
+.box-arrow-size (@padding-vertical; @padding-horizontal; @font-size; @triangle-size:11px;  @font-w:bold; ) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  font-weight: @font-w;
+	&:before {
+		border-width: 0 @triangle-size @triangle-size @triangle-size;
+		margin-left: -@triangle-size;
+		top:-@triangle-size;
+	}
+}
+
+.box-arrow-direction (@direction; @size; @color) when (@direction = topright){
+	border-width: 0 @size @size 0;
+	border-color: transparent @color transparent transparent;
+}
+
+.box-arrow-framed (@color; @size:5px){
+
+	box-shadow: inset 0 0 0 @size @color, 0 0 1px rgba(0, 0, 0, 0);
+	background-color: transparent;
+	color: @color;
+	&:hover {
+		box-shadow: inset 0 0 0 @size darken(@color, 10%), 0 0 1px rgba(0, 0, 0, 0);
+	}	
+}

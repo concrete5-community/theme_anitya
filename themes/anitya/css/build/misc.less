@@ -1,0 +1,102 @@
+.zero, .vlist {
+    .zero-list ();
+}
+.vlist {
+	li {
+		margin: 0 0 5px 0;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+.full-width {
+	width: 100%;
+}
+
+.height-resized > *:first-child {
+    margin-top: 0;
+}
+
+// Mettre hide-hover sur le parent ou l'élémént à cacher et to-hide sur l'element à cacher
+// <div class="hide-hover to-hide"></div>
+// ou
+// <div class="hide-hover"><div class="to-hide"></div></div>
+// mais le second ne marche pas
+.hide-hover {
+    &.to-hide, .to-hide {
+        .transition(opacity .3s);
+        z-index: 1 
+    }
+    &:hover {
+        .to-hide {
+           opacity: 0;
+        }
+    }    
+}
+
+
+.clear-after {
+    &:after {
+        content:"";
+        display:block;
+        clear: both;
+    }
+}
+
+.breadcrumb {
+  background-color: transparent;
+  padding: 0px;
+
+  a {
+    &:hover {
+    }
+  }
+
+}
+
+// Square box : A responsive box that always look like a square
+// http://jsfiddle.net/josedvq/38Tnx/
+//
+// Deprecated, use flex-box in place
+
+.square-box{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+}
+.square-box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.square-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+.square-content div {
+   display: table;
+   width: 100%;
+   height: 100%;
+}
+.square-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+}
+
+// -- Height management -- //
+.height-large {
+    height: @space-l;
+}
+.height-medium {
+    height: @space-m;
+}
+.height-samll {
+    height: @space-s;
+}

@@ -1,0 +1,20 @@
+.image-caption (@color; @contrast) {
+    h2 {
+  		color:@contrast ;
+  		font-weight: 300;
+  		margin-bottom: @space-s;
+  		padding:@space-s;
+  		line-height: 1.1;
+  		background-color: fade(@color ,70%);
+    }
+
+    p {
+      padding:@space-s;
+    	background-color: fade(@brand-black-color,70%);
+    	color:@brand-white-color;
+    	width: 80%;
+    }
+    .date {
+      color:@contrast ;
+    }
+}

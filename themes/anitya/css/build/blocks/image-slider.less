@@ -1,0 +1,91 @@
+.ccm-image-slider-container {
+
+  background-color: transparent;
+  background-repeat: repeat;
+  /* background-image is moved to main.less because it needs to be in the theme root */
+
+  .ccm-image-slider {
+  
+    .rslides {
+      li {
+        max-height: 500px;
+      }
+    }
+    .clearfix();
+  }
+
+  .ccm-image-slider-inner {
+    position: relative;
+  }
+
+
+  .ccm-image-slider-text {
+    // Width's defined in responsive.less
+    left: 15%;
+    .image-caption(@brand-primary-color, @brand-primary-text-color);
+  }
+
+  &.ccm-block-image-slider-arrows {
+    .ccm-image-slider-inner {
+      margin-bottom:0;
+    }
+  }
+}
+
+
+// -- Navigation Dots -- \\
+
+  .rslides_tabs {
+    padding-left: 0px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    text-align: center;
+    li {
+      list-style-type: none;
+      display: inline-block;
+      margin-right: 5px;
+      &.rslides_here {
+        a {
+          background: @brand-primary-color;
+        }
+      }
+      a {
+        overflow: hidden;
+        text-indent: 99px;
+        background: darken(@body-bg-color, 10%);
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        margin-right: 10px;
+        border-radius:30px;
+      }
+    }
+  }
+
+// -- Navigation Dots -- \\
+
+.rslides_nav {
+  opacity: 1;
+  height: 38px;
+  margin-top: -20px;
+  width: 38px;
+  color: @brand-primary-text-color !important;
+  background-color: @brand-primary-color !important;
+  &:hover {
+      opacity: .8;
+  }  
+  &.next {
+    .transition(background .35s ease-in-out);
+    right: 40px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &.prev {
+    .transition(background .35s ease-in-out);
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  background:rgba(0,0,0,.92);
+}

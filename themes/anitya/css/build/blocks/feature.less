@@ -1,0 +1,142 @@
+.square-content {
+	background-color: @brand-primary-color;
+}
+.feature-item {
+	&:hover .square-content {
+		background-color: @brand-secondary-color;
+	}	
+}
+
+.box-long-shadow {
+	background-color: @brand-white-color;
+
+	i {
+		font-size: @space-xl;
+	}
+	h4 {
+		margin-top: 0;
+	}
+	// flip item
+	.front h4 {
+		margin-bottom: -20%;
+		margin-top: 20%;
+	}
+
+	p {
+		padding:0 @space-s @space-s @space-s;
+		text-align: center;
+	}
+}
+.long-shadow {
+	.icon {
+		text-align: center;
+		margin-bottom: @space-m;
+	}
+}
+
+.box-tiny-long-shadow {
+	margin-bottom: 1px;
+	.icon {
+		width: @space-l;
+		float: left;
+		margin-right: @space-s;
+	}
+	i {
+		font-size: @space-m;
+	}
+	.content {
+		background-color: @brand-white-color;
+		height: @space-l;
+		padding-right: @space-s;
+		overflow: hidden;
+		&:hover {
+			background-color: @brand-secondary-color;
+		}
+	}
+	&:hover p {
+		color: @brand-secondary-text-color;
+	}
+	p {
+		margin:0;
+
+	}	
+	p.title {
+		text-transform: uppercase;
+		& + p {
+			padding-top: 0;
+		}
+	}
+}
+
+// -- Flipe them ! -- \\
+.feature-item {
+	.front {
+		h4 {
+			color: @brand-primary-text-color;
+		}
+	}
+	.back {
+		p {
+			display: table-cell;
+			vertical-align: middle;
+			padding: @space-s;
+			font-weight: 300;
+			line-height: 1.8;
+		}
+	}
+}
+
+
+// feature block
+div.ccm-block-feature-item {
+  position: relative;
+
+  h4, i {
+    color: @body-type-color;
+  }
+  h4 {
+  	//font-size: @font-size-base;
+  }
+
+  i {
+    position: absolute;
+    top: 3px;
+    left: 0px;
+  }
+
+  padding-left: 35px;
+  margin-bottom: @space-s;
+  p {
+  	margin-left: 0 !important;
+  }
+}
+// div.ccm-block-feature-item + div.ccm-block-feature-item {
+// 	border-top: 1px solid @body-bg-color;
+// 	padding-top: @space-s;
+// }
+
+.ccm-block-feature-item-hover-wrapper {
+	.ccm-block-feature-item-hover-icon {
+		height: @space-xl;
+		width: @space-xl;
+		margin: 0 auto @space-s auto;
+		line-height: @space-xl;
+		text-align: center;
+		background-color: @brand-primary-color;
+		border-radius: 50% 50% 0 50%;
+		box-shadow: 1px 1px 5px rgba(0,0,0,.4);
+		font-size: 2.5em;
+		color: #ecf0f1;
+		font-weight: 900;
+		text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+	}
+	.ccm-block-feature-item-hover-title {
+		text-transform: uppercase;
+		font-weight: 300;
+		margin-bottom: @space-s;
+		font-size: 1.8rem;
+	}
+	.tooltip {
+
+	}
+}

@@ -1,0 +1,163 @@
+@preset-name: "Orange Flat";
+@preset-icon: concrete-icon(#fe6263, #3A94CB, #B13334);
+@preset-fonts-file: "build/fonts/orange_flat.less";
+
+
+// -- Global color -- \\
+
+
+	@brand-primary-color : 		#fe6263;
+	@brand-secondary-color : 	#3A94CB;
+	@brand-tertiary-color : 	#f3efec; // A light color // 
+	@brand-quaternary-color : 	#B13334; // A darker color
+
+	@brand-white-color: 			#ffffff;
+	@brand-black-color : 			#191614;
+	@brand-grey-color : 			lighten(@brand-black-color, 50%);
+	@brand-light-color : 			darken(@body-bg-color,2%);
+
+	@brand-primary-text-color :  	contrast(@brand-primary-color, @brand-black-color, @brand-white-color,50%);
+	@brand-secondary-text-color : 	contrast(@brand-secondary-color, @brand-black-color, @brand-white-color,50%);
+	@brand-tertiary-text-color : 	contrast(@brand-tertiary-color, @brand-black-color, @brand-white-color,50%);
+	@brand-quaternary-text-color : 	contrast(@brand-quaternary-color, @brand-black-color, @brand-white-color,50%);
+
+	@brand-primary-light-color : 		hsl(hue(@brand-primary-color),saturation(@brand-primary-color),95%);
+	@brand-secondary-light-color : 		hsl(hue(@brand-secondary-color),saturation(@brand-secondary-color),95%);
+	@brand-tertiary-light-color : 		hsl(hue(@brand-tertiary-color),saturation(@brand-tertiary-color),95%);
+	@brand-quaternary-light-color : 	hsl(hue(@brand-quaternary-color),saturation(@brand-quaternary-color),95%);	
+
+	@brand-success-color:         #5cb85c;
+	@brand-info-color:            #5bc0de;
+	@brand-warning-color:         #f0ad4e;
+	@brand-danger-color:          #d9534f;
+
+
+// -- Global Page -- \\
+
+	// Page
+	@body-bg-color:               #f3efec;
+	@body-bg-pattern-image:       "../images/pattern/swirl_pattern.png"; 
+	@content-bg-color: 			#fff;	
+
+	// Elements
+	@sidebar-bg-color: 				lighten(@body-bg-color, 9%);
+	@content-section-divider-color: #ececec;
+	// Couleur pour les element avec fond blanc
+	@content-wrapped-color: 		@sidebar-bg-color;
+
+	@body-type-font-family: 'Roboto', sans-serif;
+	@body-type-color: 		@brand-black-color;
+	@body-type-font-size: 	16px;
+	@body-type-font-weight: 400;
+	
+	// links
+	@link-color:            #348e9d;
+	@link-hover-color:      darken(@link-color, 15%);
+
+
+
+// -- Header -- \\
+
+	// Top nav
+	@top-nav-bg-color : 	@brand-white-color;
+	@top-nav-text-color : 	@brand-primary-color;
+	@top-nav-text-hover : 	lighten(@brand-primary-color, 10%);
+	@top-nav-height-size : 		90px;
+	@top-nav-height-fixed-size :60px;
+	@top-nav-top-size :			20px;
+
+	// Intro
+	@intro-image-default-color : @brand-primary-color;
+	@intro-image-default-image : "../images/pattern/swirl_pattern.png";
+	@intro-image-height-size: 	640px;
+	@intro-height-without-img-size: 	350px; // When they are no images
+
+	// Subs header
+	@sub-header-1-bg-color : @brand-white-color;;
+	@sub-header-1-type-font-family: 'Open Sans';
+	@sub-header-1-type-color: #254c4c;
+	@sub-header-1-type-font-size: 3.1em;
+	@sub-header-1-type-font-weight: 300;
+
+	@sub-header-2-bg-color : @brand-primary-color;
+	@sub-header-2-text-color : 	@brand-primary-text-color;
+
+
+// -- Headings -- \\
+
+
+	@h1-type-font-family: 'Open Sans';
+	@h1-type-color: @brand-primary-color; // #348e9d;
+	@h1-type-font-size: 48px;
+	@h1-type-font-weight: 300;
+
+	@h2-type-font-family: 'Open Sans';
+	@h2-type-color: @brand-primary-color; // #348e9d;
+	@h2-type-font-size: 36px;
+	@h2-type-font-weight: 300;
+
+	@h3-type-font-family: 'Open Sans';
+	@h3-type-color: @brand-primary-color; // #348e9d;
+	@h3-type-font-size: 30px;
+	@h3-type-font-weight: 300;
+
+	@h4-type-font-family: 'Open Sans';
+	@h4-type-color: @brand-black-color; // #348e9d;
+	@h4-type-font-size: 24px;
+	@h4-type-font-weight: 400;
+
+	@h5-type-font-family: 'Open Sans';
+	@h5-type-color: @brand-black-color; // #348e9d;
+	@h5-type-font-size: 18px;
+	@h5-type-font-weight: 400;
+	// @h5-type-text-transform: uppercase;
+
+	@h6-type-font-family: 'Open Sans';
+	@h6-type-color: @brand-black-color; // #348e9d;
+	@h6-type-font-size: 16px;
+	@h6-type-font-weight: 400;
+	// @h6-type-text-transform: uppercase;
+
+
+// -- Footer -- \\
+
+
+	// Backgrounds
+	@footer-top-background-color: 		@brand-primary-color;
+	@footer-bottom-background-color: 	@brand-quaternary-color;
+
+	// Text
+	@footer-top-text-color: 			contrast(@brand-primary-color, @brand-black-color, @brand-white-color,50%);
+	@footer-bottom-text-color: 			contrast(@brand-quaternary-color, @brand-black-color, @brand-white-color,50%);;
+
+	// Links
+	@footer-link-color: #75ca2a;
+	@footer-link-hover-color: #548627;
+
+	// Elements
+	@footer-section-divider-color: #d9d9d9;
+
+
+// -- Image slider -- \\
+
+	@image-slider-navigation-color: #ccccc9;
+	@image-slider-navigation-active-color: #75ca2a;
+	@image-slider-background-image: '../images/background-slider-default.png';
+
+	@image-slider-title-type-color: #75ca2a;
+	@image-slider-title-type-font-family: 'Open Sans';
+	@image-slider-title-type-font-size: 3.2em;
+	@image-slider-title-type-font-weight: 200;
+
+	@image-slider-paragraph-type-color: #6e6e6e;
+	@image-slider-paragraph-type-font-family: 'Open Sans';
+	@image-slider-paragraph-type-font-size: 1.1em;
+	@image-slider-paragraph-type-font-weight: 400;
+
+// -- Miscalenous -- \\
+
+	@space-s : 19px;
+	@space-m : 49px;
+	@space-l : 79px;
+	@space-xl : 90px;
+	@space-xxl : @space-l*2;

@@ -1,0 +1,18 @@
+//  for perfomance on live less parsing
+@operation : true;
+
+.long-shadow {
+	&.primary {
+		color: @brand-primary-text-color;
+		& when (@operation = true) {
+			.longShadow(multiply(@brand-primary-color,#ccc), 40);
+		}
+	}
+	&.secondary {
+		color: @brand-secondary-text-color;
+		& when (@operation = true) {
+			.longShadow(multiply(@brand-secondary-color,#ccc), 40);
+		}
+	}
+
+}

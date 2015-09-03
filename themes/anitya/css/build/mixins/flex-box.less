@@ -1,0 +1,64 @@
+/*
+<div class='box ratio-1-1'>
+  <div class='wrapper'>
+    <div class='content'>
+      <div class='v-align'>
+        <div class='ratio'>1:1</div>
+      </div>
+    </div>
+  </div>
+</div>
+*/
+
+
+// Placeholder styles for wrapper within ratio element
+%flex-ratio-container {
+  position: relative;
+  height: 0; // IE fix
+}
+
+// Placeholder styles for actual content within wrapper
+%flex-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+// Flexible ratios
+// @param $width int Desired width -> %
+// @param $rw int Ratio width component
+// @param $rh int Ratio height component
+// @param $wrapper-class string Desired wrapper class name
+// @param $content-class string Desired content class name
+@mixin flex-ratio($width, $rw, $rh, $wrapper-class:"wrapper", $content-class:"content") {
+  width: ($width * 1%);
+
+  .#{$wrapper-class} {
+    @extend %flex-ratio-container;
+    padding-bottom: ($rh / $rw) * 100%;
+    
+    .#{$content-class} {
+      @extend %flex-ratio-content;
+    }
+  }
+}
+
+// FLEX ASPECT RATIOS IN ACTION!!!
+.ratio-1-1 {
+  @include flex-ratio(25, 1, 1);
+  background: #00adf1;
+}
+
+.ratio-4-3 {
+  @include flex-ratio(25, 4, 3);
+  background: #83cb9d;
+}
+
+.ratio-16-9 {
+  @include flex-ratio(25, 16, 9);
+  background: #be1e74;
+}

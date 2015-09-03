@@ -1,0 +1,47 @@
+.tm-wrapper {
+    .desc {
+        text-transform: none;
+        font-weight: @body-type-font-weight;
+        // color: @body-type-color !important; // Override box-framed
+        line-height: 1.5;
+    }
+    .details {
+        .image {
+            margin: @space-s auto;
+            overflow: hidden;
+            img {
+                // Drole de truc pour que les images plus large que haute rentrent bien
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+            }
+        }
+        text-align: center;
+        p {
+            font-size: @font-size-small;
+            // color: @gray;
+        }
+        h5,p {
+            margin: 0;
+        }   
+    }
+}
+.tm-wrapper.tm-small {
+    .box-arrow:after {
+        left: 100px;
+    }
+    .image {
+        width: 80px;
+        height: 80px;
+        float: left;
+        img {
+            // Drole de truc pour que les images plus large que haute rentrent bien
+        width: 80px;
+        height: 80px;
+        }
+    }
+    .infos {
+        text-align: left;
+        padding: @space-s 0 0 80+@space-s;
+    }
+}

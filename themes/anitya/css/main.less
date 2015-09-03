@@ -1,0 +1,65 @@
+/* Import our theme variables. */
+@import "presets/defaults.less";
+
+/* Import Bootstrap files */
+@import "build/bootstrap/bootstrap.less";
+
+@import "build/mixins.less";
+
+@import ~"@{preset-fonts-file}";
+
+@import "build/body.less";
+
+// Structure
+@import "build/header.less";
+@import "build/page.less";
+
+// Elements
+@import "build/box-arrow.less";
+@import "build/label.less";
+@import "build/breadcrumb.less";
+@import "build/hr.less";
+@import "build/decorative-header.less";
+@import "build/accordion.less";
+
+// Blocks
+@import "build/blocks/autonav.less";
+@import "build/blocks/feature.less";
+@import "build/blocks/testimonial.less";
+@import "build/blocks/page-list.less";
+@import "build/blocks/image-slider.less";
+@import "build/blocks/image.less";
+@import "build/blocks/page-attribute-display.less";
+@import "build/blocks/faq.less";
+@import "build/blocks/topics.less";
+@import "build/blocks/core-stack-display.less";
+
+
+// Global classes
+@import "build/typography.less";
+@import "build/flip.less";
+@import "build/list.less";
+@import "build/area-classes.less";
+
+// Custom Design classes
+@import "build/custom-design-classes/content.less";
+@import "build/custom-design-classes/autonav.less";
+
+// Misc
+@import "build/misc.less";
+@import "build/transformation.less";
+@import "build/long-shadow.less";
+@import "build/responsive-nav.less";
+@import "build/responsive.less";
+@import "build/ccm-ui.less";
+
+// jQuery addons
+@import "build/addons/nprogress.less";
+
+
+body  when not(@body-bg-pattern-image = ""){
+	background-image: url(@body-bg-pattern-image) ;
+}
+.intro  when not(@intro-image-default-image = ""){
+	background-image: url(@intro-image-default-image) ;
+}

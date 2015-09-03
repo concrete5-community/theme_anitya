@@ -1,0 +1,282 @@
+// TODO : Move thios to a better place 
+.glued-3 {
+	width: 33.3333333%;
+	float: left;	
+}
+
+// TODO : LE css Bootstrap breadcrumb fait déjà bcp de ceci
+// cursor: changer la classe .tag par breadcrumb
+.tag {
+	font-size: 1.2rem;
+	display: inline-block;
+	padding: 3px @space-s/4 3px 0;
+	+ &:before {
+		content: "|";
+		display: inline-block;
+		padding:0 @space-s/4;
+	}
+}
+
+
+.page-list {
+	h1, h2, h3, h4 {
+		margin: 0 0 @space-s 0;
+		line-height: 1em;
+	}
+}
+
+// -- The default page-list template from C5 -- \\
+
+.ccm-block-page-list-page-entry,
+.ccm-block-page-list-page-entry-horizontal {
+	margin-bottom: @space-m;
+	padding: @space-s;
+	border-bottom: 3px solid @brand-primary-color;	
+	background: @brand-white-color;
+}
+
+.ccm-block-page-list-title {
+	margin-bottom: @space-s;
+	font-weight: lighter;
+	font-size: 18px;
+	color: @brand-primary-color;
+}
+.ccm-block-page-list-page-entry-read-more {
+	float: right;
+	background-color:@brand-primary-color;
+	padding: @space-s/2 @space-s;
+	margin-right: -20px;
+	margin-bottom: -20px;	
+	a {
+		color: @brand-primary-text-color;
+	} 
+}
+// Pour rectifier le "read more" qui est en float
+.ccm-block-page-list-wrapper:after,
+.ccm-block-page-list-page-entry:after,
+.ccm-block-page-list-page-entry-horizontal:after
+ {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+// -- Page-slider 1 page -- \\
+// TODO : Rendre le flickity reurtilisable pour des slide multi-page
+
+.flickity-1-page {
+	.captions {
+		position: absolute;
+		top:15%;
+		left: 15%;
+		width: 70%;
+
+		.image-caption(@brand-primary-color, @brand-primary-text-color);
+		.date {
+			display: inline-block;
+			float: right;
+			font-size: @space-s;
+			
+		}
+	}
+	.gallery-cell {
+		overflow: hidden;
+		background-size: cover;
+		.transform-origin(50%);
+		.scale(.8);
+		.transition(transform .3s ease);
+		&.is-selected {
+			.transform(scale(1));
+		}
+	}
+	/* smaller, dark, rounded square */
+	.flickity-prev-next-button {
+	  width: @space-m;
+	  height: @space-m;
+	  border-radius: 0;
+	  background-color: fade(@brand-primary-color,80%);
+	  .transition(background .2s ease);
+	  outline: none;
+	  &:hover {
+	  	background-color: @brand-primary-color;
+	  }
+	}
+	/* arrow color */
+	.flickity-prev-next-button .arrow {
+	  fill: @brand-primary-text-color;
+	}
+	.flickity-prev-next-button.no-svg {
+	  color: @brand-primary-text-color;
+	}
+	.dummy {
+		position: absolute;
+		background-color: fade(@brand-white-color, 50%);
+		height: 100%;
+		width: 100%;
+	}
+
+}
+
+
+.event-date {
+	// Pour que l'on puisse mettre un background sous le bloc, on met du padding :
+	.event {
+		&:first-child {
+			padding-top: @space-s;
+		}
+		&:last-child {
+			padding-bottom: @space-s;
+		}
+	}
+	.content {
+		padding: 0 @space-m;
+		margin: @space-s/2 0 @space-s 0;
+	}
+	.btn {
+		margin-left: @space-s;
+	}
+
+	.tags {
+		margin-top: @space-s/1.618;
+	}
+
+}
+
+
+.img-based {
+	.item {
+		// TODO : ajuster cette hauteur pour les mobiles
+		overflow: hidden;
+		h2 {
+			font-weight: 400;
+			margin-bottom: @space-m;
+		}
+
+		&.pair {
+			background-color: @brand-primary-color;
+			* {
+				color: @brand-primary-text-color
+			}
+		}
+		&.impair {
+			background-color: @brand-secondary-color;
+			* {
+				color: @brand-primary-text-color
+			}
+		}
+		.info {
+			padding: @space-s;
+
+			h2 {
+				margin-top: 0;
+			}
+		}
+		img {
+			max-height: 400px;
+		}
+		.topics {
+			float: right;
+			opacity: .4;
+		}
+	}
+}
+.img-date-based {
+	.item {
+		overflow: hidden;
+		background-color: @brand-white-color;
+
+		&:hover {
+			background-color: @brand-secondary-color;
+			.info, h4 {
+				color: @brand-secondary-text-color;
+			}
+			.date {
+				background-color: @brand-secondary-text-color;
+				color: @brand-secondary-color; 
+			}
+		}		
+	}
+	picture {
+		max-height: 350px;
+		display: block;
+	}
+	.info {
+		padding: @space-s;
+		min-height: @space-l * 3;
+	}
+	.date {
+		position: relative;
+		display: inline-block;
+		margin-top: 0;
+		top: -(@space-s * 2);
+		margin-bottom: -(@space-s * 2);
+		height: @space-xl;
+		padding: @space-s @space-m 0 @space-s;
+		background-color: @brand-primary-color;
+		color: @brand-primary-text-color;
+		& + * {
+			margin-top: -@space-s+5;
+		}
+	}
+	p {
+		
+	}
+}
+.img-date-based.gallery {
+	.gallery-cell {
+		// width: 40%;
+		// margin-right: 2%;
+		float: left;
+		height: auto;
+		background-color: @brand-white-color;
+		// margin-bottom: @space-s;
+	}
+	picture {
+	}
+	.info {
+	}
+	.date {
+		// height: @space-l;
+		font-size: 14px;
+		padding: @space-s @space-m 0 @space-s;
+	}	
+}
+
+.text-based {
+	& * {
+		color: @brand-primary-color;
+	}
+	
+	.item {
+		background-color: @brand-white-color;
+		min-height: @space-m * 8;
+		padding: @space-s;
+		hr {
+			margin: 0;
+		}
+		.date {
+			margin-top: 0;
+		}
+		.desc {
+			margin-top: @space-m;
+			img {
+				float: left;
+				width: @space-l;
+				margin-right: @space-s;
+			}		
+		}
+
+
+		&:hover {
+			background-color: @brand-secondary-color;
+			* {
+				color: @brand-secondary-text-color;
+			}
+			hr {
+				background-color: @brand-secondary-text-color;
+			}
+		}	
+	}
+
+}

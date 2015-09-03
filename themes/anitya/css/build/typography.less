@@ -1,0 +1,114 @@
+// Headings
+// -------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  small,
+  .small {
+    font-weight: normal;
+    line-height: 1;
+    color: @headings-small-color;
+  }
+  // Explode all combination :
+  & + & {
+  	margin-top: -@line-height-computed/2;
+  }
+}
+
+h1,h2,h3 {
+  margin-top: @line-height-computed;
+  margin-bottom: (@line-height-computed / 2);
+  small,
+  .small {
+    font-size: 65%;
+  }
+}
+h4,h5,h6 {
+  margin-top: (@line-height-computed / 2);
+  margin-bottom: (@line-height-computed / 2);
+  small,
+  .small {
+    font-size: 75%;
+  }
+}
+h1 {
+	font-family: @h1-type-font-family;
+	color: @h1-type-color;
+	font-size: @h1-type-font-size;
+	font-weight: @h1-type-font-weight;	
+}
+h2 {
+	font-family: @h2-type-font-family;
+	color: @h2-type-color;
+	font-size: @h2-type-font-size;
+	font-weight: @h2-type-font-weight;	
+}
+h3 {
+	font-family: @h3-type-font-family;
+	color: @h3-type-color;
+	font-size: @h3-type-font-size;
+	font-weight: @h3-type-font-weight;	
+}
+h4 {
+	font-family: @h4-type-font-family;
+	color: @h4-type-color;
+	font-size: @h4-type-font-size;
+	font-weight: @h4-type-font-weight;
+	text-transform: uppercase;
+}
+h5 {
+	font-family: @h5-type-font-family;
+	color: @h5-type-color;
+	font-size: @h5-type-font-size;
+	font-weight: @h5-type-font-weight;	
+	text-transform: uppercase;
+}
+h6 {
+	font-family: @h6-type-font-family;
+	color: @h6-type-color;
+	font-size: @h6-type-font-size;
+	font-weight: @h6-type-font-weight;	
+	text-transform: uppercase;
+}
+
+// h6+h1,h5+h1,h4+h1,h3+h1,
+// h1+h6,h1+h5,h1+h4,h1+h3 {
+// 	margin-top: -@line-height-computed/2;
+// }
+
+// Links
+
+a {
+  color: @link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+    text-decoration: none;
+  }
+
+  &:focus {
+    .tab-focus();
+  }
+}
+
+
+.change-wheight {
+	font-weight: 300;
+	b,strong,em {
+		font-style: normal;
+		font-weight: 700;
+	}
+}
+
+// -- Some of custom Typography elements and tunning -- \\
+.loud {
+	color: @gray;
+	h1 + &,
+	h2 + &,
+	h3 + &,
+	h4 + &,
+	h5 + & {
+		margin-top: -1em;
+	}
+}

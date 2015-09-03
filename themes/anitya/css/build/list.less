@@ -1,0 +1,26 @@
+.hlist {
+	padding: 0; margin: 0;
+	list-style: none;
+
+	& > li {
+		padding: 0;
+		display: inline-block;
+	}
+}
+
+
+.ccm-block-topic-list-list,
+.ccm-block-date-navigation-dates,
+#sidebar ul.nav, 
+#footer-bottom ul.nav
+{
+    padding-left: @space-s;
+    li {
+        list-style: none;
+        padding: @space-s/2 0;
+        font-weight: 300;
+    }
+    li + li {
+        border-top: 1px solid @body-bg-color;
+    }
+}

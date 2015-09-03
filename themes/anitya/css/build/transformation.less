@@ -1,0 +1,34 @@
+// -- Page animation appear on page -- \\
+
+.run-wrap {
+   .perspective(500px);
+}
+
+.run,.run1,.run2,.run3 {.transition(all .4s);.transform (translate3d(0,0,0)); /* Acceleration CPU */}
+
+.run {
+	.transform-origin (50% 50% -50px);
+	.transform (rotateX(-180deg));  
+	opacity: 0;
+	&.view {
+		.transform(rotateX(0));  
+		opacity: 1;
+	}
+}
+
+.run2 {
+	.transform-origin (0% 0%);
+	.transform (rotate(70deg));  
+	opacity: 0;
+	&.view {
+		.transform(rotate(0));  
+		opacity: 1;
+	}
+}
+
+.run3 {
+	opacity: 0;
+	&.view {
+		opacity: 1;
+	}
+}

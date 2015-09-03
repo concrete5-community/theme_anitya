@@ -1,0 +1,28 @@
+.ccm-block-page-attribute-display-title {
+	color: @brand-primary-color;
+}
+div.ccm-block-page-attribute-display-wrapper {
+  border-top: 5px solid @body-bg-color;
+  padding:@space-s;
+  color: @brand-grey-color;
+  font-size: @font-size-small;
+}
+
+
+div.ccm-block-page-attribute-display-wrapper:last-child {
+  border-bottom: 5px solid @body-bg-color;
+}
+
+p.ccm-block-page-attribute-display-wrapper {
+	border-bottom: 1px solid @brand-grey-color;
+	padding-bottom: 11px;
+	.ccm-block-page-attribute-display-title {
+		display: inline-block;
+		margin-right: 6px;
+	}
+	&:last-child {
+		border: none;
+		padding-bottom: 0;
+	}
+
+}

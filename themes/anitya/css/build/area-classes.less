@@ -1,0 +1,115 @@
+.border-thin {
+	padding:@space-m 0  @space-m 0;
+	border-style: solid !important; // To override default area design from c5
+	border-top: 1px solid darken(@body-bg-color,10%);
+	border-bottom: 1px solid darken(@body-bg-color,10%);
+}
+.border-bold {
+	&-primary {
+		padding:@space-m 0  @space-m 0;
+		border-top: @space-s solid @brand-primary-color;
+		border-bottom: @space-s solid @brand-primary-color;
+		border-style: solid !important; // To override default area design from c5
+	}
+	&-secondary {
+		padding:@space-m 0  @space-m 0;
+		border-top: @space-s solid @brand-secondary-color;
+		border-bottom: @space-s solid @brand-secondary-color;
+		border-style: solid !important; // To override default area design from c5
+	}
+	&-tertiary {
+		padding:@space-m 0  @space-m 0;
+		border-top: @space-s solid @brand-tertiary-color;
+		border-bottom: @space-s solid @brand-tertiary-color;
+		border-style: solid !important; // To override default area design from c5
+	}
+	&-quaternary {
+		padding:@space-m 0  @space-m 0;
+		border-top: @space-s solid @brand-quaternary-color;
+		border-bottom: @space-s solid @brand-quaternary-color;
+		border-style: solid !important; // To override default area design from c5
+	}
+	&-white {
+		padding:@space-m 0  @space-m 0;
+		border-top: @space-s solid @brand-white-color;
+		border-bottom: @space-s solid @brand-white-color;
+		border-style: solid !important; // To override default area design from c5
+	}
+}
+
+.ccm-custom-style-container {
+	position: relative;	
+}
+
+.ccm-custom-style {
+	&-pagefooter, 
+	&-main, 
+	&-main1, 
+	&-main2, 
+	&-main3, 
+	&-main4 
+		{
+		background-attachment: fixed;
+		background-size: cover;
+		background-repeat: no-repeat !important;
+		background-clip: border-box;
+		background-origin: padding-box;
+		border-top-style: solid !important; // To override default area design from c5
+		border-bottom-style: solid !important; // To override default area design from c5
+		border-width: 1px;
+				
+		&.primary {
+			.area-classe-mixin(@brand-primary-color; @brand-primary-text-color);
+		}
+		&.secondary {
+			.area-classe-mixin(@brand-secondary-color; @brand-secondary-text-color);
+		}
+		&.tertiary {
+			.area-classe-mixin(@brand-tertiary-color; @brand-tertiary-text-color);
+		}
+		&.quaternary {
+			.area-classe-mixin(@brand-quaternary-color; @brand-quaternary-text-color);
+		}
+		&.white {
+			.area-classe-mixin(@brand-white-color; @brand-black-color);
+		}
+		&.black {
+			.area-classe-mixin(@brand-black-color; @brand-white-color);
+		}
+		&.space-s {
+			padding:@space-m 0  @space-m 0;
+			border: 0;
+		}
+		&.space-m {
+			padding:@space-l 0  @space-l 0;	
+			border: 0;
+		}		
+	}	
+}
+.area-classe-mixin (@color; @contrast) {
+	background-color:@color;
+	border-top: 1px solid darken(@color,10%) !important;
+	border-bottom: 1px solid darken(@color,10%) !important;
+
+	& * { color:@contrast}
+	hr {
+		background-color: fade(@contrast,80%);
+	}	
+}
+
+.grid-overlay {
+	// position: static;
+	.area-wrap {
+		position: relative;
+		padding:@space-l 0  @space-l 0;	
+		border: 0;		
+		.pattern {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			background-image:url(../../images/pattern/grid.png);			
+		}
+	}
+}

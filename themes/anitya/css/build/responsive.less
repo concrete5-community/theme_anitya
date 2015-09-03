@@ -1,0 +1,103 @@
+.boxed-wrapper {
+
+  @media (min-width: @screen-sm-min) {
+    width: @container-sm + 58;
+  }
+  @media (min-width: @screen-md-min) {
+    width: @container-md + 58;
+  }
+  @media (min-width: @screen-lg-min) {
+    width: @container-lg + 58;
+  }
+}
+
+
+/* Small devices (tablets, 768px and up) */
+  @media (min-width: @screen-sm-min) {
+    .img-based {figure, .info {}}
+  	.top-bar, #intro-content {margin-left: -@container-sm / 2 }
+    .img-date-based .date {
+      font-size: 24px;
+      height: auto;
+      top: -20px;      
+    }    
+  }
+/* Medium devices (desktops, 992px and up) */
+  @media (min-width: @screen-md-min) {
+  	.top-bar, #intro-content {margin-left: -@container-md / 2 }
+
+  }
+/* Large devices (large desktops, 1200px and up) */
+  @media (min-width: @screen-lg-min) {
+    .img-based {figure, .info {}}
+  	.top-bar, #intro-content {margin-left: -@container-lg / 2 }
+  }
+
+  @media (min-width: 768px) and (max-width:1023px) {
+     .glued-3 {
+      width:49.999%;
+    }
+  }
+
+
+// @media (max-width: 767px)
+  @media (max-width: @screen-xs-max) { 
+    .glued-3 {width:49.99999%}
+    .text-based .glued-3 {
+      width:100%;
+    }    
+    .box-long-shadow.feature-item {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    // -- Top bar -- \\ 
+    .top-bar {
+      display: none;
+    }
+    .small-display-nav-bar-inner {
+      display: block;
+    }
+    #intro-content {
+      left: auto;
+      margin-top: 30px;
+    }
+  
+    // -- Page List -- \\
+    .img-date-based .date {
+      font-size: 24px;
+      font-size: 24px;
+      height: auto;
+      top: -20px;      
+    }
+    h1 {
+      font-size: @h1-type-font-size / 1.5;
+    }
+    h2 {
+      font-size: @h2-type-font-size / 1.5;
+    }
+    h3 {
+      font-size: @h3-type-font-size / 1.5;
+    }    
+    h4 {
+      font-size: @h4-type-font-size / 1.5;
+    }
+    h5 {
+      font-size: @h5-type-font-size / 1.5;
+    }
+
+}
+// Les tout petits
+@media (max-width:480px) {
+  .glued-3 {width:100%}
+  #footer-bottom {
+    &,* {
+      text-align: center;
+    }
+  }
+  .overlay {
+    nav ul li a{
+      font-size:30px;
+    }
+  }
+
+}
