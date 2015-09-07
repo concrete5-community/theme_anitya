@@ -6,14 +6,9 @@ foreach ($navItems as $ni) {
 	$classes = array();
 
 	if ($ni->isCurrent || $ni->inPath) {
-		//class for the page currently being viewed
 		$classes[] = 'active';
 	}
-
-
-
 	if ($ni->hasSubmenu) {
-		//class for items that have dropdown sub-menus
 		$classes[] = 'has-submenu';
 	}
 	$ni->classes = implode(" ", $classes);
@@ -26,13 +21,12 @@ foreach ($navItems as $ni) {
 	  <span class="line line-2"></span>
 	  <span class="line line-3"></span>
 	</a>
-	<div id="responsive_logo"><a href="<?php   echo BASE_URL . '/' . DIR_REL ?>"></a></div>
-	<!-- <a href="<?php echo BASE_URL . '/' . DIR_REL ?>" class="go-to-home"><i class="fa fa-home"></i></a>	 -->
+	<div id="responsive_logo"><a href="<?php   echo BASE_URL ?>"></a></div>
 	<div class="overlay overlay-contentscale">
 		<nav>
 			<ul>
-				<li><a href="<?php  echo  BASE_URL . '/' . DIR_REL ?>"><i class="fa fa-home"></i>
-</a></li><?php  
+				<li><a href="<?php  echo  BASE_URL ?>"><i class="fa fa-home"></i>
+</a></li><?php
 foreach ($navItems as $ni) {
 
 	echo '<li class="' . $ni->classes . '">'; //opens a nav item
