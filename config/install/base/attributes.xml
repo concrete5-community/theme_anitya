@@ -1,6 +1,36 @@
 <?xml version="1.0"?>
 <concrete5-cif version="1.0">
+  <attributetypes>
+      <attributetype handle="fileset" name="Fileset" package="theme_anitya">
+          <categories>
+              <category handle="collection"/>
+          </categories>
+      </attributetype>
+      <attributetype handle="mcl_preset_list" name="Anitya Theme Preset List" package="theme_anitya">
+          <categories>
+              <category handle="collection"/>
+          </categories>
+      </attributetype>
+      <attributetype handle="color" name="Color" package="theme_anitya">
+          <categories>
+              <category handle="collection"/>
+          </categories>
+      </attributetype>
+      <attributetype handle="icon_awesome" name="Icon From FontAwesome" package="theme_anitya">
+          <categories>
+              <category handle="collection"/>
+          </categories>
+      </attributetype>
+  </attributetypes>
     <attributekeys>
+        <attributekey handle="page_backgrounds" name="Slide Background" package="theme_anitya" searchable="0" indexed="0" type="fileset" category="collection"/>
+        <attributekey handle="page_background" name="Page Background" package="theme_anitya" searchable="1" indexed="1" type="image_file" category="collection"/>
+        <attributekey handle="icon" name="Icon from fontAwesome" package="theme_anitya" searchable="0" indexed="1" type="icon_awesome" category="collection"/>
+        <attributekey handle="anitya_theme_preset_options" name="Theme preset Options" package="theme_anitya" searchable="1" indexed="1" type="mcl_preset_list" category="collection"/>
+        <attributekey handle="exclude_subpages_from_nav" name="Exlude Subpages from navigation" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
+        <attributekey handle="replace_link_with_first_in_nav" name="Replace Link with First in Nav" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
+        <attributekey handle="external_link" name="Use a external URL as link" package="theme_anitya" searchable="0" indexed="0" type="text" category="collection"/>
+
         <attributekey handle="anitya_youtube_backround_url" name="Youtube Header URL" package="theme_anitya" searchable="0" indexed="0" type="text" category="collection"/>
         <attributekey handle="number_of_main_areas" name="Number of main Areas" package="theme_anitya" searchable="0" indexed="0" type="select" category="collection">
             <type allow-multiple-values="0" display-order="display_asc" allow-other-values="0">
@@ -16,19 +46,27 @@
         </attributekey>
         <attributekey handle="anitya_full_height_header" name="Full Height Header Image" package="theme_anitya" searchable="0" indexed="0" type="boolean" category="collection">
             <type checked=""/>
-        </attributekey>        
+        </attributekey>
         <attributekey handle="thumbnail" name="Thumbnail" package="theme_anitya" searchable="1" indexed="1" type="image_file" category="collection"/>
         <attributekey handle="boxed_layout_mode" name="Boxed Layout Mode" package="theme_anitya" searchable="0" indexed="0" type="boolean" category="collection"/>
-        
+
 
     </attributekeys>
     <attributesets>
-        <attributeset handle="theme_anitya" name="Theme Anitya" package="theme_anitya" locked="0" category="collection">
+        <attributeset handle="anitya_page" name="Anitya Page" package="theme_anitya" locked="0" category="collection">
             <attributekey handle="anitya_youtube_backround_url"/>
             <attributekey handle="number_of_main_areas"/>
             <attributekey handle="thumbnail"/>
             <attributekey handle="anitya_full_height_header"/>
             <attributekey handle="boxed_layout_mode"/>
         </attributeset>
-    </attributesets>
+        <attributeset handle="anitya_options" name="Anitya Options" package="theme_anitya" locked="0" category="collection">
+            <attributekey handle="anitya_theme_preset_options"/>
+        </attributeset>
+        <attributeset handle="navigation" category="collection">
+            <attributekey handle="exclude_subpages_from_nav"/>
+            <attributekey handle="replace_link_with_first_in_nav"/>
+            <attributekey handle="external_link"/>
+        </attributeset>
+      </attributesets>
 </concrete5-cif>

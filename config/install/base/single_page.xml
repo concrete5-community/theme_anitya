@@ -1,0 +1,46 @@
+<concrete5-cif version="1.0">
+    <singlepages>
+        <page name="Anitya options" path="/dashboard/anitya_options" filename="/dashboard/anitya_options.php" pagetype="" description="Manage your Anitya Theme options" package="theme_anitya" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-cogs</value>
+                </attributekey>
+            </attributes>
+        </page>
+        <page name="Theme options" path="/dashboard/anitya_options/theme_options" filename="/dashboard/anitya_options/theme_options.php" pagetype="" description="" package="theme_anitya" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-cog</value>
+                </attributekey>
+            </attributes>
+        </page>        
+        <page name="Sliders" path="/dashboard/anitya_options/sliders" filename="/dashboard/anitya_options/sliders.php" pagetype="" description="" package="theme_anitya" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-th-large</value>
+                </attributekey>
+            </attributes>
+        </page>    
+        <page name="Fonts" path="/dashboard/anitya_options/fonts" filename="/dashboard/anitya_options/fonts.php" pagetype="" description="" package="theme_anitya" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-font</value>
+                </attributekey>
+            </attributes>
+        </page>        
+        <page name="Site Settings" path="/dashboard/anitya_options/site_settings" filename="/dashboard/anitya_options/site_settings.php" pagetype="" description="" package="theme_anitya" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-cog</value>
+                </attributekey>
+            </attributes>
+        </page>        
+        <page name="Presets" path="/dashboard/anitya_options/options_presets" filename="/dashboard/anitya_options/options_presets.php" pagetype="" description="" package="theme_anitya" root="">
+            <attributes>
+                <attributekey handle="icon_dashboard">
+                    <value>fa fa-th-list</value>
+                </attributekey>
+            </attributes>
+        </page>      
+    </singlepages>
+</concrete5-cif>
