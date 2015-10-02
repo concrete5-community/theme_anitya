@@ -1,7 +1,8 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied."));
 $session = \Core::make('session');
 $themeColors = $session->get('anitya.colors');
-// print_r($themeColors);
+print_r($themeColors);
+$v =  $themeColors->variables;
 
 ?>
 /*
@@ -14,15 +15,15 @@ $themeColors = $session->get('anitya.colors');
 /* --- Text Overrides --- */
 
 <?php
-$p 	= new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('p');
-$alternate 	= new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('alternate');
-$h1 = new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('h1');
-$h2 = new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('h2');
-$h3 = new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('h3');
-$h4 = new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('h4');
-$h5 = new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('h5');
-$h6 = new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('h6');
-$small = new \Concrete\Package\ThemeAnitya\Src\Models\AnityaFont('small');
+$p 	= new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('p');
+$alternate 	= new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('alternate');
+$h1 = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('h1');
+$h2 = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('h2');
+$h3 = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('h3');
+$h4 = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('h4');
+$h5 = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('h5');
+$h6 = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('h6');
+$small = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('small');
 ?>
 
 /* -- FONTS --- */
@@ -44,39 +45,18 @@ h5,.h5 {<?=$h5->getStyleCss()?>;font-size:<?=$h5->fullsize?>px}
 h6,.h6 {<?=$h6->getStyleCss()?>;font-size:<?=$h6->fullsize?>px}
 
 /* -- Navigation -- */
-<?php if ($o->first_level_regular_flaterize): ?>
-	/* Make Regular nav Flat */
-	.regular-top-nav, .regular-top-nav > ul, .regular-top-nav > ul > li.active > a {background:<?php echo isset($themeColors->variables['top-nav-bg-color']) ? $themeColors->variables['top-nav-bg-color'] : $themeColors->variables['quaternary-color'] ?>}
-	.regular-top-nav > ul > li > a {text-shadow:none}
-	.regular-top-nav > ul > li:not(:last-child),
-	.regular-top-nav > ul li + li {	border:none}
-	.mgm-drop > ul, .multicolumn-pane, .regular-top-nav > ul > li.active > a {box-shadow:none}
-<?php endif ?>
-.l123 > li > a,
-.l12d li > a,
-li.mgm-multi-c-title a {
-	<?php echo $h1->getFamily(); ?>
+<?php if ($o->header_nav_selected_bar_wheight): ?>
+.regular-top-nav > ul > li.active > a,
+.regular-top-nav > ul > li:hover > a {
+	box-shadow: 0 -<?php echo $o->header_nav_selected_bar_wheight?>px 0 <?php echo $v['primary-color'] ?>;
 }
-/* Dropdown Levels */
-.mega-menu > li > ul,
-.mega-menu > li > ul li > ul
- {
-	width: <?php echo $o->nav_sub_level_width/10 ?>rem;
-}
-/* Lateral Font & Style */
-.lateral-nav li a {
-	<?php if ($o->lateral_nav_element_font): ?>font-family:<?php echo ${$o->lateral_nav_element_font}->font ?>;<?php endif ?>
-	<?php if ($o->lateral_nav_element_uppercase): ?>text-transform:uppercase;<?php endif; ?>
-	font-size:<?php echo $o->lateral_nav_element_size ?>px;
-}
-<?php if ($o->full_screen_nav_font_size) : ?>
-/* Full screen nav */
-.overlay ul li a {font-size:<?php echo $o->full_screen_nav_font_size?>px}
-<?php endif ?>
 
+.regular-top-nav > ul > li > a {
+	margin-top: <?php echo $o->header_nav_selected_bar_wheight  ?>px;
+	line-height: <?php echo $v['top-nav-height-size'] - ($o->header_nav_selected_bar_wheight * 2 ) ?>px;
+	padding-bottom: <?php echo $o->header_nav_selected_bar_wheight ?>px;
+}
 
-<?php if ($o->disable_border_main) : ?>
-.content, #top-page { border:1px solid transparent}
 <?php endif ?>
 
 /* -- Popup -- */

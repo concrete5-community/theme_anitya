@@ -57,7 +57,7 @@ $options = array(
 
     array(
         "name" => t("Anitya Navigation"),
-        "desc" => t('This section display options common for the navigation\'s types'),
+        "desc" => t('This section display options for the Header navigation'),
         "icon" => 'fa-list',
         "type" => "section"
     ),
@@ -78,22 +78,18 @@ $options = array(
         "default" => 1,
         "type" => "toggle"
     ),
-
-    // Dropdown mode
-
     array(
-        'name' => t('Dropdown mode'),
-        "desc" => t('Options When the nav is in dropdown mode'),
-        'type' => 'subsection'
-    ),
-    array(
-        "name" => t("Fix the navigation bar on top"),
-        "desc" => t("If enabled, the nav bar will be fixed on top. You will need to disable the auto-embeding of navigation and placing the autonav block into the 'Responsive Navigation' Area"),
-        "id" => "wide_navbar_fixed",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-     array(
+       "name" => t("Wheight of the bar on top of selected/hover menu item"),
+       "desc" => t("if 0 the bar will be disabled desactivated "),
+       "id" => "header_nav_selected_bar_wheight",
+       "min" => "1",
+       "max" => "40",
+       "step" => "1",
+       "unit" => 'px',
+       "default" => "3",
+       "type" => "range"
+   ),
+   array(
         "name" => t("Dropdown Width"),
         "desc" => t("Set width for dropdown in main navigation when it's on dropdown mode"),
         "id" => "nav_sub_level_width",

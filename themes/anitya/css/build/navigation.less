@@ -1,4 +1,6 @@
-@nav-selected-bar-wheight:1px;
+@nav-selected-bar-wheight:2px;
+@search-box-transition-lenght:.6s;
+@search-box-size:35px;
 
 nav.main-nav {
 	position: static;
@@ -53,6 +55,7 @@ nav.main-nav {
 			}
 		}
 	}
+
 	.logo {
 		float: left;
 		.transition(margin .4s);
@@ -60,6 +63,71 @@ nav.main-nav {
 			display: block;
 			max-height: @top-nav-height-size;
 		}
+	}
+
+	.search-container {
+		margin-top:(@top-nav-height-size/2)-@search-box-size/2;
+		width:80px;
+		&.active,
+		&:hover {
+			box-shadow:none;
+		}
+	}
+
+	.search-box {
+	  transition: width @search-box-transition-lenght, border-radius @search-box-transition-lenght, background @search-box-transition-lenght, box-shadow @search-box-transition-lenght;
+	  width: @search-box-size;
+		height: @search-box-size;
+	  border-radius:@search-box-size/2;
+		border: none;
+	  cursor: pointer;
+	  background: fade(@top-nav-text-color,5%);
+		display: inline-block;
+
+	  & + label {
+			display: inline-block;
+			position: absolute;
+			.search-icon {
+				color: @black-color
+			}
+		}
+	  &:hover {
+	    color: @white-color;
+	    background:fade(@top-nav-text-color,10%);
+	    box-shadow: 0 0 0 5px fade(@black-color,15%);
+	    & + label .search-icon {
+				color: @primary-color;
+			}
+	  }
+	  &:focus {
+	    transition: width @search-box-transition-lenght cubic-bezier(0,1.22,.66,1.39), border-radius @search-box-transition-lenght, background @search-box-transition-lenght;
+	    border: none;outline: none;
+	    box-shadow: none;
+	    padding-left: @space-xs;
+	    cursor: text;
+	    width: @space-l;
+	    border-radius: auto;
+	    background: fade(@top-nav-text-color,10%);
+	    color: black;
+	    & + label {
+				display: none;
+			}
+	  }
+	  &:not(:focus) {text-indent:-5000px;} // for more-graceful falling back (:not browsers likely support indent)
+	}
+
+	#search-submit {
+	  position: relative;
+		left: -5000px;
+		display: inline-block;
+	}
+
+	.search-icon {
+	  position: relative;
+	  left: -(@search-box-size)+8;
+		top:-2px;
+	  color: white;
+	  cursor: pointer;
 	}
 }
 
@@ -69,7 +137,7 @@ nav.main-nav {
   & > ul {
     height: @top-nav-height-size;
     text-align: right;
-    padding:0 30px 0 0;
+    padding:0;
     margin: 0;
     list-style: none;
     .edit-mode & {z-index: 1}
@@ -77,19 +145,21 @@ nav.main-nav {
       text-align: left;
       display: inline-block ;
       padding: 0 10px;
-			.transition(.3s);
-			margin-top: @nav-selected-bar-wheight; // Pour la barre du dessus
 			&.active,
 			&:hover {
-				box-shadow: 0 -@nav-selected-bar-wheight 0 @primary-color;
+				& > a {
+					box-shadow: 0 -@nav-selected-bar-wheight 0 @primary-color;
+					color:@primary-color;
+				}
 			}
+
       & > a {
-				margin-top: -@nav-selected-bar-wheight; // Pour la barre du dessus
         font-size: 14px;
 		 		text-decoration: none;
 		 		text-transform: uppercase;
 		 		color: @top-nav-text-color;
-		 		line-height: @top-nav-height-size;
+		 		line-height: (@top-nav-height-size)-(@nav-selected-bar-wheight)*2;
+				.transition(box-shadow .1s);
 				&:last-child {
 			    	padding-right: 0;
 				}

@@ -1,24 +1,24 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeAnitya\Controller\Tools;
 
 use \Concrete\Core\Controller\Controller as RouteController;
 use Fileset;
 use Loader;
 
-use \Concrete\Package\ThemeAnitya\Src\Models\AnityaFontList;
+use \Concrete\Package\ThemeAnitya\Src\Models\MclFontList;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
-class FontsTools extends RouteController {		
+class FontsTools extends RouteController {
 	function getFontDetails () {
-				
+
 		if (!$fontList) {
 			$fontList = Loader::helper('json')->decode(Loader::helper('file')->getContents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsT5OzRSuWghytRLmwLagJ4BCl49qC1kM'));
 		}
 
 		if (is_object($fontList)) {
 			foreach ($fontList->items as $key => $fontObj) {
-				
+
 				if (str_replace("+", " ", $_POST['font']) == $fontObj->family) {
 					$variants = $fontObj->variants;
 					$subsets = $fontObj->subsets;
@@ -38,11 +38,11 @@ class FontsTools extends RouteController {
 			// LE nom de la police avec +
 			'font' => $_POST['font'],
 			// Les tableaux des options disponibles
-			'variants' => $variants, 
+			'variants' => $variants,
 			'subsets' => $subsets,
 			// LE nom des inputs
 			'subsetName' => $subsetName,
-			'variantName' => $variantName, 
+			'variantName' => $variantName,
 			// Les options selectionee
 			'selected_variants' => $selected_variants,
 			'selected_subsets' => $selected_subsets
@@ -55,7 +55,7 @@ class FontsTools extends RouteController {
 
 	function getFontsURL ()	{
 
-		$list = new AnityaFontList();
+		$list = new MclFontList();
 		$list->addFont('p');
 		$list->addFont('h1');
 		$list->addFont('h2');
@@ -64,6 +64,6 @@ class FontsTools extends RouteController {
 		$list->addFont('h5');
 		$list->addFont('alternate');
 		$list->addFont('small');
-		return $list->getCssUrlFromList();	
+		return $list->getCssUrlFromList();
 	}
 }

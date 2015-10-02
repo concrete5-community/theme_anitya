@@ -5,7 +5,7 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
 
 use \Concrete\Core\Legacy\Model;
 use Loader;
-use Concrete\Package\ThemeAnitya\Src\Models\AnityaFont as AnityaFont;
+use Concrete\Package\ThemeAnitya\Src\Models\MclFont;
 
 class MclFontList {
 
@@ -19,7 +19,7 @@ class MclFontList {
 	}
 
 	function addFont ($tag) {
-		$font = new AnityaFont($tag);
+		$font = new MclFont($tag);
 		if ($font->font ):
 			foreach ($font->subset as $key => $subset) {
 				if ($subset)

@@ -140,20 +140,7 @@ foreach ($navItems as $k=>$ni) :
 	}
 	$i ++;
 
-endforeach;
-
-if($o->display_searchbox) :
-	$p = Page::getByID($o->display_searchbox);
-	if (is_object($p)) :
-
-	echo '<li class="search-in-nav">';
-	?>
-	<form action="<?php  echo  Loader::helper('navigation')->getCollectionURL($p)?>" id="expand-search">
-   	   <input type="search" class="vertical-align" id="search-keywords" name="query" placeholder="&#xf002"/>
-	</form>
-	</li>
-	<?php endif ?>
-<?php endif ?>
+endforeach;?>
 	</ul>
 <?php if ($o->wide_navbar_contained && $o->navigation_style == 'large-top-nav'): ?></div><!-- container --><?php endif ?>
 </div><!-- .top_nav_mega-menu -->
