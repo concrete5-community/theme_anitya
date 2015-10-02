@@ -37,7 +37,7 @@ class Controller extends \Concrete\Core\Package\Package {
 
 	protected $pkgHandle = 'theme_anitya';
 	protected $appVersionRequired = '5.7.3';
-	protected $pkgVersion = '1.2.3.2';
+	protected $pkgVersion = '1.2.3.3';
 	protected $pkg;
 
 
@@ -106,6 +106,7 @@ class Controller extends \Concrete\Core\Package\Package {
 		$al->register( 'css', 'slick', 'themes/anitya/css/addons/slick.css', array('version' => '1.3.15'), $this );
 		$al->register( 'css', 'slick-theme', 'themes/anitya/css/addons/slick-theme.css', array('version' => '1.3.15'), $this );
 		$al->register( 'css', 'bootsrap-custom', 'themes/anitya/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4'), $this );
+		$al->register( 'css', 'megamenu', 'themes/anitya/css/addons/mega-menu.css', array('version' => '1'), $this );
 
  	}
 	function registerEvents () {

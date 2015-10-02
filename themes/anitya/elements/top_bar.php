@@ -2,19 +2,18 @@
 ?>
 
 <header class="container top-bar">
-   <div class="top-nav-inner clearfix">
-        <div class="logo">
-            <?php 
+   <div class="row">
+        <div class="col-md-3 logo">
+            <?php
             $a = new GlobalArea('Header Site Title');
             $a->display();
-            ?>                            
+            ?>
         </div>
-        <nav class="main-nav">
-            <?php 
+        <nav class="col-md-9 main-nav">
+            <?php
             $a = new GlobalArea('Header Navigation');
             $a->display();
             ?>
         </nav>
     </div><!-- /.top-nav-inner -->
 </header>
-

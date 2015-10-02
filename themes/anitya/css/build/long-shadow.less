@@ -3,15 +3,15 @@
 
 .long-shadow {
 	&.primary {
-		color: @brand-primary-text-color;
+		color: @primary-text-color;
 		& when (@operation = true) {
-			.longShadow(multiply(@brand-primary-color,#ccc), 40);
+			.longShadow(multiply(@primary-color,#ccc), 40);
 		}
 	}
 	&.secondary {
-		color: @brand-secondary-text-color;
+		color: @secondary-text-color;
 		& when (@operation = true) {
-			.longShadow(multiply(@brand-secondary-color,#ccc), 40);
+			.longShadow(multiply(@secondary-color,#ccc), 40);
 		}
 	}
 

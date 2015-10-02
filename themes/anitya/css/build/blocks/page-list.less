@@ -31,24 +31,24 @@
 .ccm-block-page-list-page-entry-horizontal {
 	margin-bottom: @space-m;
 	padding: @space-s;
-	border-bottom: 3px solid @brand-primary-color;	
-	background: @brand-white-color;
+	border-bottom: 3px solid @primary-color;	
+	background: @white-color;
 }
 
 .ccm-block-page-list-title {
 	margin-bottom: @space-s;
 	font-weight: lighter;
 	font-size: 18px;
-	color: @brand-primary-color;
+	color: @primary-color;
 }
 .ccm-block-page-list-page-entry-read-more {
 	float: right;
-	background-color:@brand-primary-color;
+	background-color:@primary-color;
 	padding: @space-s/2 @space-s;
 	margin-right: -20px;
 	margin-bottom: -20px;	
 	a {
-		color: @brand-primary-text-color;
+		color: @primary-text-color;
 	} 
 }
 // Pour rectifier le "read more" qui est en float
@@ -72,7 +72,7 @@
 		left: 15%;
 		width: 70%;
 
-		.image-caption(@brand-primary-color, @brand-primary-text-color);
+		.image-caption(@primary-color, @primary-text-color);
 		.date {
 			display: inline-block;
 			float: right;
@@ -95,23 +95,23 @@
 	  width: @space-m;
 	  height: @space-m;
 	  border-radius: 0;
-	  background-color: fade(@brand-primary-color,80%);
+	  background-color: fade(@primary-color,80%);
 	  .transition(background .2s ease);
 	  outline: none;
 	  &:hover {
-	  	background-color: @brand-primary-color;
+	  	background-color: @primary-color;
 	  }
 	}
 	/* arrow color */
 	.flickity-prev-next-button .arrow {
-	  fill: @brand-primary-text-color;
+	  fill: @primary-text-color;
 	}
 	.flickity-prev-next-button.no-svg {
-	  color: @brand-primary-text-color;
+	  color: @primary-text-color;
 	}
 	.dummy {
 		position: absolute;
-		background-color: fade(@brand-white-color, 50%);
+		background-color: fade(@white-color, 50%);
 		height: 100%;
 		width: 100%;
 	}
@@ -154,15 +154,15 @@
 		}
 
 		&.pair {
-			background-color: @brand-primary-color;
+			background-color: @primary-color;
 			* {
-				color: @brand-primary-text-color
+				color: @primary-text-color
 			}
 		}
 		&.impair {
-			background-color: @brand-secondary-color;
+			background-color: @secondary-color;
 			* {
-				color: @brand-primary-text-color
+				color: @primary-text-color
 			}
 		}
 		.info {
@@ -184,16 +184,16 @@
 .img-date-based {
 	.item {
 		overflow: hidden;
-		background-color: @brand-white-color;
+		background-color: @white-color;
 
 		&:hover {
-			background-color: @brand-secondary-color;
+			background-color: @secondary-color;
 			.info, h4 {
-				color: @brand-secondary-text-color;
+				color: @secondary-text-color;
 			}
 			.date {
-				background-color: @brand-secondary-text-color;
-				color: @brand-secondary-color; 
+				background-color: @secondary-text-color;
+				color: @secondary-color; 
 			}
 		}		
 	}
@@ -213,8 +213,8 @@
 		margin-bottom: -(@space-s * 2);
 		height: @space-xl;
 		padding: @space-s @space-m 0 @space-s;
-		background-color: @brand-primary-color;
-		color: @brand-primary-text-color;
+		background-color: @primary-color;
+		color: @primary-text-color;
 		& + * {
 			margin-top: -@space-s+5;
 		}
@@ -229,7 +229,7 @@
 		// margin-right: 2%;
 		float: left;
 		height: auto;
-		background-color: @brand-white-color;
+		background-color: @white-color;
 		// margin-bottom: @space-s;
 	}
 	picture {
@@ -245,11 +245,11 @@
 
 .text-based {
 	& * {
-		color: @brand-primary-color;
+		color: @primary-color;
 	}
 	
 	.item {
-		background-color: @brand-white-color;
+		background-color: @white-color;
 		min-height: @space-m * 8;
 		padding: @space-s;
 		hr {
@@ -269,12 +269,12 @@
 
 
 		&:hover {
-			background-color: @brand-secondary-color;
+			background-color: @secondary-color;
 			* {
-				color: @brand-secondary-text-color;
+				color: @secondary-text-color;
 			}
 			hr {
-				background-color: @brand-secondary-text-color;
+				background-color: @secondary-text-color;
 			}
 		}	
 	}

@@ -2,9 +2,19 @@
 /* Slider */
 .slick-loading .slick-list
 {
-    background: #fff url('../../images/ajax-loader.gif') center center no-repeat;
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
 }
 
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+}
 /* Arrows */
 .slick-prev,
 .slick-next
@@ -54,12 +64,12 @@
 .slick-prev:before,
 .slick-next:before
 {
-    font: normal normal normal 14px/1 FontAwesome;
+    font-family: 'slick';
     font-size: 20px;
     line-height: 1;
 
     opacity: .75;
-    color: black;
+    color: white;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -76,11 +86,11 @@
 }
 .slick-prev:before
 {
-    content: "\f104";
+    content: '←';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: "\f105";
+    content: '→';
 }
 
 .slick-next
@@ -94,12 +104,13 @@
 }
 .slick-next:before
 {
-    content: "\f105";
+    content: '→';
 }
 [dir='rtl'] .slick-next:before
 {
-    content: "\f104";
+    content: '←';
 }
+
 
 /* Dots */
 .slick-slider
@@ -164,7 +175,8 @@
 }
 .slick-dots li button:before
 {
-    font: normal normal normal 8px/1 FontAwesome;
+    font-family: 'slick';
+    font-size: 6px;
     line-height: 20px;
 
     position: absolute;
@@ -174,7 +186,7 @@
     width: 20px;
     height: 20px;
 
-    content: "\f111";
+    content: '•';
     text-align: center;
 
     opacity: .25;
@@ -185,8 +197,6 @@
 }
 .slick-dots li.slick-active button:before
 {
-    font-size: 12px;
     opacity: .75;
     color: black;
-    content: "\f192";    
 }

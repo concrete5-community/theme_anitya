@@ -8,7 +8,7 @@ body {
 
 .boxed-wrapper { // (.ccm-page.boxed-wrapper)
   background-color: @content-bg-color;
-	box-shadow: 0px 0px 5px 0px fade(@brand-black-color,20%);
+	box-shadow: 0px 0px 5px 0px fade(@black-color,20%);
   width: 1200px;
   margin: 0 auto;
 }
@@ -16,11 +16,11 @@ body {
 /* -- Wrpper -- */
 
 .an {
-	opacity: 0;
+	// opacity: 0;
 	.transition(all .5s ease);
 }
 div.loaded {
-	opacity: 1;
+	// opacity: 1;
 }
 
 // -- Full wrapped page type -- \\
@@ -29,6 +29,133 @@ div.loaded {
 	background-color: @content-wrapped-color;
 	background-clip: content-box;
 }
+
+@media screen and (max-width: 720px){
+
+        height: auto;
+
+    & nav {
+        height: auto;
+        width: auto;
+        display: block;
+        text-align: center;
+    }
+
+}
+
+// -- Responsive nav --\\
+
+.small-display-nav-bar {
+	.edit-mode & {
+		margin-top: 49px;
+	}
+}
+
+
+.intro, .ccm-intro-block {
+	width: 100%;
+//	background-image: defined in main.less
+	background-color: @intro-image-default-color;
+	background-size: auto;
+	background-position: 50% 50%;
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+	// N'est généré que si il y a une video
+	#video_header_bg {
+		margin: auto;
+		height: 100%;
+	}
+	.gotobottom {
+		position: absolute;
+		display: none;
+		bottom: 80px;
+		width: 100%;
+		font-size: 60px;
+		text-shadow: 0 0 12px fade(@black-color,50%);
+		color: @white-color;
+		text-align: center;
+		z-index: 10;
+	}
+	// --- La gestion de la hauteur : --- \\
+	// 1. Si l'utilisateur a demandé 0px, la hauteur de l'image sera celle du viewport (1vh)
+	// 2. Si la page est en Edit-mode, la hauteur est fixée à 50px
+	// 3. Quand l'attribut 'Thumbnail' est rempli, La hauteur est celle definie dans les options de thème
+	// 4.
+
+	.edit-mode &  {
+		height:50px;
+		min-height: 50px;
+	}
+	&.with-image {
+	//	height: @intro-image-height-size;
+	// Cette regle semble estre prise en charge par la regle suivante
+	}
+	& when not(@intro-image-default-image = "") {
+		height: @intro-image-height-size;
+	}
+	&.full_height {
+		height: 100vh;
+		#intro-content {
+			margin-top: 35vh;
+		}
+		.gotobottom {
+			display: block;
+		}
+	}
+	&.full-height {
+		height: 100vh;
+		#intro-content {
+			margin-top: 50vh;
+		}
+		.gotobottom {
+			display: block;
+		}
+	}
+
+	@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+	    height: 1024px;
+	}
+	@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+	    height: 768px;
+	}
+	@media screen and (device-aspect-ratio: 40/71) {
+	    height: 500px;
+	}
+}
+
+.ccm-intro-block {
+	height: auto;
+}
+
+#intro-content {
+	position: absolute;
+	left: 50%;
+	margin-top:@intro-height-without-img-size / 2.5;
+	z-index: 5;
+	.with-image & {
+		// margin-top:@intro-image-height-size / 2.5;
+	}
+	& when not(@intro-image-default-image = "") {
+		margin-top:@intro-image-height-size / 3;
+	}
+}
+
+#sub-header-1 {
+	background-color: @sub-header-1-bg-color;
+	padding: 15px 0;
+	h1, h2, h3 {
+		margin: 0; padding: 0;
+	}
+}
+#sub-header-2 {
+	background-color: @sub-header-2-bg-color;
+}
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { /* zoom: 1; */ }
+
 
 // -- Right & left Sidebar -- \\
 
@@ -42,7 +169,7 @@ div.loaded {
 
  #footer-bottom nav, #footer-bottom .nav {
 	li + li {
-		border-top: 1px solid darken(@brand-quaternary-color,5%);
+		border-top: 1px solid darken(@quaternary-color,5%);
 	}
  }
 
@@ -60,7 +187,7 @@ div.loaded {
 }
 
 #main-lead {
-	background-color: @brand-white-color;
+	background-color: @white-color;
 	padding: 15px;
 	margin-top: 15px;
 }

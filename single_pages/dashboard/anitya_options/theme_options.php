@@ -16,20 +16,6 @@ $options = array(
         "type" => "toggle"
     ),
     array(
-        "name" => t("Display wide Top Area"),
-        "desc" => t("Display a Area under the logo to add some widther content"),
-        "id" => "display_top_area",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Display Top Bar"),
-        "desc" => t("Display zone with Logo Area, right Header content,.. Disable this for the Wide navigation style"),
-        "id" => "display_top_bar_area",
-        "default" => 1,
-        "type" => "toggle"
-    ),
-    array(
         "name" => t("Layout mode"),
         "desc" => t("Each page templates can be displayed in a wide or a Boxed format. Boxed format use the color 'boxed-background-color' as background"),
         "id" => "layout_mode",
@@ -41,99 +27,13 @@ $options = array(
         "default" => "wide-wrapper",
         "type" => "select"
     ),
-    array(
-        "name" => t("Sidebar width size"),
-        "desc" => t('Add or remove a column in the sidebar'),
-        "id" => "sidebar_size",
-        "default" => 4,
-        "options" => array(
-            5 => t("Large"),
-            4 => t("Normal"),
-            3 => t("thin")
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Sidebar padding"),
-        "desc" => t('Add space between the sidebar border and the content'),
-        "id" => "sidebar_padding",
-        "default" => 'space-s',
-        "options" => array(
-            'space-m' => t("Large"),
-            'space-s' => t("Normal"),
-            'space-xs' => t("thin"),
-            'zero' => t("None")
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Add Space between sidebar and the Main content area"),
-        "desc" => t(''),
-        "id" => "sidebar_offset",
-        "default" => 0,
-        "options" => array(
-            2 => t("Large"),
-            1 => t("thin"),
-            0 => t("None")
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Content padding"),
-        "desc" => t('Add or remove space between border and content in the Main content area'),
-        "id" => "content_padding",
-        "default" => 'space-s',
-        "options" => array(
-            'space-m' => t("Large"),
-            'space-s' => t("Normal"),
-            'space-xs' => t("Thin"),
-            'zero' => t("None")
-        ),
-        "type" => "select"
-    ),
 
-
-    // Blocks templates
-
-
-
-    array(
-        "name" => t("Blocks templates"),
-        "desc" => t('In this section you find options to controls Block\'s custom template details'),
-        "icon" => 'fa-th-large',
-        "type" => "section"
-    ),
     array(
         'name' => t('Page List'),
         "desc" => t('Options for the Built-in "Autonav" block'),
         'type' => 'subsection'
     ),
-    array(
-        "name" => t("Display tag filtering"),
-        "desc" => t('Display tag filtering on templates that support this feature'),
-        "id" => "isotope_display_tags",
-        "default" => 1,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Display Keyword filtering"),
-        "desc" => t('Display keyword filtering on templates that support this feature'),
-        "id" => "isotope_display_search",
-        "default" => 1,
-        "type" => "toggle"
-    ),
-    array(
-        'name' => t('Feature'),
-        "desc" => t('Options for the Built-in "Feature" block'),
-        'type' => 'subsection'
-    ),
-    array(
-        "name" => t("Display button"),
-        "desc" => t('Display a link button on certain Feature block template'),
-        "id" => "feature_link_button",
-        "default" => 1,
-        "type" => "toggle"
-    ),
+
     array(
         "name" => t("Button text"),
         "desc" => t('The default text to add on the button'),
@@ -142,11 +42,7 @@ $options = array(
         "type" => "text",
         "default" => t('More')
     ),
-    array(
-        'name' => t('Autonav'),
-        "desc" => t('Options for the Built-in "Autonav" block'),
-        'type' => 'subsection'
-    ),
+
     array(
         "name" => t("Icon class on left of each navigation title"),
         "desc" => t("Pick a icon from the <a href='http://fontawesome.io/icons/'>FontAwesome</a> Librairy. this icon will be used throught all autonav template"),
@@ -154,14 +50,6 @@ $options = array(
         "type" => "awesome",
         "default" => 'fa-chevron-circle-right'
     ),
-    array(
-        "name" => t("Display icon on Horizontal template"),
-        "id" => "autonav_horizontal_icon",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-
-
 
     // Navigation
 
@@ -173,26 +61,7 @@ $options = array(
         "icon" => 'fa-list',
         "type" => "section"
     ),
-    array(
-        "name" => t("Navigation Style"),
-        "desc" => t("Choose the navigation style"),
-        "id" => "navigation_style",
-        "default" => 'regular-top-nav',
-        "options" => array(
-            'slide' => t("Slide mode"),
-            'regular-top-nav' => t("Regular drop-down mode"),
-            'large-top-nav' => t('Large drop-down mode'),
-            'lateral-regular' => t('Lateral mode')
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Disable Auto embed navigation"),
-        "desc" => t("If disabled, a global area will let you put whitch block you want for nav"),
-        "id" => "disable_embed_nav",
-        "default" => 0,
-        "type" => "toggle"
-    ),
+
     array(
         "name" => t("Choose a page for searching result"),
         "desc" => t("Display Search box in the top of the page if a page is selected. Add a block search on this page to display result."),
@@ -207,13 +76,6 @@ $options = array(
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "first_level_nav_icon",
         "default" => 1,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Make regular nav FLAT"),
-        "desc" => t('Once enabled, this options remove all gradient and shadow from the regular type navigation. Usefull for light colors'),
-        "id" => "first_level_regular_flaterize",
-        "default" => 0,
         "type" => "toggle"
     ),
 

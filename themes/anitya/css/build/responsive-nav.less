@@ -4,7 +4,7 @@
     position: fixed;
     height: 45px;
     width: 100%;
-    background-color: @brand-primary-color;
+    background-color: @primary-color;
     .edit-mode & {
         display: block;
         position: relative;
@@ -14,7 +14,7 @@
         position: absolute;
         right: 20px;
         top: 6px;
-        color: @brand-primary-text-color;
+        color: @primary-text-color;
         font-size: 25px;        
     }
 }
@@ -34,7 +34,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: fade(@brand-primary-color,80%);
+    background: fade(@primary-color,80%);
     z-index: 1;
     overflow: scroll;
     nav {
@@ -59,10 +59,10 @@
                 font-size: 54px;
                 font-weight: 300;
                 display: block;
-                color: fade(@brand-primary-text-color,80%);
+                color: fade(@primary-text-color,80%);
                 .transition(color 0.2s);
                 &:hover {
-                    color: @brand-primary-text-color;
+                    color: @primary-text-color;
                 }
             }
             &.active {
@@ -70,7 +70,7 @@
                     font-weight: 600;
                 }
                 & > a:before {
-                    .triangle-right(@space-s/2,fade(@brand-primary-text-color,80%));
+                    .triangle-right(@space-s/2,fade(@primary-text-color,80%));
                     position: absolute;
                     left: -@space-s ;
                     top: 50%;
@@ -140,7 +140,7 @@
   }
   .line {
     display:block;
-    background:@brand-primary-text-color;
+    background:@primary-text-color;
     width:@width-line;
     height:@height-line;
     position:absolute;

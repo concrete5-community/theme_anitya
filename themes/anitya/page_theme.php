@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Concrete\Package\ThemeAnitya\Theme\Anitya;
 
 defined('C5_EXECUTE') or die('Access Denied.');
@@ -6,12 +6,12 @@ defined('C5_EXECUTE') or die('Access Denied.');
 class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 
 	public function registerAssets() {
-         
+
         $this->requireAsset('javascript', 'jquery');
         $this->requireAsset('javascript', 'bootstrap/dropdown');
-        $this->requireAsset('javascript', 'imagesloaded');        
+        $this->requireAsset('javascript', 'imagesloaded');
         $this->requireAsset('javascript', 'masonry');
-        $this->requireAsset('javascript', 'flickity');        
+        $this->requireAsset('javascript', 'flickity');
         $this->requireAsset('javascript', 'slick');
         $this->requireAsset('javascript', 'rcrumbs');
         $this->requireAsset('javascript', 'scrollmonitor');
@@ -23,15 +23,16 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         $this->requireAsset('javascript', 'stellar');
         $this->requireAsset('javascript', 'anitya.script');
 
-        
-        $this->requireAsset('css', 'font-awesome');        
+
+        $this->requireAsset('css', 'font-awesome');
         $this->requireAsset('css', 'YTPlayer');
         $this->requireAsset('css', 'flickity');
         $this->requireAsset('css', 'slick');
         $this->requireAsset('css', 'slick-theme');
         $this->requireAsset('css', 'jquery/ui');
         $this->requireAsset('css', 'bootsrap-custom');
-         
+				$this->requireAsset('css', 'megamenu');
+
 	}
 
     protected $pThemeGridFrameworkHandle = 'bootstrap3';
@@ -52,13 +53,13 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 
         );
     }
-    
+
     public function getThemeAreaClasses()
     {
         // For multiple area
         $main_area = array('Main');
         $area_classes = array('primary','secondary','tertiary','quaternary','white','black','grid-overlay', 'space-s','space-m','hr-bold', 'border-thin','border-bold','border-bold-primary','border-bold-secondary','border-bold-tertiary','border-bold-quaternary','border-bold-white');
-        for ($i=1; $i < 8; $i++) { 
+        for ($i=1; $i < 8; $i++) {
             $main_area['Main - ' . $i] = $area_classes;
         }
         // Default array
@@ -86,7 +87,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
             array('title' => t('Code'), 'menuClass' => '', 'spanClass' => 'code')
         );
     }
-    
+
     public function getThemeResponsiveImageMap()
     {
         return array(
@@ -95,5 +96,95 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
             'small' => '0'
         );
     }
-}
 
+
+		function createLayout ($navItems, $niKey, $break_columns_on_child, $nav_multicolumns_item_per_column){
+
+			// Cette fonction crée un layout pour le systeme de multicolonnes
+
+			$item_count = 0;
+			$columns = 0;
+			$layout = array();
+
+			foreach ($navItems as $key => $ni)  :
+				// Si on est AVANT les sous menu, on ignore
+			 	if($key <= $niKey ) continue;
+			 	// Si on est APRES les sous menu, on arrete.
+				if($ni->level == 1 ) break;
+				
+				if ($break_columns_on_child && $ni->hasSubmenu ) {
+					$columns ++;
+					$item_count = 0;
+				}
+
+				if(!$break_columns_on_child && $item_count ==  $nav_multicolumns_item_per_column) {
+					$columns ++;
+					$item_count = 0;
+				}
+
+				$layout[$columns][] = $ni;
+				$item_count ++;
+			endforeach;
+
+
+			if($columns) :
+				return $layout;
+			else :
+				// Si le layout a ete cree et qu'il n'y a qu'une colonne
+				// On teste le nombre d'elment pour voir si c'est normal qu'il n'y ai qu'une colonne.
+				// On est soit dans le cas ou il n'y a pas plusieurs enfants pour creer des colonnes
+				// et alors on se base sur uen decoupe de colonnes suivant le nombres d'elements
+				if (count($layout[0]) > $nav_multicolumns_item_per_column ) return $this->createLayout($navItems,$niKey, false, $nav_multicolumns_item_per_column);
+				return $layout;
+			endif;
+		}
+
+
+	  function getClassSettings ($block,$prefix) {
+	    $styleObject = new StdClass();
+	    if (is_object($block) && is_object($style = $block->getCustomStyle())) :
+				$classes = $style->getStyleSet()->getCustomClass();
+				$classesArray = explode(' ', $classes);
+				$styleObject->classesArray = $classesArray;
+	      preg_match('/' . $prefix . '-(\w+)/',$classes,$found);
+	      return isset($found[1]) ? $found[1] : false;
+	    endif;
+	  }
+
+		function getClassSettingsObject ($block, $defaultColumns = 3, $defaultMargin = 10  ) {
+			$styleObject = new StdClass();
+
+			if (is_object($block) && is_object($style = $block->getCustomStyle())) :
+				// We get string as 'first-class second-class'
+				$classes = $style->getStyleSet()->getCustomClass();
+				// And get array with each classes : 0=>'first-class', 1=>'second-class'
+				$classesArray = explode(' ', $classes);
+				$styleObject->classesArray = $classesArray;
+
+				// get Columns number
+				preg_match("/(\d)-column/",$classes,$columns);
+				$styleObject->columns = isset($columns[1]) ? (int)$columns[1] : (int)$defaultColumns;
+				// Get margin number
+				// If columns == 1 then we set margin to 0
+				// If more columns, set margin to asked or to default.
+				preg_match("/carousel-margin-(\d+)/",$classes,$margin);
+				$styleObject->margin = $styleObject->columns > 1 ? (isset($margin[1]) ? (int)$margin[1] : (int)$defaultMargin ) : 0 ;
+				// Get the 'no-text' class
+				// The title is displayed by default
+				$styleObject->displayTitle = array_search('no-text',$classesArray) === false;
+			else :
+				$styleObject->columns = (int)$defaultColumns;
+				$styleObject->margin = (int)$defaultMargin;
+				$styleObject->classesArray = array();
+			endif;
+
+			return $styleObject;
+
+		}
+
+	  function contrast ($hexcolor, $dark = '#000000', $light = '#FFFFFF') {
+	      return (hexdec($hexcolor) > 0xffffff/2) ? $dark : $light;
+	  }
+
+
+}

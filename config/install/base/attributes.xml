@@ -30,6 +30,7 @@
         <attributekey handle="exclude_subpages_from_nav" name="Exlude Subpages from navigation" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
         <attributekey handle="replace_link_with_first_in_nav" name="Replace Link with First in Nav" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
         <attributekey handle="external_link" name="Use a external URL as link" package="theme_anitya" searchable="0" indexed="0" type="text" category="collection"/>
+        <attributekey handle="display_multi_columns_drop" name="Display multi-columns dropdown" package="" searchable="0" indexed="0" type="boolean" category="collection"><type checked=""/></attributekey>
 
         <attributekey handle="anitya_youtube_backround_url" name="Youtube Header URL" package="theme_anitya" searchable="0" indexed="0" type="text" category="collection"/>
         <attributekey handle="number_of_main_areas" name="Number of main Areas" package="theme_anitya" searchable="0" indexed="0" type="select" category="collection">
@@ -67,6 +68,7 @@
             <attributekey handle="exclude_subpages_from_nav"/>
             <attributekey handle="replace_link_with_first_in_nav"/>
             <attributekey handle="external_link"/>
+            <attributekey handle="display_multi_columns_drop"/>            
         </attributeset>
       </attributesets>
 </concrete5-cif>

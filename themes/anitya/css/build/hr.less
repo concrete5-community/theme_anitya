@@ -6,15 +6,15 @@ hr {
     border: 0;
     height: 5px;
     margin: (@space-l / 2)-2 auto (@space-l / 2)-3 auto;  // 79px height
-    background-color: @brand-quaternary-color; // darken(@brand-tertiary-color, 20%);
+    background-color: @quaternary-color; // darken(@tertiary-color, 20%);
 
-    &.primary, .primary & { background: @brand-primary-color }
-    &.secondary, .secondary & { background: @brand-secondary-color }
-    &.tertiary, .tertiary & { background: @brand-tertiary-color }
-    &.quaternary, .quaternary & { background: @brand-quaternary-color }
+    &.primary, .primary & { background: @primary-color }
+    &.secondary, .secondary & { background: @secondary-color }
+    &.tertiary, .tertiary & { background: @tertiary-color }
+    &.quaternary, .quaternary & { background: @quaternary-color }
 
     &.thin, .thin & {
-        background:@brand-quaternary-color;// darken(@brand-tertiary-color,5%);
+        background:@quaternary-color;// darken(@tertiary-color,5%);
         height:1px;
     }
     &.dotted, .dotted & {
@@ -23,7 +23,7 @@ hr {
     &.space-s, &.space-m, &.space-l, &.space-xl, .space-s &, .space-m &, .space-l &, .space-xl & {
         background: none;
     }
-    &.space-s, .space-s & { margin: @space-s auto (@space-s)-1 auto }  
+    &.space-s, .space-s & { margin: @space-s auto (@space-s)-1 auto }
     &.space-m, .space-m & {} // Inherit from default
     &.space-l, .space-l & { margin: @space-l auto (@space-l)-1 auto}
     &.space-xl, .space-xl & { margin: @space-xl auto (@space-xl)-1 auto}
@@ -33,7 +33,7 @@ hr {
 .hr-bold {
     padding-bottom: 25px;
     margin-bottom: 24px;
-    border-bottom: 5px solid @brand-quaternary-color;
+    border-bottom: 5px solid @quaternary-color;
 }
 
 // Element under Content block
