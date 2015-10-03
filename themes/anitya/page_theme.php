@@ -1,6 +1,9 @@
 <?php
 namespace Concrete\Package\ThemeAnitya\Theme\Anitya;
 
+use StdClass;
+use Config;
+
 defined('C5_EXECUTE') or die('Access Denied.');
 
 class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
@@ -39,6 +42,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 
     public function getThemeBlockClasses()
     {
+				$image_height = array('image-height-30','image-height-50','image-height-80','image-height-100');
         return array(
             'page_list' => array('sidebar-wrapped','accordion-primary','accordion-secondary','accordion-tertiary','accordion-quaternary','accordion-light',
                                           'slider-dots-primary', "slider-dots-white", "slider-dots-black"),
@@ -46,7 +50,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
             'autonav' => array('sidebar-wrapped', 'small-text-size'),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','thin','primary','secondary','tertiary','quaternary'),
             'topic_list' => array('sidebar-wrapped'),
-            'image' => array('responsive', 'svg-primary','svg-quaternary',),
+            'image' => array_merge(array('responsive', 'svg-primary','svg-quaternary'),$image_height),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
             'core_stack_display' => array('accordion-primary','accordion-secondary','accordion-tertiary','accordion-quaternary','accordion-light',
                                           'slider-dots-primary', "slider-dots-white", "slider-dots-black")
@@ -62,10 +66,12 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         for ($i=1; $i < 8; $i++) {
             $main_area['Main - ' . $i] = $area_classes;
         }
+				$image_height = array('image-height-30','image-height-50','image-height-80','image-height-100');
         // Default array
         $other_area = array(
             'Main' => $area_classes,
-            'Page Footer' => array('primary, secondary, tertiary')
+            'Page Footer' => array('primary', 'secondary','tertiary'),
+						'Header Image' => $image_height
         );
 
         return array_merge($main_area,$other_area);
@@ -111,7 +117,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 			 	if($key <= $niKey ) continue;
 			 	// Si on est APRES les sous menu, on arrete.
 				if($ni->level == 1 ) break;
-				
+
 				if ($break_columns_on_child && $ni->hasSubmenu ) {
 					$columns ++;
 					$item_count = 0;

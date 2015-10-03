@@ -8,18 +8,18 @@
 
 
 $(document).ready(function(){
-// Le loader 
+// Le loader
     NProgress.configure({trickleRate: .5, trickleSpeed: 1000});
     NProgress.start();
-// Le parallax du header    
+// Le parallax du header
     parallaxHandler();
-// Le breadcrumb     
+// Le breadcrumb
     $("#jquery_breadcrumb").rcrumbs();
 
     detectOnView();
 
 // Les masonery
-    launchMasonery();    
+    launchMasonery();
 // Le breakpoint.js
     $(window).setBreakpoints();
 // Maintenant comme référence pour fixer le menu,
@@ -28,7 +28,7 @@ $(document).ready(function(){
     var m1 = $('#sub-header-1');
     var m2 = $('#sub-header-2');
     var m = $('.main-container');
-    var main = m1.size() ? m1 : (m2.size() ? m2 : m);    
+    var main = m1.size() ? m1 : (m2.size() ? m2 : m);
     var b = nav.height() + parseInt(nav.css('top'),10);
     var mainWatch = scrollMonitor.create(main,{top:b});
     mainWatch.stateChange(function() {
@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 // Le Video BG
     $("#mb_YTPlayer").mb_YTPlayer();
-    
+
 // Le bouton qui failt glisser la page en full header
     $('.gotobottom').on('click', function(){
         $("body").animate({ scrollTop: i.height()-nav.height() }, "slow");
@@ -54,16 +54,16 @@ $(document).ready(function(){
         var titles = $(this).find('.title');
 
         titles.not('.active').each(function(){$(this).next('.content').hide()});
-        
+
         titles.click(function(e){
             e.preventDefault();
             var title = $(this);
             if (title.is('.active')) return;
-            
+
             var accordion = title.parent().parent();
             accordion.find('.title.active').removeClass('active');
             accordion.find('.content.active').slideUp().removeClass('active');
-            
+
             title.addClass('active');
             title.next(".content").slideDown().addClass('active');
         });
@@ -71,7 +71,7 @@ $(document).ready(function(){
 
     if(!editMode) {
 
-// Les parallax        
+// Les parallax
         $('.grid-overlay').wrapInner('<div class="area-wrap" />');
         $('.area-wrap').prepend('<div class="pattern" />');
         $('.grid-overlay').attr('data-stellar-background-ratio','.5');
@@ -112,12 +112,12 @@ $(document).ready(function(){
                     slidesToScroll: 1
                   }
                 }
-              ]                  
+              ]
         });
 
     }
 
-// -- Seulement pour que les images svg prennent la couleur 
+// -- Seulement pour que les images svg prennent la couleur
     jQuery('.svg-primary img, .svg-quaternary img').each(function(){
         var $img = jQuery(this);
         var imgID = $img.attr('id');
@@ -154,7 +154,7 @@ $(document).ready(function(){
     if(responsiveLogoContainer.size() && logo.size()) {
         responsiveLogoContainer.html(logo.html());
         $('#responsive_logo').find('.replaced-svg').removeClass('replaced-svg');
-    }   
+    }
 
 })
 $(window).load(function() {
@@ -163,7 +163,7 @@ $(window).load(function() {
     l('document loaded');
 })
 
-function parallaxHandler () {    
+function parallaxHandler () {
     var nav = $('#top-nav');
     var intro = $('#intro-content');
     $(window).scroll(function(i){
@@ -183,7 +183,7 @@ function launchMasonery() {
             $c.masonry({
                 columnWidth:'.grid-sizer',
                 itemSelector: '.item'
-            });    
+            });
         })
 
     });
@@ -195,14 +195,14 @@ function detectOnView () {
     $('.detect').each(function(i){
         var $e = $(this);
         var detectWatch = scrollMonitor.create($e);
-        detectObjectArray.push(detectWatch); 
+        detectObjectArray.push(detectWatch);
         var rand = Math.random() * 200;
           detectWatch.exitViewport(function() {
             $e.removeClass('view');
           });
           detectWatch.enterViewport(function() {
             setTimeout(function(){
-              $e.addClass('view');  
+              $e.addClass('view');
             },rand);
           });
       });
@@ -218,7 +218,7 @@ function destroyDetectOnView () {
 }
 
 function setHeightClass() {
-    jQuery('div:regex(class,height-[0-9])').each(function () {
+    jQuery('div:regex(class,height-custom-[0-9])').each(function () {
         reg = new RegExp("height-([0-9]+)", "gi");
         height = reg.exec(jQuery(this).attr('class'));
         height = height[0].replace(/height-/i, '');
@@ -228,7 +228,7 @@ function setHeightClass() {
 }
 /*
     jQuery regex from http://www.jquery.info/spip.php?article91
-    
+
 */
 jQuery.expr[':'].regex = function (elem, index, match) {
     if (match) {
@@ -244,24 +244,24 @@ jQuery.expr[':'].regex = function (elem, index, match) {
 }
 
 
-$(window).bind('enterBreakpoint320',function() { 
+$(window).bind('enterBreakpoint320',function() {
     l('Entering 320 breakpoint');
     // launchMasonery(1);
     destroyDetectOnView();
 });
 
-$(window).bind('enterBreakpoint480',function() { 
+$(window).bind('enterBreakpoint480',function() {
  l('Entering 480 breakpoint');
     // launchMasonery(2);
     destroyDetectOnView();
 });
-$(window).bind('enterBreakpoint768',function() { 
+$(window).bind('enterBreakpoint768',function() {
  l('Entering 768 breakpoint');
     // launchMasonery(2);
     detectOnView();
 });
 
-$(window).bind('enterBreakpoint1024',function() { 
+$(window).bind('enterBreakpoint1024',function() {
     l('Entering 1024 breakpoint');
     // launchMasonery(3);
     detectOnView();
@@ -295,4 +295,3 @@ $(window).bind('enterBreakpoint1024',function() {
 function l(m) {
     if (debugMode) console.log(m)
 }
-
