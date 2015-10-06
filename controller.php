@@ -58,6 +58,12 @@ class Controller extends \Concrete\Core\Package\Package {
 		$o = new \Concrete\Package\ThemeAnitya\Src\Models\MclOptions($c);
 		$o->install_db();
 
+	// Setting up the editor clips
+		$plugins = Config::get('concrete.editor.plugins.selected');
+		$p = is_array($plugins) ? $plugins : array();
+		$plugins = array_unique(array_merge(array('themefontcolor','themeclips'),$p));
+		Config::save('concrete.editor.plugins.selected', $plugins);
+
 	// Installing minimal config
 		$this->installOrUpgrade();
 
@@ -74,6 +80,7 @@ class Controller extends \Concrete\Core\Package\Package {
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/attributes.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/single_page.xml');
+		$ci->importContentFile($this->getPackagePath() . '/config/install/base/systemcontenteditorsnippets.xml');
 	}
 
 	public function uninstall() {
@@ -88,18 +95,18 @@ class Controller extends \Concrete\Core\Package\Package {
 	}
 	public function registerAssets () {
  		$al = AssetList::getInstance();
- 		$al->register( 'javascript', 'masonry', 'themes/anitya/js/jquery.masonry.min.js', array('version' => '2.1.08'), $this );
- 		$al->register( 'javascript', 'imagesloaded', 'themes/anitya/js/imagesloaded.pkgd.min.js', array('version' => '3.1.4'), $this );
- 		$al->register( 'javascript', 'scrollmonitor', 'themes/anitya/js/scrollmonitor.js', array('version' => '1.0.1'), $this );
- 		$al->register( 'javascript', 'rcrumbs', 'themes/anitya/js/jquery.rcrumbs.min.js', array('version' => '1.1'), $this );
- 		$al->register( 'javascript', 'anitya.script', 'themes/anitya/js/script.js', array('version' => '0.1'), $this );
- 		$al->register( 'javascript', 'breakpoint', 'themes/anitya/js/breakpoint.js', array('version' => '1.0'), $this );
- 		$al->register( 'javascript', 'nprogress', 'themes/anitya/js/nprogress.js', array('version' => '0.1.6'), $this );
- 		$al->register( 'javascript', 'YTPlayer', 'themes/anitya/js/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
-		$al->register( 'javascript', 'jquery-ui/accordion', 'themes/anitya/js/jquery-ui-accordion.js', array('version' => '1.11.2'), $this );
-		$al->register( 'javascript', 'flickity', 'themes/anitya/js/flickity.pkgd.min.js', array('version' => '0.1.0'), $this );
-		$al->register( 'javascript', 'slick', 'themes/anitya/js/slick.min.js', array('version' => '1.3.15'), $this );
-		$al->register( 'javascript', 'stellar', 'themes/anitya/js/jquery.stellar.min.js', array('version' => '0.6.2'), $this );
+ 		$al->register( 'javascript', 'masonry', 'js/build/jquery.masonry.min.js', array('version' => '2.1.08'), $this );
+ 		$al->register( 'javascript', 'imagesloaded', 'js/build/imagesloaded.pkgd.min.js', array('version' => '3.1.4'), $this );
+ 		$al->register( 'javascript', 'scrollmonitor', 'js/build/scrollmonitor.js', array('version' => '1.0.1'), $this );
+ 		$al->register( 'javascript', 'rcrumbs', 'js/build/jquery.rcrumbs.min.js', array('version' => '1.1'), $this );
+ 		$al->register( 'javascript', 'anitya.script', 'js/build/script.js', array('version' => '0.1'), $this );
+ 		$al->register( 'javascript', 'breakpoint', 'js/build/breakpoint.js', array('version' => '1.0'), $this );
+ 		$al->register( 'javascript', 'nprogress', 'js/build/nprogress.js', array('version' => '0.1.6'), $this );
+ 		$al->register( 'javascript', 'YTPlayer', 'js/build/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
+		$al->register( 'javascript', 'jquery-ui/accordion', 'js/build/jquery-ui-accordion.js', array('version' => '1.11.2'), $this );
+		$al->register( 'javascript', 'flickity', 'js/build/flickity.pkgd.min.js', array('version' => '0.1.0'), $this );
+		$al->register( 'javascript', 'slick', 'js/build/slick.min.js', array('version' => '1.3.15'), $this );
+		$al->register( 'javascript', 'stellar', 'js/build/jquery.stellar.min.js', array('version' => '0.6.2'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/anitya/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
 		$al->register( 'css', 'flickity', 'themes/anitya/css/addons/flickity.css', array('version' => '0.1.0'), $this );
@@ -108,6 +115,44 @@ class Controller extends \Concrete\Core\Package\Package {
 		$al->register( 'css', 'bootsrap-custom', 'themes/anitya/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4'), $this );
 		$al->register( 'css', 'megamenu', 'themes/anitya/css/addons/mega-menu.css', array('version' => '1'), $this );
 
+// -- Redactor Plugins -- \\
+
+    $pluginManager = Core::make('editor')->getPluginManager();
+// ThemeFont plugin
+    $al->register('javascript', 'editor/plugin/themefontcolor', 'js/editor/themefontcolor.js', array(), $this);
+    $al->register('css', 'editor/plugin/themefontcolor', 'css/editor/themefontcolor.css', array(), $this);
+    $al->registerGroup('editor/plugin/themefontcolor', array(
+        array('javascript', 'editor/plugin/themefontcolor'),
+        array('css', 'editor/plugin/themefontcolor')
+        ));
+
+    $plugin = new Plugin();
+    $plugin->setKey('themefontcolor');
+    $plugin->setName('Font colors from Anitya');
+    $plugin->requireAsset('editor/plugin/themefontcolor');
+
+    $pluginManager->register($plugin);
+// themClips plugin
+    $al->register('javascript', 'editor/plugin/themeclips', 'js/editor/themeclips.js', array(), $this);
+    $al->register( 'javascript', 'chosen-icon', 'js/chosenIcon.jquery.js',  array(), 'theme_anitya' );
+    $al->register( 'javascript', 'chosen.jquery.min', 'js/chosen.jquery.min.js',  array(), 'theme_anitya' );
+    $al->register( 'css', 'chosenicon', 'css/chosenicon.css',  array(), 'theme_anitya' );
+    $al->register( 'css', 'chosen.min', 'css/chosen.min.css', array(), 'theme_anitya' );
+
+    $al->registerGroup('editor/plugin/themeclips', array(
+        array('javascript', 'editor/plugin/themeclips'),
+        array('javascript', 'chosen-icon'),
+        array('javascript', 'chosen.jquery.min'),
+        array('css', 'chosen.min'),
+        array('css', 'chosenicon')
+        ));
+
+    $plugin = new Plugin();
+    $plugin->setKey('themeclips');
+    $plugin->setName('Snippets from Anitya');
+    $plugin->requireAsset('editor/plugin/themeclips');
+
+    $pluginManager->register($plugin);
  	}
 	function registerEvents () {
 			Events::addListener(

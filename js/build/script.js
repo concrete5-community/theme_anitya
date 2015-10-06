@@ -19,7 +19,7 @@ $(document).ready(function(){
     detectOnView();
 
 // Les masonery
-    launchMasonery();
+    launchMasonry();
 // Le breakpoint.js
     $(window).setBreakpoints();
 // Maintenant comme référence pour fixer le menu,
@@ -42,7 +42,14 @@ $(document).ready(function(){
     $('h1:has(b,strong,em),h2:has(b,strong,em),h3:has(b,strong,em)').addClass('change-wheight');
 
 // Le Video BG
-    $("#mb_YTPlayer").mb_YTPlayer();
+    var headerVideo = $("#mb_YTPlayer");
+    if(headerVideo.size()) {
+      // Le cript a besoin que le container ai une position definie.
+      var $videoContainer = $('article.intro');
+      $videoContainer.css('height', $videoContainer.height() + 'px');
+      // Initialisation du script
+      headerVideo.mb_YTPlayer();
+    }
 
 // Le bouton qui failt glisser la page en full header
     $('.gotobottom').on('click', function(){
@@ -173,7 +180,7 @@ function parallaxHandler () {
 };
 
 
-function launchMasonery() {
+function launchMasonry() {
     l('launch masonry');
     var $container = $('.masonry');
     // initialize
@@ -246,24 +253,24 @@ jQuery.expr[':'].regex = function (elem, index, match) {
 
 $(window).bind('enterBreakpoint320',function() {
     l('Entering 320 breakpoint');
-    // launchMasonery(1);
+    // launchMasonry(1);
     destroyDetectOnView();
 });
 
 $(window).bind('enterBreakpoint480',function() {
  l('Entering 480 breakpoint');
-    // launchMasonery(2);
+    // launchMasonry(2);
     destroyDetectOnView();
 });
 $(window).bind('enterBreakpoint768',function() {
  l('Entering 768 breakpoint');
-    // launchMasonery(2);
+    // launchMasonry(2);
     detectOnView();
 });
 
 $(window).bind('enterBreakpoint1024',function() {
     l('Entering 1024 breakpoint');
-    // launchMasonery(3);
+    // launchMasonry(3);
     detectOnView();
 });
 
