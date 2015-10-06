@@ -29,6 +29,7 @@ RedactorPlugins.themeclips = function()
             var dropdown = {};
             var f = this.themeclips.show;
             // On crée les éléments du menu avec pour chaque l'appel de la function show
+            dropdown.boxes = { title: 'Boxes', func:f};
             dropdown.hint = { title: 'Hover Hint', func:f};
             dropdown.alert = { title: 'Alert Message', func:f};
             dropdown.button = { title: 'Button', func:f};
@@ -36,7 +37,6 @@ RedactorPlugins.themeclips = function()
             dropdown.heading = { title: 'Heading', func:f};
             dropdown.icon = { title: 'Icon', func:f};
             dropdown.navigation = { title: 'Navigation', func:f};
-            dropdown.boxes = { title: 'Boxes', func:f};
 
             var button = this.button.add('themeclips', 'themeclips');
             this.button.setAwesome('themeclips', 'fa-tasks');
@@ -306,19 +306,20 @@ RedactorPlugins.themeclips = function()
                     + t.textInput('content',selected)
                     + t.linkInput('link')
                     + t.colorSelect(["default"],true)
-                    + t.selectInput('arrow_position',["top","bottom","left","right"])
-                    + t.selectInput('style',['default','small','big'], 'default')
-                    + t.checkboxInput('Display framed', ["framed"]);
+                    + t.selectInput('size',['default','small','big'], 'default')
+                    + t.selectInput('type',['box','box-arrow'], 'box-arrow')
+                    + t.checkboxInput('style', ["framed","block"]);
 
             },
-            getContent : function (text, form) {
+            getContent : function (text, form, t) {
+              var classes = t.getCheckboxesString(form.style);
+
               if (form.link) var att = {open:'<a href="' + form.link + '" ', close:'</a>'};
-              else var att = {open:'<span>', close:'</span>'};
+              else var att = {open:'<span ', close:'</span>'};
                 return String()
-                    + '<a href="' + form.link + '" class="button button-' + form.color + ' button-' + form.type + ' button-' + form.size + ' ' +  (form.block == 'block' ? 'button-block' : '') + '" target="' + form.target + '">'
-                    + (form.icon ? '<span class="icon"><i class="fa ' + form.icon + ' fa-fw"></i></span> ' : '' )
+                    + att.open + 'class="' + form.type + ' ' + form.color + ' ' + form.size + ' ' +  classes + '" target="' + form.target + '">'
                     + form.content
-                    + '</a>';
+                    + att.close;
             }
         },
         /* -- Form Elements -- */
@@ -328,7 +329,7 @@ RedactorPlugins.themeclips = function()
                 select = select ? select : "primary";
                 var colors = new Array("primary", "secondary","tertiary","quaternary");
                 // Si merrge est true, on mélange les deux tableau, sinon, on ne prend que les arguments
-                if (!merge)
+                if (merge)
                     var classes = additionalColors ? $.merge(colors,additionalColors) : colors;
                 else if(additionalColors)
                     var classes = additionalColors;
@@ -402,11 +403,11 @@ RedactorPlugins.themeclips = function()
                 var html = String()
                 + '<div class="form-group">'
                 + this.themeclips.getLabel(name)
-                +  '<div>&nbsp;</div>';
+                +  '<div style="font-size:0">&nbsp;</div>';
 
                 $.each(array, function(i,t){
                     html += '<label>'
-                         +  '<input type="checkbox" name="' + name + '[]" value="' + t + '" ' + (select == t ? 'checked' : '') + ' />' + t
+                         +  '<input type="checkbox" name="' + name + '[]" value="' + t + '" ' + (select == t ? 'checked' : '') + ' />&nbsp;&nbsp;' + t
                          +  '</label>'
                          +  '</br>';
                 });

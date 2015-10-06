@@ -3,7 +3,7 @@
 	position: relative;
 	display: inline-block;
 	background-color: @body-type-color;
-	padding: 20px 30px !important;
+	padding: 20px 30px; // J'ai retiré un !important
 	margin-right: 5px;
 	// font-family: @font-family-sans-serif;
 	color: contrast(@body-type-color);
@@ -17,7 +17,7 @@
 	.transition(box-shadow .3s ease);
 			// Color variations
 
-	&.primary, .primary & {
+	&.primary{
 		.box-arrow-color (@primary-color; @primary-text-color);
 		&.framed {
 			.box-framed (@primary-color);
@@ -27,35 +27,49 @@
 		.box-arrow-color (@primary-text-color; @primary-color );
 	}
 
-	&.secondary, .secondary &{
+	&.secondary{
 		.box-arrow-color (@secondary-color; @secondary-text-color);
 		&.framed {
 			.box-framed (@secondary-color);
 		}
 	}
-	&.tertiary, .tertiary & {
+	&.tertiary {
 		.box-arrow-color (@tertiary-color; @tertiary-text-color);
 		&.framed {
 			.box-framed (@tertiary-color);
 		}
 	}
-	&.quaternary, .quaternary & {
+	&.quaternary {
 		.box-arrow-color (@quaternary-color; @quaternary-text-color);
 		&.framed {
 			.box-framed (@quaternary-color);
 		}
 	}
-	&.white, .white & {
+	&.white {
 		.box-arrow-color (@white-color; @black-color);
 		&.framed {
 			.box-framed (@white-color);
 		}
 	}
-	&.full, .full & {
+	&.block{
 		width: 100%;
 		text-align: center;
 	}
+
+	// Size variation
+
+	&.small {
+		.box-arrow-size (10px; 10px; 12px; 7px; normal;);
+		text-transform: lowercase;
+	}
+	&.big {
+		.box-arrow-size (30px; 40px; 22px; 15px;);
+	}
+
 }
+
+// -- Box arrow only -- \\
+
 .box-arrow {
 	&:after {
 		content: '';
@@ -67,31 +81,19 @@
 		height: 0;
 		border-style: solid;
 		.triangle-bottom(11px, @body-type-color);
-		// border-width: 0 10.5px 11px 10.5px;
-		// border-color: transparent transparent @grey-color transparent;
 		.transition(border-color .3s ease);
 	}
 
-
 	// Hover effect
 
-	&:hover {
+	a&:hover {
 		box-shadow: inset 0 0 0 4px darken(@grey-color, 10%), 0 0 1px rgba(0, 0, 0, 0);
-		&:before {
-			border-color: transparent transparent darken(@grey-color, 10%) transparent;
+		&:after {
+			border-color: darken(@grey-color, 10%) transparent transparent transparent;
 		}
 	}
 
 
-	// Size variation
-
-	&.small {
-		.box-arrow-size (10px; 10px; 12px; 7px; normal;);
-		text-transform: lowercase;
-	}
-	&.big {
-		.box-arrow-size (30px; 40px; 22px; 15px;);
-	}
 
 	&.framed {
 	  .box-sizing(border-box);
