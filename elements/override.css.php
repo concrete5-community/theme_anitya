@@ -35,7 +35,6 @@ $small = new \Concrete\Package\ThemeAnitya\Src\Models\MclFont('small');
 
 body, p {
 	<?=$p->getStyleCss()?>
-	/* font-size:<?=$p->normalsize/10?>rem; */
 }
 h1,.h1 {<?=$h1->getStyleCss()?>;font-size:<?=$h1->fullsize?>px}
 h2,.h2 {<?=$h2->getStyleCss()?>;font-size:<?=$h2->fullsize?>px}

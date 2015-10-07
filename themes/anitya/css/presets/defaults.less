@@ -101,12 +101,20 @@
 	@font-size-base 		: 		@body-font-size;
 	@line-height-base 		: 	1.9;
 	@line-height-computed 	: floor((@font-size-base * @line-height-base)); // ~20px
-	@font-size-large 		: 		1.6rem;
+	@line-height-large : 			2.5;
+	@line-height-small : 			1.1;
+	@font-size-large 		: 		1.8rem;
 	@font-size-small 		: 		1.2rem;
 	// links
 	@link-color:            @primary-color;
 	@link-darken : 					darken(@link-color, 15%);
 	@link-hover-color:      @link-darken;
+
+	@btn-default-color : 		@grey-color;
+	@btn-default-border : 	@grey-color;
+	@btn-default-bg : 			transparent;
+	@btn-font-weight : 			normal;
+
 
 	@h1-color: @primary-color;
 	@h2-color: @primary-color;

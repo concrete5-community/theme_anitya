@@ -29,10 +29,10 @@ RedactorPlugins.themeclips = function()
             var dropdown = {};
             var f = this.themeclips.show;
             // On crée les éléments du menu avec pour chaque l'appel de la function show
+            dropdown.button = { title: 'Button', func:f};
             dropdown.boxes = { title: 'Boxes', func:f};
             dropdown.hint = { title: 'Hover Hint', func:f};
             dropdown.alert = { title: 'Alert Message', func:f};
-            dropdown.button = { title: 'Button', func:f};
             dropdown.divider = { title: 'Divider', func:f};
             dropdown.heading = { title: 'Heading', func:f};
             dropdown.icon = { title: 'Icon', func:f};
@@ -169,16 +169,16 @@ RedactorPlugins.themeclips = function()
                 return String()
                     + t.textInput('content',selected)
                     + t.linkInput('link')
-                    + t.colorSelect(["default","primary","success","info","warning","danger"],true)
-                    + t.selectInput('type',['flat','push','plain'])
-                    + t.selectInput('size',['tiny','small','big','huge'], 'small')
+                    + t.colorSelect(["default","primary","success","info","warning","danger"],false)
+                    + t.selectInput('size',['default','lg','sm','xs'], 'default')
                     + t.awesomeSelect('icon')
-                    + t.checkboxInput('Display block', ["block"]);
+                    + t.checkboxInput('variant', ["block","plain"]);
 
             },
-            getContent : function (text, form) {
+            getContent : function (text, form, t) {
+                var classes = t.getCheckboxesString(form.variant,'btn-');
                 return String()
-                    + '<a href="' + form.link + '" class="button button-' + form.color + ' button-' + form.type + ' button-' + form.size + ' ' +  (form.block == 'block' ? 'button-block' : '') + '" target="' + form.target + '">'
+                    + '<a href="' + form.link + '" class="btn btn-' + form.color + ' ' + (form.size != 'default' ? 'btn-' + form.size : '') + ' ' +  classes + '" target="' + form.target + '">'
                     + (form.icon ? '<span class="icon"><i class="fa ' + form.icon + ' fa-fw"></i></span> ' : '' )
                     + form.content
                     + '</a>';
@@ -191,11 +191,10 @@ RedactorPlugins.themeclips = function()
 
             },
             getContent : function (text, form, t) {
-                // On doit tester le type pour les elements checkbox et agir en conséquence
-                var hrclasses = t.getCheckboxesString(form.type);
+                var classes = t.getCheckboxesString(form.type);
 
                 return String()
-                    + '<hr class="' + hrclasses + '" />';
+                    + '<hr class="' + classes + '" />';
             }
         },
         heading : {
@@ -376,14 +375,13 @@ RedactorPlugins.themeclips = function()
 
             if (typeof plugin.awesomeIcons === 'object') {
                 setTimeout(function(){ plugin.setAwesomeOptions(plugin.awesomeIcons) }, 500);
-
                 return html;
             }
 
             $.ajax({
                 'type': 'post',
                 'dataType': 'json',
-                'url': CCM_DISPATCHER_FILENAME + '/ThemeSupermint/tools/get_awesome_icons',
+                'url': CCM_DISPATCHER_FILENAME + '/ThemeAnitya/tools/get_awesome_icons',
                 'data': {
                     'ccm_token': CCM_EDITOR_SECURITY_TOKEN,
                     'isJson': 1
@@ -446,7 +444,7 @@ RedactorPlugins.themeclips = function()
         getCheckboxesString : function (formResult, prefix, asArray) {
                 // On doit tester le type pour les elements checkbox et agir en conséquence
                 var returnArray=  new Array();
-                if (typeof formResult === 'object' ) $.each(form.option,function(i,t){ returnArray.push(t) });
+                if (typeof formResult === 'object' ) $.each(formResult,function(i,t){ returnArray.push(t) });
                 if (typeof formResult === 'string' ) returnArray.push(formResult);
 
                 if (prefix) {
