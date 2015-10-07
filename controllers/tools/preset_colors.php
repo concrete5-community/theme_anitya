@@ -18,11 +18,22 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
 class PresetColors extends RouteController {
 
 
-    function getColors () {
-        $session = \Core::make('session');
-        $colorsObject = $session->get('anitya.colors');
-        echo json_encode($colorsObject);
-    }
+  function getColorsFromSession () {
+    $session = \Core::make('session');
+    return $session->get('anitya.colors');
+  }
+
+  // Retourne un objet avec variable, couleurs et contraste
+  function getColors () {
+      echo json_encode(self::getColorsFromSession());
+  }
+  // Retourne un objet avec  couleurs et contraste sans variables
+  function getPrincipalColors () {
+    $all = self::getColorsFromSession();
+    unset($all->variables);
+    echo json_encode($all);
+  }
+
 
 	function GetColorsFromPage () {
         $c = $_REQUEST['cID'] ? Page::getByID($_REQUEST['cID']) : Page::getCurrentPage();

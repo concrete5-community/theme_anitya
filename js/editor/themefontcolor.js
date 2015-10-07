@@ -22,16 +22,16 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 	            $.ajax({
 	                'type': 'get',
 	                'dataType': 'json',
-	                'url': CCM_DISPATCHER_FILENAME + '/ThemeSupermint/tools/get_preset_colors',
+	                'url': CCM_DISPATCHER_FILENAME + '/ThemeAnitya/tools/get_preset_colors_only',
 	                'data': {
 	                    'ccm_token': CCM_EDITOR_SECURITY_TOKEN,
 	                    'cID': CCM_CID
 	                },
 
 	                success: function(response) {
-						var func = function(e) {
-							e.preventDefault();
-							plugin.set($(this).attr('rel'));
+										var func = function(e) {
+										e.preventDefault();
+										plugin.set($(this).attr('rel'));
 						};
 
 
@@ -53,7 +53,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 			set: function(c)
 			{
 				this.buffer.set();
-				this.block.setAttr('class', c);				
+				this.block.setAttr('class', c);
 			}
 
 		};

@@ -192,10 +192,14 @@ class Controller extends \Concrete\Core\Package\Package {
 			// 		'/ThemeAnitya/tools/extend.js',
 			// 		'\Concrete\Package\ThemeAnitya\Controller\Tools\ExtendJs::render'
 			// );
-			// Route::register(
-			// 		'/ThemeAnitya/tools/get_preset_colors',
-			// 		'\Concrete\Package\ThemeAnitya\Controller\Tools\PresetColors::getColors'
-			// );
+			Route::register(
+					'/ThemeAnitya/tools/get_preset_colors',
+					'\Concrete\Package\ThemeAnitya\Controller\Tools\PresetColors::getColors'
+			);
+			Route::register(
+					'/ThemeAnitya/tools/get_preset_colors_only',
+					'\Concrete\Package\ThemeAnitya\Controller\Tools\PresetColors::getPrincipalColors'
+			);
 			Route::register(
 					'/ThemeAnitya/tools/font_details',
 					'\Concrete\Package\ThemeAnitya\Controller\Tools\FontsTools::getFontDetails'
