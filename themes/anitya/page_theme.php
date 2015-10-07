@@ -80,17 +80,10 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
     public function getThemeEditorClasses()
     {
         return array(
-            array('title' => t('Box arrow'), 'menuClass' => '', 'spanClass' => 'box-arrow'),
-            array('title' => t('Box arrow Secondary'), 'menuClass' => '', 'spanClass' => 'box-arrow secondary'),
-            array('title' => t('Button Primary'), 'menuClass' => '', 'spanClass' => 'btn btn-primary'),
-            array('title' => t('Button Primary Large'), 'menuClass' => '', 'spanClass' => 'btn btn-primary btn-lg'),
-            array('title' => t('Button Default'), 'menuClass' => '', 'spanClass' => 'btn btn-default'),
-            array('title' => t('Button Default Large'), 'menuClass' => '', 'spanClass' => 'btn btn-default btn-lg'),
-            array('title' => t('Button Block'), 'menuClass' => '', 'spanClass' => 'btn btn-default btn-block'),
-            array('title' => t('Button Block Primary'), 'menuClass' => '', 'spanClass' => 'btn btn-primary btn-block'),
-            array('title' => t('Lead'), 'menuClass' => '', 'spanClass' => 'lead'),
-            array('title' => t('Decorative Header'), 'menuClass' => '', 'spanClass' => 'head-1'),
-            array('title' => t('Code'), 'menuClass' => '', 'spanClass' => 'code')
+					array('title' => t('Code'), 'menuClass' => '', 'spanClass' => 'code'),
+					array('title' => t('Light'), 'menuClass' => 'light', 'spanClass' => 'light'),
+					array('title' => t('Small'), 'menuClass' => 'small', 'spanClass' => 'small'),
+					array('title' => t('Lead'), 'menuClass' => 'lead', 'spanClass' => 'lead')
         );
     }
 

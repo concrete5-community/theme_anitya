@@ -31,10 +31,10 @@ RedactorPlugins.themeclips = function()
             // On crée les éléments du menu avec pour chaque l'appel de la function show
             dropdown.button = { title: 'Button', func:f};
             dropdown.boxes = { title: 'Boxes', func:f};
+            dropdown.heading = { title: 'Heading', func:f};
             dropdown.hint = { title: 'Hover Hint', func:f};
             dropdown.alert = { title: 'Alert Message', func:f};
             dropdown.divider = { title: 'Divider', func:f};
-            dropdown.heading = { title: 'Heading', func:f};
             dropdown.icon = { title: 'Icon', func:f};
             dropdown.navigation = { title: 'Navigation', func:f};
 
@@ -203,7 +203,7 @@ RedactorPlugins.themeclips = function()
                     + t.textInput('main', selected)
                     + t.textInput('second', '')
                     + t.selectInput('level',['h1','h2','h3','h4','h5','h6','em'],'h3')
-                    + t.selectInput('styling',['heading-small','space-dotted'],'heading-small');
+                    + t.selectInput('styling',['heading-small','heading-style-1','space-dotted'],'heading-small');
 
             },
             getContent : function (text, form, t) {
@@ -220,6 +220,14 @@ RedactorPlugins.themeclips = function()
                             + '</i><i>' + form.second + '</i>'
                             + '</' + form.level + '>';
                         break;
+                    case 'heading-style-1' :
+                        return String()
+                            + '<' + form.level + ' class="heading-style-1">' + form.main
+                            + ' <small>' + form.second + '</small>'
+                            + '</' + form.level + '>';
+                        break;
+
+
                 };
             }
         },

@@ -96,15 +96,17 @@
 	// -- Typography -- \\
 
 	@body-type-color 		: 		@black-color;
+
 	@body-font-size 		: 		14px;
-	@body-type-font-weight : 	normal;
 	@font-size-base 		: 		@body-font-size;
+	@font-size-large 		: 		1.8rem;
+	@font-size-small 		: 		1.2rem;
+	@body-type-font-weight : 	normal;
+
 	@line-height-base 		: 	1.9;
 	@line-height-computed 	: floor((@font-size-base * @line-height-base)); // ~20px
 	@line-height-large : 			2.5;
 	@line-height-small : 			1.1;
-	@font-size-large 		: 		1.8rem;
-	@font-size-small 		: 		1.2rem;
 	// links
 	@link-color:            @primary-color;
 	@link-darken : 					darken(@link-color, 15%);
