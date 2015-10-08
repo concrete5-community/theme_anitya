@@ -1,7 +1,7 @@
-// TODO : Move thios to a better place 
+// TODO : Move thios to a better place
 .glued-3 {
 	width: 33.3333333%;
-	float: left;	
+	float: left;
 }
 
 // TODO : LE css Bootstrap breadcrumb fait déjà bcp de ceci
@@ -31,7 +31,7 @@
 .ccm-block-page-list-page-entry-horizontal {
 	margin-bottom: @space-m;
 	padding: @space-s;
-	border-bottom: 3px solid @primary-color;	
+	border-bottom: 3px solid @primary-color;
 	background: @white-color;
 }
 
@@ -46,10 +46,10 @@
 	background-color:@primary-color;
 	padding: @space-s/2 @space-s;
 	margin-right: -20px;
-	margin-bottom: -20px;	
+	margin-bottom: -20px;
 	a {
 		color: @primary-text-color;
-	} 
+	}
 }
 // Pour rectifier le "read more" qui est en float
 .ccm-block-page-list-wrapper:after,
@@ -61,73 +61,21 @@
 	clear: both;
 }
 
-
-// -- Page-slider 1 page -- \\
-// TODO : Rendre le flickity reurtilisable pour des slide multi-page
-
-.flickity-1-page {
-	.captions {
-		position: absolute;
-		top:15%;
-		left: 15%;
-		width: 70%;
-
-		.image-caption(@primary-color, @primary-text-color);
-		.date {
-			display: inline-block;
-			float: right;
-			font-size: @space-s;
-			
-		}
-	}
-	.gallery-cell {
-		overflow: hidden;
-		background-size: cover;
-		.transform-origin(50%);
-		.scale(.8);
-		.transition(transform .3s ease);
-		&.is-selected {
-			.transform(scale(1));
-		}
-	}
-	/* smaller, dark, rounded square */
-	.flickity-prev-next-button {
-	  width: @space-m;
-	  height: @space-m;
-	  border-radius: 0;
-	  background-color: fade(@primary-color,80%);
-	  .transition(background .2s ease);
-	  outline: none;
-	  &:hover {
-	  	background-color: @primary-color;
-	  }
-	}
-	/* arrow color */
-	.flickity-prev-next-button .arrow {
-	  fill: @primary-text-color;
-	}
-	.flickity-prev-next-button.no-svg {
-	  color: @primary-text-color;
-	}
-	.dummy {
-		position: absolute;
-		background-color: fade(@white-color, 50%);
-		height: 100%;
-		width: 100%;
-	}
-
-}
-
-
 .event-date {
 	// Pour que l'on puisse mettre un background sous le bloc, on met du padding :
+
 	.event {
+
 		&:first-child {
 			padding-top: @space-s;
 		}
 		&:last-child {
 			padding-bottom: @space-s;
 		}
+	}
+	.inner {
+		background-color: @white-color;
+		padding-bottom: 1px;
 	}
 	.content {
 		padding: 0 @space-m;
@@ -154,15 +102,19 @@
 		}
 
 		&.pair {
-			background-color: @primary-color;
-			* {
-				color: @primary-text-color
+			.inner {
+				background-color: @primary-color;
+				* {
+					color: @primary-text-color
+				}
 			}
 		}
 		&.impair {
-			background-color: @secondary-color;
-			* {
-				color: @primary-text-color
+			.inner {
+				background-color: @secondary-color;
+				* {
+					color: @primary-text-color
+				}
 			}
 		}
 		.info {
@@ -173,29 +125,69 @@
 			}
 		}
 		img {
-			max-height: 400px;
+			max-height: 450px;
 		}
 		.topics {
 			float: right;
 			opacity: .4;
 		}
 	}
+
 }
+.img-based-carousel {
+
+	&.carousel-1-columns {
+		.item {
+			background-color:none;
+			.thumb {
+				max-height: 400px;
+				overflow: hidden;
+			}
+			img {
+				max-height: none;
+			}
+			.info {
+				position: absolute;
+				right: 0;
+		    left: 0;
+				bottom: 0;
+				background-color:fade(@black-color,80%);
+				opacity: 0;
+				.transition(.3s);
+				* {
+					color:@white-color;
+				}
+
+			}
+		}
+		&:hover {
+			.info {
+				opacity:1
+			}
+		}
+	}
+}
+
+
 .img-date-based {
 	.item {
 		overflow: hidden;
-		background-color: @white-color;
+		.inner {
+			background-color: @white-color;
+			&:hover {
+				background-color: @secondary-color;
+			}
+		}
 
 		&:hover {
-			background-color: @secondary-color;
 			.info, h4 {
 				color: @secondary-text-color;
 			}
 			.date {
 				background-color: @secondary-text-color;
-				color: @secondary-color; 
+				color: @secondary-color;
 			}
-		}		
+		}
 	}
 	picture {
 		max-height: 350px;
@@ -211,7 +203,7 @@
 		margin-top: 0;
 		top: -(@space-s * 2);
 		margin-bottom: -(@space-s * 2);
-		height: @space-xl;
+		height: @space-l;
 		padding: @space-s @space-m 0 @space-s;
 		background-color: @primary-color;
 		color: @primary-text-color;
@@ -220,7 +212,7 @@
 		}
 	}
 	p {
-		
+
 	}
 }
 .img-date-based.gallery {
@@ -240,18 +232,29 @@
 		// height: @space-l;
 		font-size: 14px;
 		padding: @space-s @space-m 0 @space-s;
-	}	
+	}
 }
 
 .text-based {
 	& * {
 		color: @primary-color;
 	}
-	
+
 	.item {
-		background-color: @white-color;
-		min-height: @space-m * 8;
-		padding: @space-s;
+		.inner {
+			background-color: @white-color;
+			padding: @space-s;
+			&:hover {
+				background-color: @secondary-color;
+				* {
+					color: @secondary-text-color;
+				}
+				hr {
+					background-color: @secondary-text-color;
+				}
+			}
+		}
+		// min-height: @space-m * 8;
 		hr {
 			margin: 0;
 		}
@@ -264,19 +267,43 @@
 				float: left;
 				width: @space-l;
 				margin-right: @space-s;
-			}		
+			}
 		}
-
-
-		&:hover {
-			background-color: @secondary-color;
-			* {
-				color: @secondary-text-color;
-			}
-			hr {
-				background-color: @secondary-text-color;
-			}
-		}	
 	}
+}
+
+.page-list-masonry {
+  margin-left: -15px;
+  // .transition(height .3s);
+  .masonry-item {
+
+  }
+  &.with-gap {
+    .masonry-item {
+      margin-bottom: @space-s;
+    }
+    .info {
+      left: 15px; right: 15px;
+    }
+  }
+  &.no-gap {
+
+  }
+  .vertical-align {
+    left:@space-s;
+    right: @space-s;
+  }
+}
+ul.filter-set {
+  margin-bottom: @space-s;
+  li {
+    margin-right: @space-xxs;
+    &.search-filter-wrapper {
+      float: right;
+      input {
+        font-weight: 300;
+      }
+    }
+  }
 
 }

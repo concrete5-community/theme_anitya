@@ -26,6 +26,7 @@
         <attributekey handle="page_backgrounds" name="Slide Background" package="theme_anitya" searchable="0" indexed="0" type="fileset" category="collection"/>
         <attributekey handle="page_background" name="Page Background" package="theme_anitya" searchable="1" indexed="1" type="image_file" category="collection"/>
         <attributekey handle="icon" name="Icon from fontAwesome" package="theme_anitya" searchable="0" indexed="1" type="icon_awesome" category="collection"/>
+        <attributekey handle="event_date" name="Event Date" package="theme_anitya" searchable="0" indexed="1" type="date_time" category="collection"/>
         <attributekey handle="anitya_theme_preset_options" name="Theme preset Options" package="theme_anitya" searchable="1" indexed="1" type="mcl_preset_list" category="collection"/>
         <attributekey handle="exclude_subpages_from_nav" name="Exlude Subpages from navigation" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
         <attributekey handle="replace_link_with_first_in_nav" name="Replace Link with First in Nav" package="" searchable="0" indexed="0" type="boolean" category="collection"/>
@@ -60,6 +61,7 @@
             <attributekey handle="thumbnail"/>
             <attributekey handle="anitya_full_height_header"/>
             <attributekey handle="boxed_layout_mode"/>
+            <attributekey handle="event_date"/>
         </attributeset>
         <attributeset handle="anitya_options" name="Anitya Options" package="theme_anitya" locked="0" category="collection">
             <attributekey handle="anitya_theme_preset_options"/>
@@ -68,7 +70,7 @@
             <attributekey handle="exclude_subpages_from_nav"/>
             <attributekey handle="replace_link_with_first_in_nav"/>
             <attributekey handle="external_link"/>
-            <attributekey handle="display_multi_columns_drop"/>            
+            <attributekey handle="display_multi_columns_drop"/>
         </attributeset>
       </attributesets>
 </concrete5-cif>

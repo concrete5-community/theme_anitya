@@ -3,8 +3,12 @@ namespace Concrete\Package\ThemeAnitya\Theme\Anitya;
 
 use Concrete\Package\ThemeAnitya\Src\Models\MclOptions;
 
-use StdClass;
-use Config;
+use Concrete\Core\Area\Layout\Preset\Provider\ThemeProviderInterface;
+use stdClass;
+use \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
+use Package;
+use Loader;
+use CollectionAttributeKey;
 
 defined('C5_EXECUTE') or die('Access Denied.');
 
@@ -15,8 +19,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 				$this->requireAsset('core/lightbox');
         $this->requireAsset('javascript', 'jquery');
         $this->requireAsset('javascript', 'bootstrap/dropdown');
-        $this->requireAsset('javascript', 'imagesloaded');
-        $this->requireAsset('javascript', 'masonry');
+        $this->requireAsset('javascript', 'imageloaded');
+        $this->requireAsset('javascript', 'isotope');
+				$this->requireAsset('javascript', 'element-masonry');
         $this->requireAsset('javascript', 'slick');
         $this->requireAsset('javascript', 'rcrumbs');
         $this->requireAsset('javascript', 'scrollmonitor');
@@ -50,11 +55,24 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 
 				$image_height = array('image-height-30','image-height-50','image-height-80','image-height-100');
         return array(
-            'page_list' => array('sidebar-wrapped','accordion-primary','accordion-secondary','accordion-tertiary','accordion-quaternary','accordion-light',
-                                          'slider-dots-primary', "slider-dots-white", "slider-dots-black"),
+            'page_list' => array_merge(array(
+								'sidebar-wrapped',
+								// Accordions & tabs colors
+								'element-primary','element-secondary','element-tertiary','element-quaternary','element-light',
+								// Carousel dots
+                'slider-dots-primary', "slider-dots-white", "slider-dots-black",
+								// sqlite_error_string
+								'tag-sorting','keyword-sorting',
+								// Layout
+								'no-gap'
+								),
+								// # columns for carousel
+								$columnsClasses,
+								// Margin size for carousel
+								$marginClasses),
             'content' => array('sidebar-wrapped', 'white-block', 'primary-block', 'secondary-block', 'tertiary-block', 'quaternary-block'),
             'autonav' => array('sidebar-wrapped', 'small-text-size'),
-            'horizontal_rule' => array('space-s','space-m','space-l','space-xl','thin','primary','secondary','tertiary','quaternary'),
+            'horizontal_rule' => array('space-s','space-m','space-l','space-xl','thin','primary','secondary','tertiary','quaternary','dotted','hr-bold'),
             'topic_list' => array('sidebar-wrapped'),
             'image' => array_merge(array('responsive', 'svg-primary','svg-quaternary'),$image_height),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
@@ -92,7 +110,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         $other_area = array(
             'Main' => $area_classes,
             'Page Footer' => array('primary', 'secondary','tertiary'),
-						'Header Image' => $image_height
+						'Header Image' => $image_height,
+						'Page Header' => $area_classes,
+						'Sub Header' => $area_classes,
         );
 
         return array_merge($main_area,$other_area);
@@ -117,10 +137,42 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         );
     }
 
+	// -- Helpers -- \\
+
 	public function getOptions () {
 		return MclOptions::get();
 	}
 
+	public function getPageTags ($pages) {
+    $tagsObject = new StdClass();
+    $tagsObject->tags = $tagsObject->pageTags = array();
+    $ak = CollectionAttributeKey::getByHandle('tags');
+    $db = Loader::db();
+
+    foreach ($pages as $key => $page):
+    		if ($page->getAttribute('tags')) :
+
+    				$v = array($page->getCollectionID(), $page->getVersionID(), $ak->getAttributeKeyID());
+    				$avID = $db->GetOne("SELECT avID FROM CollectionAttributeValues WHERE cID = ? AND cvID = ? AND akID = ?", $v);
+    				if (!$avID) continue;
+
+    				$query = $db->GetAll("
+    						SELECT opt.value
+    						FROM atSelectOptions opt,
+    						atSelectOptionsSelected sel
+
+    						WHERE sel.avID = ?
+    						AND sel.atSelectOptionID = opt.ID",$avID);
+
+    				foreach($query as $opt) {
+    						$handle = preg_replace('/\s*/', '', strtolower($opt['value']));
+    						$tagsObject->pageTags[$page->getCollectionID()][] =  $handle ;
+    						$tagsObject->tags[$handle] = $opt['value'];
+    				}
+    		endif ;
+    endforeach;
+    return $tagsObject;
+  }
 		function createLayout ($navItems, $niKey, $break_columns_on_child, $nav_multicolumns_item_per_column){
 
 			// Cette fonction crée un layout pour le systeme de multicolonnes

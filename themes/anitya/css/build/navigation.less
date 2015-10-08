@@ -254,6 +254,10 @@ li.mgm-multi-c-title {
 	}
 }
 
+.horizontal-boxes {
+	text-align: center;
+}
+
 /* --- Breadcrumb ---*/
 
 .rcrumbs {
@@ -299,11 +303,19 @@ li.mgm-multi-c-title {
       padding: 0 5px;
     }
   }
+
+}
+.ccm-block-custom-template-anitya-breadcrumb {
+	h1 + &,h2 &,h3 & {
+		margin-top: @space-s;
+	}
 }
 
 // -- Slick navigation -- \\
-.slick-dots li button:before {
-
+.slick-dots li button:before,
+.slick-prev:before,
+.slick-next:before  {
+	color:@black-color;
 }
 
 // .breadcrumb {

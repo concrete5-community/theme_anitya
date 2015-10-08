@@ -96,7 +96,9 @@ class Controller extends \Concrete\Core\Package\Package {
 	public function registerAssets () {
  		$al = AssetList::getInstance();
  		$al->register( 'javascript', 'masonry', 'js/build/jquery.masonry.min.js', array('version' => '2.1.08'), $this );
- 		$al->register( 'javascript', 'imagesloaded', 'js/build/imagesloaded.pkgd.min.js', array('version' => '3.1.4'), $this );
+ 		$al->register( 'javascript', 'imageloaded', 'js/build/imageloaded.js', array('version' => '3.1.8'), $this );
+		$al->register( 'javascript', 'isotope', 'js/build/isotope.pkgd.min.js', array('version' => '2.1.1'), $this );
+		$al->register( 'javascript', 'element-masonry', 'js/build/element-masonry.js', array('version' => '1'), $this );
  		$al->register( 'javascript', 'scrollmonitor', 'js/build/scrollmonitor.js', array('version' => '1.0.1'), $this );
  		$al->register( 'javascript', 'rcrumbs', 'js/build/jquery.rcrumbs.min.js', array('version' => '1.1'), $this );
  		$al->register( 'javascript', 'anitya.script', 'js/build/script.js', array('version' => '0.1'), $this );

@@ -4,9 +4,9 @@
 // ainsi que pour les style de bloc (div.class > hr)
 hr {
     border: 0;
-    height: 5px;
+    height: 1px;
     margin: (@space-l / 2)-2 auto (@space-l / 2)-3 auto;  // 79px height
-    background-color: @quaternary-color; // darken(@tertiary-color, 20%);
+    background-color: @black-color;
 
     &.primary, .primary & { background: @primary-color }
     &.secondary, .secondary & { background: @secondary-color }
@@ -14,11 +14,13 @@ hr {
     &.quaternary, .quaternary & { background: @quaternary-color }
 
     &.thin, .thin & {
-        background:@quaternary-color;// darken(@tertiary-color,5%);
+        background:fade(@black-color,50%);
         height:1px;
     }
     &.dotted, .dotted & {
-         border-bottom-style:dotted;
+        height: 0;
+        background: transparent;
+         border-bottom:1px dotted fade(@black-color,40%);
     }
     &.space-s, &.space-m, &.space-l, &.space-xl, .space-s &, .space-m &, .space-l &, .space-xl & {
         background: none;

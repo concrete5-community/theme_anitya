@@ -6,7 +6,7 @@ foreach ($navItems as $ni) {
 
 	if ($ni->isCurrent || $ni->inPath) {
 		//class for the page currently being viewed
-		$classes[] = 'active';
+		$classes[] = 'active box-arrow';
 	}
 
 	$ni->classes = implode(" ", $classes);
@@ -14,7 +14,7 @@ foreach ($navItems as $ni) {
 
 
 
-echo '<ul class="hlist">'; //opens the top-level menu
+echo '<ul class="hlist horizontal-boxes">'; //opens the top-level menu
 
 foreach ($navItems as $ni) {
 
