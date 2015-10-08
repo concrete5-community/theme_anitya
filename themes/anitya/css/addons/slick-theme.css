@@ -23,7 +23,7 @@
     line-height: 0;
 
     position: absolute;
-    top: 50%;
+    bottom:-25px;
 
     display: block;
 
@@ -77,11 +77,11 @@
 
 .slick-prev
 {
-    left: -25px;
+    left: 0;
 }
 [dir='rtl'] .slick-prev
 {
-    right: -25px;
+    right: 0;
     left: auto;
 }
 .slick-prev:before
@@ -95,12 +95,12 @@
 
 .slick-next
 {
-    right: -25px;
+    right: 0;
 }
 [dir='rtl'] .slick-next
 {
     right: auto;
-    left: -25px;
+    left: 0;
 }
 .slick-next:before
 {
@@ -120,17 +120,13 @@
 
 .slick-dots
 {
-    position: absolute;
-    bottom: -45px;
-
-    display: block;
-
-    width: 100%;
-    padding: 0;
-
-    list-style: none;
-
-    text-align: center;
+  position: absolute;
+  bottom: -31px;
+  width: 80%;
+  padding: 0;
+  margin: 0 10%;
+  list-style: none;
+  text-align: center;
 }
 .slick-dots li
 {

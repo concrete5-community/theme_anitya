@@ -1,6 +1,8 @@
 <?php
 namespace Concrete\Package\ThemeAnitya\Theme\Anitya;
 
+use Concrete\Package\ThemeAnitya\Src\Models\MclOptions;
+
 use StdClass;
 use Config;
 
@@ -10,11 +12,11 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 
 	public function registerAssets() {
 
+				$this->requireAsset('core/lightbox');
         $this->requireAsset('javascript', 'jquery');
         $this->requireAsset('javascript', 'bootstrap/dropdown');
         $this->requireAsset('javascript', 'imagesloaded');
         $this->requireAsset('javascript', 'masonry');
-        $this->requireAsset('javascript', 'flickity');
         $this->requireAsset('javascript', 'slick');
         $this->requireAsset('javascript', 'rcrumbs');
         $this->requireAsset('javascript', 'scrollmonitor');
@@ -29,7 +31,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 
         $this->requireAsset('css', 'font-awesome');
         $this->requireAsset('css', 'YTPlayer');
-        $this->requireAsset('css', 'flickity');
         $this->requireAsset('css', 'slick');
         $this->requireAsset('css', 'slick-theme');
         $this->requireAsset('css', 'jquery/ui');
@@ -57,18 +58,34 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
             'topic_list' => array('sidebar-wrapped'),
             'image' => array_merge(array('responsive', 'svg-primary','svg-quaternary'),$image_height),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
-						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses)
+						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses, $marginClasses),
 
         );
     }
 
     public function getThemeAreaClasses()
     {
-        // For multiple area
+				// For multiple area
         $main_area = array('Main');
-        $area_classes = array('primary','secondary','tertiary','quaternary','white','black','grid-overlay', 'space-s','space-m','hr-bold', 'border-thin','border-bold','border-bold-primary','border-bold-secondary','border-bold-tertiary','border-bold-quaternary','border-bold-white');
+        $area_classes = array(
+            // Colors
+            'page-content-style','area-primary','area-secondary','area-tertiary','area-quaternary','area-white','area-black','area-body',
+            // Spacing
+            'area-space-s','area-space-m','area-space-l','area-space-xl',
+            // Topics
+            'topic-get-in-touch','topic-idea','topic-help','topic-config','topic-news','topic-conversation',
+            // Borders
+            'border-thin','border-bold','border-bold-primary','border-bold-secondary','border-bold-tertiary','border-bold-quaternary','border-bold-white',
+            // Animation
+            'wow','flipInX','fadeInDown','zoomIn'
+            );
         for ($i=1; $i < 8; $i++) {
             $main_area['Main - ' . $i] = $area_classes;
+            $main_area['Main Column ' . $i] = $area_classes;
+            $main_area['Main Column 1 - ' . $i] = $area_classes;
+            $main_area['Main Column 2 - ' . $i] = $area_classes;
+            $main_area['Main Column 3 - ' . $i] = $area_classes;
+            $main_area['Main Column 4 - ' . $i] = $area_classes;
         }
 				$image_height = array('image-height-30','image-height-50','image-height-80','image-height-100');
         // Default array
@@ -100,6 +117,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         );
     }
 
+	public function getOptions () {
+		return MclOptions::get();
+	}
 
 		function createLayout ($navItems, $niKey, $break_columns_on_child, $nav_multicolumns_item_per_column){
 

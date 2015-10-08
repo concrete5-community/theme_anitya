@@ -21,6 +21,70 @@ $(document).ready(function(){
 // Les masonery
     launchMasonry();
 
+// les sliders
+	 $('.slick-wrapper').each(function(){
+	 	var e = $(this);
+	 	var n = '<div class="slick-arrows"></div>';
+
+	 	var settings = e.data('slick');
+		var options = {
+      // xtArrow:'<button type="button" class="slick-next"><i class="fa fa-angle-right"></i></button>',
+      // evArrow:'<button type="button" class="slick-prev"><i class="fa fa-angle-left"></i></button>',
+      //       customPaging: function(slider, i) {
+      //           return '<a href="" data-role="none">' + (i + 1) + '</a>';
+      //       },
+			  responsive: [
+			    // {
+			    //   breakpoint: 1024,
+			    //   settings: {
+			    //     slidesToShow: 3,
+			    //     slidesToScroll: 3,
+			    //     infinite: true,
+			    //     dots: true
+			    //   }
+			    // },
+			    {
+			      breakpoint: 600,
+			      settings: {
+			        slidesToShow: settings.slidesToShow > 2 || settings.slidesToShow > 1 ? 2 : 1 ,
+			        slidesToScroll: 2
+			      }
+			    },
+			    {
+			      breakpoint: 480,
+			      settings: {
+			        slidesToShow: 1,
+			        slidesToScroll: 1
+			      }
+			    }
+			  ]
+
+		 };
+		 e.slick($.extend(options,settings));
+	 });
+
+// Magnific popup
+   	$('.magnific-wrapper').each(function(){
+   		var t = $(this);
+   		var child = t.data('delegate') ? t.data('delegate') : 'a';
+   		var contentType = t.data('type') ? t.data('type') : 'image';
+   		t.magnificPopup({
+   	  		delegate: child, // child items selector, by clicking on it popup will open
+   	  		type: contentType,
+   	  		mainClass: 'mfp-effect',
+   	  		removalDelay: 500,
+   			  gallery:{
+   			    enabled:true
+   			  }
+   		})
+   	});
+    $(".open-popup-link").magnificPopup({
+  		type:'inline',
+  		midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+  	  		mainClass: 'mfp-effect',
+  	  		removalDelay: 500
+  	});
+        
 // Le breakpoint.js
     $(window).setBreakpoints();
 // Maintenant comme référence pour fixer le menu,
@@ -78,7 +142,7 @@ $(document).ready(function(){
     });
 
     if(!editMode) {
-// Les Tabs 
+// Les Tabs
           initializeTabs();
 
 // Les parallax

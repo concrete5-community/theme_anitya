@@ -253,3 +253,77 @@ li.mgm-multi-c-title {
 		text-transform: uppercase;
 	}
 }
+
+/* --- Breadcrumb ---*/
+
+.rcrumbs {
+  white-space: nowrap;
+  text-align: left;
+  padding-right: 10px;
+  > ul {
+    padding: 0; margin: 0 0;
+    list-style: none;
+    > li {
+      overflow: hidden;
+      display: none;
+      line-height: @space-s;
+      &.show {
+        display: inline-block !important;
+        color: @grey-color;
+      }
+      &.ellipsis {
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
+  span {
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+  a {
+    text-transform: uppercase;
+    font-size: 13px;
+    text-decoration: none;
+    color: @primary-color;
+
+    .transition(all 0.2s ease);
+
+    i {
+      margin:0 @space-xxs;
+      color: @grey-color;
+    }
+
+    &:hover {
+      padding: 0 5px;
+    }
+  }
+}
+
+// -- Slick navigation -- \\
+.slick-dots li button:before {
+
+}
+
+// .breadcrumb {
+//   padding: @space-xxs @space-s;
+//   margin-bottom: @line-height-computed;
+//   list-style: none;
+//   background-color: @white-color;
+//   border-radius: @border-radius-base;
+//
+//   > li {
+//     display: inline-block;
+//
+//     + li:before {
+//       content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+//       padding: 0 5px;
+//       color: @body-type-color;
+//     }
+//   }
+//
+//   > .active {
+//     color: @link-color;
+//   }
+// }

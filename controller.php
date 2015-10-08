@@ -104,12 +104,10 @@ class Controller extends \Concrete\Core\Package\Package {
  		$al->register( 'javascript', 'nprogress', 'js/build/nprogress.js', array('version' => '0.1.6'), $this );
  		$al->register( 'javascript', 'YTPlayer', 'js/build/jquery.mb.YTPlayer.min.js', array('version' => '2.7.5'), $this );
 		$al->register( 'javascript', 'jquery-ui/accordion', 'js/build/jquery-ui-accordion.js', array('version' => '1.11.2'), $this );
-		$al->register( 'javascript', 'flickity', 'js/build/flickity.pkgd.min.js', array('version' => '0.1.0'), $this );
 		$al->register( 'javascript', 'slick', 'js/build/slick.min.js', array('version' => '1.3.15'), $this );
 		$al->register( 'javascript', 'stellar', 'js/build/jquery.stellar.min.js', array('version' => '0.6.2'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/anitya/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
-		$al->register( 'css', 'flickity', 'themes/anitya/css/addons/flickity.css', array('version' => '0.1.0'), $this );
 		$al->register( 'css', 'slick', 'themes/anitya/css/addons/slick.css', array('version' => '1.3.15'), $this );
 		$al->register( 'css', 'slick-theme', 'themes/anitya/css/addons/slick-theme.css', array('version' => '1.3.15'), $this );
 		$al->register( 'css', 'bootsrap-custom', 'themes/anitya/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4'), $this );

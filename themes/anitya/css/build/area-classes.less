@@ -1,115 +1,162 @@
 .border-thin {
-	padding:@space-m 0  @space-m 0;
 	border-style: solid !important; // To override default area design from c5
 	border-top: 1px solid darken(@body-bg-color,10%);
 	border-bottom: 1px solid darken(@body-bg-color,10%);
 }
 .border-bold {
 	&-primary {
-		padding:@space-m 0  @space-m 0;
 		border-top: @space-s solid @primary-color;
 		border-bottom: @space-s solid @primary-color;
 		border-style: solid !important; // To override default area design from c5
 	}
 	&-secondary {
-		padding:@space-m 0  @space-m 0;
 		border-top: @space-s solid @secondary-color;
 		border-bottom: @space-s solid @secondary-color;
 		border-style: solid !important; // To override default area design from c5
 	}
 	&-tertiary {
-		padding:@space-m 0  @space-m 0;
 		border-top: @space-s solid @tertiary-color;
 		border-bottom: @space-s solid @tertiary-color;
 		border-style: solid !important; // To override default area design from c5
 	}
 	&-quaternary {
-		padding:@space-m 0  @space-m 0;
 		border-top: @space-s solid @quaternary-color;
 		border-bottom: @space-s solid @quaternary-color;
 		border-style: solid !important; // To override default area design from c5
 	}
 	&-white {
-		padding:@space-m 0  @space-m 0;
 		border-top: @space-s solid @white-color;
 		border-bottom: @space-s solid @white-color;
 		border-style: solid !important; // To override default area design from c5
 	}
 }
 
-.ccm-custom-style-container {
-	position: relative;	
+.area {
+
+// -- Color Area
+
+	&-primary {
+		.area-color(@primary-color; @primary-text-color);
+	}
+	&-secondary {
+		.area-color(@secondary-color; @secondary-text-color);
+	}
+	&-tertiary {
+		.area-color(@tertiary-color; @tertiary-text-color);
+	}
+	&-quaternary {
+		.area-color(@quaternary-color; @quaternary-text-color);
+	}
+	&-white {
+		.area-color(@white-color; @black-color);
+	}
+	&-black {
+		.area-color(@black-color; @white-color);
+	}
+	&-body {
+	  .area-color( @body-bg-color; @body-type-color);
+	  // background-image: url(@body-bg-pattern-image);
+	}
+
+// Spacing
+
+	&-space-s {
+		padding:@space-s;
+	}
+	&-space-m {
+		padding:@space-m;
+	}
+	&-space-l {
+		padding:@space-xl;
+	}
+	&-space-xl {
+		padding:@space-xxl;
+	}
 }
 
-.ccm-custom-style {
-	&-pagefooter, 
-	&-main, 
-	&-main1, 
-	&-main2, 
-	&-main3, 
-	&-main4 
-		{
-		background-attachment: fixed;
-		background-size: cover;
-		background-repeat: no-repeat !important;
-		background-clip: border-box;
-		background-origin: padding-box;
-		border-top-style: solid !important; // To override default area design from c5
-		border-bottom-style: solid !important; // To override default area design from c5
-		border-width: 1px;
-				
-		&.primary {
-			.area-classe-mixin(@primary-color; @primary-text-color);
-		}
-		&.secondary {
-			.area-classe-mixin(@secondary-color; @secondary-text-color);
-		}
-		&.tertiary {
-			.area-classe-mixin(@tertiary-color; @tertiary-text-color);
-		}
-		&.quaternary {
-			.area-classe-mixin(@quaternary-color; @quaternary-text-color);
-		}
-		&.white {
-			.area-classe-mixin(@white-color; @black-color);
-		}
-		&.black {
-			.area-classe-mixin(@black-color; @white-color);
-		}
-		&.space-s {
-			padding:@space-m 0  @space-m 0;
-			border: 0;
-		}
-		&.space-m {
-			padding:@space-l 0  @space-l 0;	
-			border: 0;
-		}		
-	}	
-}
-.area-classe-mixin (@color; @contrast) {
-	background-color:@color;
-	border-top: 1px solid darken(@color,10%) !important;
-	border-bottom: 1px solid darken(@color,10%) !important;
 
-	& * { color:@contrast}
+.area-color (@color; @contrast) {
+	background-color: @color;
+	p,li,quote,div:not(.void),i,
+	h1,h2,h3,h4,h5,h6,
+	input[type="submit"] {
+		color:@contrast;
+	}
+	h1 small,h2 small,h3 small,h4 small,h5 small,h6 small {
+		color:fade(@contrast,60%);
+	}
 	hr {
-		background-color: fade(@contrast,80%);
-	}	
+		background-color:fade(@contrast,50%);
+	}
+	a, .lead strong {
+		// Choisi entre la couleur par defaut des liens ou la couleur contraste
+		color:contrast(@color,
+			hsl(hue(@color),saturation(@color),lightness(@color)-30),
+			hsl(hue(@color),saturation(@color),lightness(@color)+35)
+			);
+	}
+	// Accordion and other contents that need to loose her background
+	.content-inner {
+		background-color: transparent !important;
+	}
+	.leaders::after {
+		background-image: radial-gradient(circle closest-side,fade(@contrast, 50%) 80%, transparent 10%);
+	}
+	.slick-dots li button:before,
+	.slick-prev:before,
+	.slick-next:before {
+		color:@contrast;
+	}
 }
+
+// -- Topics Area
+
+.topic {
+
+	&-get-in-touch {
+		.topics(get-in-touch);
+	}
+	&-idea {
+		.topics(idea);
+	}
+	&-help {
+		.topics(help);
+	}
+	&-config {
+		.topics(config);
+	}
+	&-news {
+		.topics(news);
+	}
+	&-conversation {
+		.topics(conversation);
+	}
+}
+
+.topics (@url) {
+
+  	@fullurl : %("../../images/area-topic/%a.png",@url);
+
+	background-image:url(@fullurl);
+	background-repeat:no-repeat;
+	background-position:right bottom;
+	background-size: contain;
+}
+
 
 .grid-overlay {
 	// position: static;
 	.area-wrap {
 		position: relative;
-		padding:@space-l 0  @space-l 0;	
-		border: 0;		
+		padding:@space-l 0  @space-l 0;
+		border: 0;
 		.pattern {
 			position: absolute;
 			top: 0px;
 			left: 0px;
 			width: 100%;
 			height: 100%;
-			background-image:url(../../images/pattern/grid.png);			
+			background-image:url(../../images/pattern/grid.png);
 		}
 	}
 }

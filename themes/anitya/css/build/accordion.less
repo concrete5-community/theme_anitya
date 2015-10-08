@@ -29,6 +29,7 @@
 
   .content {
     overflow: hidden;
+    margin: 0;
 
     .content-inner {
       // .transition(transform .3s ease);
@@ -61,19 +62,19 @@
   // Default behavior
   .accordion-mixin-color(@white-color; @link-color; @light-color);
 
-  .accordion-primary & {
+  .element-primary & {
     .accordion-mixin-color(@primary-color; @primary-text-color; @light-color);
   }  // Customs Behavior
-  .accordion-secondary & {
+  .element-secondary & {
     .accordion-mixin-color(@secondary-color; @secondary-text-color; @light-color);
   }
-  .accordion-tertiary & {
+  .element-tertiary & {
     .accordion-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
   }
-  .accordion-quaternary & {
+  .element-quaternary & {
     .accordion-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
   }
-  .accordion-light & {
+  .element-light & {
     .accordion-mixin-color(@light-color; @black-color; @white-color);
   }
 
@@ -108,7 +109,7 @@
         background-color: darken(@color, 5%);
     }
     i {
-      color: @light;
+      color: fade(@contrast,30%);
       }
     }
      &.active i {
