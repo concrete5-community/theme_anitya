@@ -20,6 +20,7 @@ $(document).ready(function(){
 
 // Les masonery
     launchMasonry();
+
 // Le breakpoint.js
     $(window).setBreakpoints();
 // Maintenant comme référence pour fixer le menu,
@@ -77,6 +78,8 @@ $(document).ready(function(){
     });
 
     if(!editMode) {
+// Les Tabs 
+          initializeTabs();
 
 // Les parallax
         $('.grid-overlay').wrapInner('<div class="area-wrap" />');
@@ -195,6 +198,17 @@ function launchMasonry() {
 
     });
 };
+
+function initializeTabs () {
+    $(".tabs-menu a").click(function(event) {
+        event.preventDefault();
+        $(this).parent().addClass("current");
+        $(this).parent().siblings().removeClass("current");
+        var tab = $(this).attr("href");
+        $(".tab-content", $(this).parent().parent().parent() ).not(tab).css("display", "none");
+        $(tab).fadeIn();
+    });
+}
 
 // -- Ajoute la classe 'view' sur les element '.detect' une fois qu'il arrive dans le viewport -- \\
 function detectOnView () {

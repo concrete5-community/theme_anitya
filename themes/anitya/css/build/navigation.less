@@ -183,7 +183,7 @@ nav.main-nav {
   border-top: none;
   li {
     border-bottom: 1px solid lighten(@nav-dropdown-bg-color, 2%);
-    padding: 5px 0;
+    padding: @space-xxs 0;
     .transition(.2s);
     &:last-child {
       border: none;
@@ -205,6 +205,9 @@ nav.main-nav {
       }
     }
   }
+	ul {
+		top: 0 !important;
+	}
 }
 
 /* -- Mega menu -- */

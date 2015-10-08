@@ -32,11 +32,11 @@ RedactorPlugins.themeclips = function()
             dropdown.button = { title: 'Button', func:f};
             dropdown.boxes = { title: 'Boxes', func:f};
             dropdown.heading = { title: 'Heading', func:f};
-            dropdown.hint = { title: 'Hover Hint', func:f};
             dropdown.alert = { title: 'Alert Message', func:f};
             dropdown.divider = { title: 'Divider', func:f};
             dropdown.icon = { title: 'Icon', func:f};
-            dropdown.navigation = { title: 'Navigation', func:f};
+            // dropdown.hint = { title: 'Hover Hint', func:f};
+            // dropdown.navigation = { title: 'Navigation', func:f};
 
             var button = this.button.add('themeclips', 'themeclips');
             this.button.setAwesome('themeclips', 'fa-tasks');

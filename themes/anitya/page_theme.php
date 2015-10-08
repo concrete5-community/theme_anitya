@@ -42,6 +42,11 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 
     public function getThemeBlockClasses()
     {
+				$blocks_classes = array('block-primary', 'block-secondary', 'block-tertiary', 'block-quaternary');
+				$columns = $margin = array();
+				for ($i=1; $i < 7; $i++) $columnsClasses[] = "$i-column";
+				for ($i=0; $i < 40; $i+=10) $marginClasses[] =  "carousel-margin-{$i}px";
+
 				$image_height = array('image-height-30','image-height-50','image-height-80','image-height-100');
         return array(
             'page_list' => array('sidebar-wrapped','accordion-primary','accordion-secondary','accordion-tertiary','accordion-quaternary','accordion-light',
@@ -52,8 +57,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
             'topic_list' => array('sidebar-wrapped'),
             'image' => array_merge(array('responsive', 'svg-primary','svg-quaternary'),$image_height),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
-            'core_stack_display' => array('accordion-primary','accordion-secondary','accordion-tertiary','accordion-quaternary','accordion-light',
-                                          'slider-dots-primary', "slider-dots-white", "slider-dots-black")
+						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses)
 
         );
     }
