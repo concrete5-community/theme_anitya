@@ -88,7 +88,7 @@
 	hr {
 		background-color:fade(@contrast,50%);
 	}
-	a, .lead strong {
+	a:not(.btn), .lead strong {
 		// Choisi entre la couleur par defaut des liens ou la couleur contraste
 		color:contrast(@color,
 			hsl(hue(@color),saturation(@color),lightness(@color)-30),

@@ -1,5 +1,8 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
+$pageTheme = $c->getCollectionThemeObject();
+$styleObject = $pageTheme->getClassSettingsObject($b);
+
 if ($c->isEditMode()):
   // En Edit mode, si l'utilisateur n'a pas ajouté de classe de hauteur sur le bloc image (image-height-80)
   // Le bloc devient invisible car coincé dans sont parent de Concrete qui est bein petit.
@@ -9,6 +12,18 @@ if ($c->isEditMode()):
   $pageTheme = $c->getCollectionThemeObject();
   $header_height = $pageTheme->getClassSettings($b,'image-height');
 endif;
-if (is_object($f)) $url = $f->getVersion()->getUrl();
+if (is_object($f)) :
+	$fv = $f->getVersion();
+    $path = $fv->getRelativePath();
+    if ($styleObject->displayTitle) :
+	    $title = $title ? $title : $f->getTitle();
+	    $desc = $altText ? $altText : $f->getDescription();
+	endif;
+endif;
 ?>
-<div class="ccm-intro-block  <?php echo $header_height ? '' : 'image-height-30' ?>" style=" <?php  if ($url) : ?>background-image:url(<?php  echo $url ?>)<?php  endif?>;"></div>
+<div class="ccm-intro-block image-wrapper <?php echo $header_height ? '' : 'image-height-30' ?>" style=" <?php  if ($path) : ?>background-image:url(<?php  echo $path ?>)<?php  endif?>;">
+  <div class="container vertical-align">
+		<?php if($title) : ?><h1 class="underline"><?php echo $title ?></h1><?php endif ?>
+		<?php if($desc) : ?><h3><?php echo $desc ?></h3><?php endif ?>
+	</div>
+</div>

@@ -1,6 +1,6 @@
 /* -- Popup-me -- */
 .mfp-effect.mfp-wrap .mfp-content {
-  .transition(.5s); 
+  .transition(.5s);
 }
 .white-popup {
   position: relative;
@@ -25,4 +25,31 @@
 
 a.mpf-inline.open-popup-link {
 	margin-bottom: @space-s
+}
+
+// -- Content Block -- \\
+
+// Image caption is alsoused in image.less
+.image-caption {
+  padding: @space-xs @space-s;
+  background-color: fade(@light-color,90%);
+  color: @grey-color;
+  font-size: @font-size-small;
+  p {
+    margin: 0
+  }
+}
+.image-caption-inside {
+  .image-caption();
+  position: absolute;
+  z-index: 1;
+  left: 15px;
+  right: 15px;
+  background-color: fade(@light-color,60%);
+  color: fade(@black-color,90%);
+  transform: translateY(-100%);
+  .edit-mode & {
+    position: relative;
+    transform: translateY(0);
+  }
 }

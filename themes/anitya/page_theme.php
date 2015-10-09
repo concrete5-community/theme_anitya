@@ -2,10 +2,8 @@
 namespace Concrete\Package\ThemeAnitya\Theme\Anitya;
 
 use Concrete\Package\ThemeAnitya\Src\Models\MclOptions;
-
 use Concrete\Core\Area\Layout\Preset\Provider\ThemeProviderInterface;
 use stdClass;
-use \Concrete\Package\ThemeSupermint\Src\Models\ThemeSupermintOptions;
 use Package;
 use Loader;
 use CollectionAttributeKey;
@@ -70,7 +68,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 								$columnsClasses,
 								// Margin size for carousel
 								$marginClasses),
-            'content' => array('sidebar-wrapped', 'white-block', 'primary-block', 'secondary-block', 'tertiary-block', 'quaternary-block'),
+						'content' => array('image-caption','image-caption-inside','collapse-top-margin'),
             'autonav' => array('sidebar-wrapped', 'small-text-size'),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','thin','primary','secondary','tertiary','quaternary','dotted','hr-bold'),
             'topic_list' => array('sidebar-wrapped'),
@@ -222,7 +220,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 				$classesArray = explode(' ', $classes);
 				$styleObject->classesArray = $classesArray;
 	      preg_match('/' . $prefix . '-(\w+)/',$classes,$found);
-	      return isset($found[1]) ? $found[1] : false;
+	      return isset($found[1]) ? (int)$found[1] : false;
 	    endif;
 	  }
 
