@@ -7,6 +7,7 @@ use Concrete\Core\Block\BlockController;
 use Concrete\Core\Form\Service\Widget\Color;
 use Loader;
 use StdClass;
+use Page;
 
 class Controller extends BlockController {
 
@@ -79,7 +80,12 @@ class Controller extends BlockController {
 	public function view () {
 		// var_dump($this->getOptionsObject());
         $this->set('options', $this->getOptionsObject());
-
+		$c = Page::getCurrentPage();
+		// var_dump(count($c->getBlocks()));
+		foreach ($c->getBlocks() as $key => $value) {
+			// var_dump($value->getBlockTypeHandle());
+		}
+		// die();
 	}
 
     public function registerViewAssets() {
@@ -87,10 +93,7 @@ class Controller extends BlockController {
     }
 
 	private function set_block_tool($tool_name){
-		// $urls = Loader::helper('concrete/urls');
-		// $bt = BlockType::getByHandle($this->btHandle);
-		// $this->set ($tool_name, $urls->getBlockTypeToolsURL($bt).'/'.$tool_name);
-		$this->set ($tool_name, 'to be defined by route ?');
+			$this->set ($tool_name, 'to be defined by route ?');
 	}
     function rgb2hex($rgbstring) {
 
