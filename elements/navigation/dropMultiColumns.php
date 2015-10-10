@@ -10,7 +10,7 @@ $layout = $pageTheme->createLayout($navItems, $niKey, true,20);//$o->break_colum
 
 $span = 'col-sm-' . (intval( 12 / (count($layout))));
 ?>
-<div class='multicolumn-pane  <?php if($o->full_width_multicolumn) : ?>absolute-container <?php endif ?>' style="padding:20px; <?php if(!$o->full_width_multicolumn) : ?>width:<?php echo (intval(count($layout) * $o->mega_columns_width)) ?>px<?php endif ?>">
+<div class="multicolumn-pane absolute-container" style="padding:20px;">
 	<div class="row">
 <?php
 foreach ($layout as $key => $element) :

@@ -37,7 +37,7 @@ class Controller extends \Concrete\Core\Package\Package {
 
 	protected $pkgHandle = 'theme_anitya';
 	protected $appVersionRequired = '5.7.3';
-	protected $pkgVersion = '1.2.3.3';
+	protected $pkgVersion = '1.2.3.6';
 	protected $pkg;
 
 
@@ -79,6 +79,7 @@ class Controller extends \Concrete\Core\Package\Package {
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/themes.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/attributes.xml');
+		$ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/single_page.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/systemcontenteditorsnippets.xml');
 	}
