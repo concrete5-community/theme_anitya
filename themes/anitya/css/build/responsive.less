@@ -38,7 +38,18 @@
       width:49.999%;
     }
   }
-
+  @media (max-width: 992px) {
+    div.regular-top-nav {
+      & > ul {
+        & > li {
+          // padding: 0 5px;
+          & > a {
+            text-transform: none;
+          }
+        }
+      }
+    }
+  }
 
 // @media (max-width: 767px)
   @media (max-width: @screen-xs-max) {

@@ -112,6 +112,7 @@ class Controller extends \Concrete\Core\Package\Package {
 		$al->register( 'javascript', 'autohidingnavbar', 'js/build/jquery.autohidingnavbar.js', array('version' => '0.1.6'), $this );
 		$al->register( 'javascript', 'mmenu', 'js/build/jquery.mmenu.min.all.js', array('version' => '5.4.2'), $this );
 		$al->register( 'javascript', 'wow', 'js/build/wow.js', array('version' => '1.1.2'), $this );
+		$al->register( 'javascript', 'enquire', 'js/build/enquire.js', array('version' => '2.1.2'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/anitya/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
 		$al->register( 'css', 'slick', 'themes/anitya/css/addons/slick.css', array('version' => '1.3.15'), $this );

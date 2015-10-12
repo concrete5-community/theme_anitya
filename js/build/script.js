@@ -105,7 +105,7 @@ $(document).ready(function(){
   	  		removalDelay: 500
   	});
   // AUto hidding responsive nav bar
-  	$('.small-display-nav-bar-inner, .large-top-nav, .small-display-nav-bar .regular-top-nav').autoHidingNavbar();    
+  	$('.small-display-nav-bar-inner, .top-bar, .small-display-nav-bar .regular-top-nav').autoHidingNavbar();
 
 // Le breakpoint.js
     $(window).setBreakpoints();
@@ -119,7 +119,8 @@ $(document).ready(function(){
     var b = nav.height() + parseInt(nav.css('top'),10);
     var mainWatch = scrollMonitor.create(main,{top:b});
     mainWatch.stateChange(function() {
-        nav.toggleClass('fixedtop', this.isAboveViewport);
+        if (!nav.is('.manualy-fixed'))
+          nav.toggleClass('fixedtop', this.isAboveViewport);
     });
     // le démarrer manuelement si la page est chargé en plein milieu
     var i = $('.intro');
@@ -350,6 +351,26 @@ jQuery.expr[':'].regex = function (elem, index, match) {
     }
 }
 
+// -- Media Queries -- \\
+
+enquire.register("screen and (max-width: 979px)", {
+
+    match : function() {
+			$('.top-bar').addClass('manualy-fixed fixedtop');
+			// On desactive les dropdown
+			// $('.large-top-nav li.has-submenu').removeClass('mgm-drop');
+		},
+    unmatch : function() {
+      var nav = $('.top-bar');
+			nav.removeClass('manualy-fixed');
+      var i = $('.intro');
+      if(i.height() > $(window).scrollTop())nav.removeClass('fixedtop') ;
+			// $('.large-top-nav li.has-submenu').addClass('mgm-drop');
+		}
+
+});
+
+// TODO : Ici on a deux script qui font la meme chose : detecter les largeurs d'écrans
 
 $(window).bind('enterBreakpoint320',function() {
     l('Entering 320 breakpoint');

@@ -34,6 +34,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 				$this->requireAsset('javascript', 'mmenu');
 				$this->requireAsset('javascript', 'wow');
 				$this->requireAsset('javascript', 'autohidingnavbar');
+				$this->requireAsset('javascript', 'enquire');
         $this->requireAsset('javascript', 'anitya.script');
 
 
