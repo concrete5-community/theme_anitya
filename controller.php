@@ -162,9 +162,11 @@ class Controller extends \Concrete\Core\Package\Package {
 					function($e) {
 							$session = \Core::make('session');
 							$c = Page::getCurrentPage();
+							$mcl = new MclOptions($c);
 							// Register options into the session
-							$options = MclOptions::get_options_from_active_preset_ID();
+							$options = $mcl->get_options_from_active_preset_ID();
 							$session->set('anitya.options',$options);
+
 
 							// Register colors from active or default preset in the session
 							if (is_object($c)) :
@@ -237,7 +239,7 @@ class Controller extends \Concrete\Core\Package\Package {
 					'\Concrete\Package\ThemeAnitya\Controller\Tools\FontsTools::getFontURLAjax'
 			);
 			Route::register(
-					'/ThemeAnitya/tools/override.css',
+					'/ThemeAnitya/tools/override',
 					'\Concrete\Package\ThemeAnitya\Controller\Tools\OverrideCss::render'
 			);
 			Route::register(

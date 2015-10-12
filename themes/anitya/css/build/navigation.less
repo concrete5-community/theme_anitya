@@ -152,7 +152,6 @@ nav.main-nav {
 					color:@primary-color;
 				}
 			}
-
       & > a {
         font-size: 14px;
 		 		text-decoration: none;
@@ -192,7 +191,7 @@ nav.main-nav {
       background-color: fade(@nav-dropdown-a-color, 5%)
     }
     a {
-      padding: 0 @space-xxs 0 @space-s; // More at left for icon
+      padding: 0 @space-xxs 0 35px; // More at left for icon
       line-height: 1.9rem;
       color: @nav-dropdown-a-color;
       .transition(.2s);
@@ -201,7 +200,8 @@ nav.main-nav {
       }
       i {
         width: 14px;
-        margin-left:-17px; // 3px de plus pour bien aligner le texte
+        margin-left:-22px; // 3px de plus pour bien aligner le texte
+				margin-right: 5px;
       }
     }
   }

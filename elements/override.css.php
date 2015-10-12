@@ -1,7 +1,7 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied."));
 $session = \Core::make('session');
 $themeColors = $session->get('anitya.colors');
-print_r($themeColors);
+print_r($o);
 $v =  $themeColors->variables;
 
 ?>

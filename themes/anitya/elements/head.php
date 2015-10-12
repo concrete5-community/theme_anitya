@@ -7,7 +7,7 @@
     <?php  Loader::element('header_required', array('pageTitle' => $pageTitle));?>
     <?php  echo $html->css($view->getStylesheet('main.less')); ?>
     <?php if (Loader::helper('concrete/ui')->showWhiteLabelMessage()) :?><style media="screen">body div#ccm-toolbar>ul>li#ccm-white-label-message{display: none !important}</style><?php endif ?>
-    <link rel="stylesheet" href="<?php echo URL::to("/ThemeAnitya/tools/override.css") . '?cID=' . $c->cID ?>" id="css-override" type="text/css" />
+    <link rel="stylesheet" href="<?php echo URL::to("/ThemeAnitya/tools/override") . '?cID=' . $c->cID ?>" id="css-override" type="text/css" />
     <link rel="stylesheet" href="<?php echo Concrete\Package\ThemeAnitya\Controller\Tools\FontsTools::getFontsURL() ?>" id="css-fonts" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -5,6 +5,13 @@ if ($linkURL) {
 <div class="feature-item">
 	<div class="flip" ontouchstart="this.classList.toggle('hover');">
 		<div class="flipper">
+      <div class='square-box'>
+    	  <div class='square-content to-hide'>
+    	  	<div>
+    	  		<span>&nbsp;</span>
+    	  	</div>
+    	  </div>
+      </div>
 			<div class="front">
 				<div class='square-box'>
 				    <div class='square-content'>
@@ -13,7 +20,7 @@ if ($linkURL) {
 				    			<i class="fa fa-<?php  echo $icon?> fa-4x primary-long-shadow"></i>
 			    			    <?php  if ($title) :?>
 							        <h4> <?php  echo $title?></h4>
-							    <?php  endif ?>				    			
+							    <?php  endif ?>
 				    		</span>
 
 				    	</div>
@@ -26,8 +33,8 @@ if ($linkURL) {
 				    	<div>
 						    <?php  if ($paragraph) : ?>
 						        <p><?php  echo $paragraph?></p>
-						    <?php  endif ?>		
-						    
+						    <?php  endif ?>
+
 				    	</div>
 				    </div>
 				</div>
@@ -35,4 +42,3 @@ if ($linkURL) {
 		</div>
 	</div>
 </div>
-

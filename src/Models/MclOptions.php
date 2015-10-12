@@ -40,7 +40,7 @@ class MclOptions extends Object
 	function init ($c) {
 
 		$this->pkg = Package::getByHandle("theme_anitya");
-		$this->pID = $this->get_active_pID();
+		$this->pID = $this->get_active_pID($c);
 
 	}
 	function set_collection_object($c) {
@@ -145,7 +145,13 @@ class MclOptions extends Object
 		Config::save('concrete.misc.default_anitya_preset_id', $pID);
 	}
 	function get_default_pID () {
-		return Config::get('concrete.misc.default_anitya_preset_id');
+    $pID = Config::get('concrete.misc.default_anitya_preset_id');
+    if (!$pID) :
+      self::set_default_pID(1);
+      return 1;
+    endif;
+    return $pID;
+
 	}
 	function get_default_preset_title() {
 		$p = $this->get_preset_by_id($this->get_default_pID());
@@ -156,7 +162,6 @@ class MclOptions extends Object
 		return $p['name'];
 	}
 	function get_active_pID ($c = null) {
-		if ($_GET['pID']) return $_GET['pID'];
 		// On regarde quel objet page prendre
 		$page = $c ? $c : Page::getCurrentPage();
 		// On tente de re�cup�rer la valeur de l'attribut
@@ -185,7 +190,7 @@ class MclOptions extends Object
 		}
 		return false;
 	}
-	static function get_options_from_active_preset_ID () {
+	function get_options_from_active_preset_ID () {
 		return self::get_options_from_preset_ID(self::get_active_pID());
 	}
 
