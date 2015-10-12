@@ -109,13 +109,18 @@ class Controller extends \Concrete\Core\Package\Package {
 		$al->register( 'javascript', 'jquery-ui/accordion', 'js/build/jquery-ui-accordion.js', array('version' => '1.11.2'), $this );
 		$al->register( 'javascript', 'slick', 'js/build/slick.min.js', array('version' => '1.3.15'), $this );
 		$al->register( 'javascript', 'stellar', 'js/build/jquery.stellar.min.js', array('version' => '0.6.2'), $this );
-		// $al->register( 'javascript', 'onepagenav', 'js/build/jquery.onepagenav.js', array('version' => '3.0'), $this );
+		$al->register( 'javascript', 'autohidingnavbar', 'js/build/jquery.autohidingnavbar.js', array('version' => '0.1.6'), $this );
+		$al->register( 'javascript', 'mmenu', 'js/build/jquery.mmenu.min.all.js', array('version' => '5.4.2'), $this );
+		$al->register( 'javascript', 'wow', 'js/build/wow.js', array('version' => '1.1.2'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/anitya/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
 		$al->register( 'css', 'slick', 'themes/anitya/css/addons/slick.css', array('version' => '1.3.15'), $this );
 		$al->register( 'css', 'slick-theme', 'themes/anitya/css/addons/slick-theme.css', array('version' => '1.3.15'), $this );
 		$al->register( 'css', 'bootsrap-custom', 'themes/anitya/css/addons/bootstrap.custom.min.css', array('version' => '3.3.4'), $this );
 		$al->register( 'css', 'megamenu', 'themes/anitya/css/addons/mega-menu.css', array('version' => '1'), $this );
+		$al->register( 'css', 'mmenu', 'themes/anitya/css/addons/jquery.mmenu.all.css', array('version' => '5.4.2'), $this );
+		$al->register( 'css', 'animate', 'themes/anitya/css/addons/animate.css', array('version' => '1'), $this );
+
 
 // -- Redactor Plugins -- \\
 

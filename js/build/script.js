@@ -4,10 +4,12 @@
     debugMode = 0;
 // Si la page est en edit mode
     editMode = $('body').is('.edit-mode');
-
+// mmenu = false
 
 
 $(document).ready(function(){
+    isDashboard = $('#ccm-dashboard-page').size();
+    if (isDashboard) return;
 // Le loader
     NProgress.configure({trickleRate: .5, trickleSpeed: 1000});
     NProgress.start();
@@ -62,6 +64,24 @@ $(document).ready(function(){
 		 };
 		 e.slick($.extend(options,settings));
 	 });
+   // Mmenu
+   	if($("#mmenu").size()) {
+   		$("#mmenu").mmenu(mmenuSettings,  {
+   		    // configuration
+   		    offCanvas: {
+   		      pageSelector:'.ccm-page'
+   		      // menuWrapperSelector:'.small-display-nav-bar'
+   		    }
+   		  });
+   		mmenu = $("#mmenu").data( "mmenu" );
+   		mmenu.bind( "opened", function() {$('#hamburger-icon').addClass('active')});
+   		mmenu.bind( "closing", function() {$('#hamburger-icon').removeClass('active')});
+   		$("#mmenu .mm-search input").keyup(function(e){
+   		    if(e.keyCode == 13){
+   		        window.location.href = SEARCH_URL + '?query=' + $(this).val();
+   		    }
+   		});
+   	}
 
 // Magnific popup
    	$('.magnific-wrapper').each(function(){
@@ -84,7 +104,9 @@ $(document).ready(function(){
   	  		mainClass: 'mfp-effect',
   	  		removalDelay: 500
   	});
-        
+  // AUto hidding responsive nav bar
+  	$('.small-display-nav-bar-inner, .large-top-nav, .small-display-nav-bar .regular-top-nav').autoHidingNavbar();    
+
 // Le breakpoint.js
     $(window).setBreakpoints();
 // Maintenant comme référence pour fixer le menu,
@@ -354,27 +376,40 @@ $(window).bind('enterBreakpoint1024',function() {
 
 
 
-// -- Responsive navigation -- \\
-(function() {
-    var container = $( 'div.ccm-page' ),
-        triggerBttn = $('#hamburger-icon'),
-        overlay = $( '.overlay' ),
-        closeBttn = $( 'button.overlay-close' );
-    function toggleOverlay() {
-        if( overlay.is('.open' ) ) {
-            overlay.removeClass('open' );
-            container.removeClass('overlay-open' );
-            triggerBttn.removeClass('active');
-        }
-        else {
-            overlay.addClass('open' );
-            container.addClass('overlay-open' );
-            triggerBttn.addClass('active');
-        }
-    }
+  // -- Responsive navigation -- \\
 
-    triggerBttn.on( 'click', toggleOverlay );
-})();
+  (function() {
+      var container = $( 'div.ccm-page' ),
+          triggerBttn = $('#hamburger-icon'),
+          overlay = $( '.overlay' ),
+          closeBttn = $( 'button.overlay-close' );
+      function toggleOverlay() {
+  			// Mmenu mode
+  			// Si le mmenu a été inité, on aporte les changement sur lui
+  			if (typeof mmenu == 'object') {
+  				if($("#mmenu").is(".mm-opened")) {
+  					mmenu.close();
+  					// triggerBttn.removeClass('active');
+  				} else {
+  					mmenu.open();
+  					// triggerBttn.addClass('active');
+  				}
+  			} else {
+          // Full screen mode
+  				if( overlay.is('.open' ) ) {
+              overlay.removeClass('open' );
+              container.removeClass('overlay-open' );
+              triggerBttn.removeClass('active');
+          }
+          else {
+              overlay.addClass('open' );
+              container.addClass('overlay-open' );
+              triggerBttn.addClass('active');
+          }
+  			}
+      }
+      triggerBttn.on( 'click', toggleOverlay );
+  })();
 
 // -- Les log dans la console -- \\
 function l(m) {

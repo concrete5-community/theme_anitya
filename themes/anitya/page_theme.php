@@ -15,8 +15,10 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 	public function registerAssets() {
 
 				$this->requireAsset('core/lightbox');
+				$this->requireAsset('javascript', 'backstretch');
         $this->requireAsset('javascript', 'jquery');
         $this->requireAsset('javascript', 'bootstrap/dropdown');
+
         $this->requireAsset('javascript', 'imageloaded');
         $this->requireAsset('javascript', 'isotope');
 				$this->requireAsset('javascript', 'element-masonry');
@@ -29,6 +31,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         $this->requireAsset('javascript', 'js/jquery-ui.js');
         $this->requireAsset('javascript', 'jquery-ui/accordion');
         $this->requireAsset('javascript', 'stellar');
+				$this->requireAsset('javascript', 'mmenu');
+				$this->requireAsset('javascript', 'wow');
+				$this->requireAsset('javascript', 'autohidingnavbar');
         $this->requireAsset('javascript', 'anitya.script');
 
 
@@ -39,6 +44,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         $this->requireAsset('css', 'jquery/ui');
         $this->requireAsset('css', 'bootsrap-custom');
 				$this->requireAsset('css', 'megamenu');
+				$this->requireAsset('css', 'mmenu');
 
 	}
 
@@ -72,7 +78,19 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
             'autonav' => array('sidebar-wrapped', 'small-text-size'),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','thin','primary','secondary','tertiary','quaternary','dotted','hr-bold'),
             'topic_list' => array('sidebar-wrapped'),
-            'image' => array_merge(array('responsive', 'svg-primary','svg-quaternary'),$image_height),
+						'image' => array_merge($image_height,array(
+															// overlay
+															'black-smoked','primary-smoked','secondary-smoked','tertiary-smoked','quaternary-smoked', 'white-smoked',
+                             'no-text',
+                              // Height classes
+                             'height-80','height-50','height-30',
+                             'into-columns',
+                             // Caption  classes
+                             'caption-inside','caption-hover',
+                             'caption-primary', 'caption-secondary', 'caption-tertiary', 'caption-quaternary',
+													 	// specials
+														'svg-primary','svg-quaternary'
+													)),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
 						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses, $marginClasses),
 

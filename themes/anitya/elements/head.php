@@ -29,13 +29,15 @@
     </script>
 </head>
 <body class="<?php  echo $c->isEditMode() ? 'edit-mode' : '' ?> <?php  $p = new Permissions($c) ; if($p->canAdminPage()): ?>edit-bar <?php  endif ?>">
-    <!-- Responsive Nav -->
-    <div class="small-display-nav-bar">
-        <?php
-        $a = new GlobalArea('Responsive Navigation');
-        $a->display();
-        ?>
-    </div>
-    <!-- End Responsive Nav -->
+  <!-- Responsive Nav -->
+  <?php
+  $responsiveNav = new GlobalArea('Responsive Navigation');
+  $responsiveNav->load($c);
+  $display_responsiveNav = $responsiveNav->getTotalBlocksInAreaEditMode () > 0 || $responsiveNav->getTotalBlocksInArea() > 0 || $c->isEditMode() ;
+  ?>
+  <?php if ($display_responsiveNav): ?>
+  <div class="small-display-nav-bar inherit-ccm-page"><?php $responsiveNav->display()?></div>
+  <?php endif; ?>
+  <!-- End Responsive Nav -->
     <div class="<?php  echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('boxed_layout_mode') ? 'boxed-wrapper' : '' ?>">
         <div class="an">
