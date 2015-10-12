@@ -26,18 +26,9 @@ class Controller extends BlockController {
 	}
 
 	public function getBlockTypeDescription() {
-		return t('Full navigation management into a one page layout. ');
+		return t('Add a navigation\'s links into a one page layout. ');
 	}
 
-	public function on_start() {
-		Events::addListener(
-					'on_page_version_approve',
-					function($e) {
-						$c = $e->getPageObject();
-						var_dump($this);
-						die();
-					});
-	}
 	public function add () {
 		$this->setAssetEdit();
 		$this->set('navItems', $this->updateAndGetNavItems());
@@ -47,8 +38,6 @@ class Controller extends BlockController {
 		$this->set('navItems', $this->updateAndGetNavItems());
 	}
 	public function view () {
-
-		$time_start = microtime(true);
 		// En gros so l'utilisateur est administrateur, on update a chaque fois les $ni
 		// Sinon on prend ceux de la DB
 		$c = Page::getCurrentPage();
@@ -60,15 +49,9 @@ class Controller extends BlockController {
 
 		$o = $this->getOptionsObject();
 		$this->set('options', $o);
-
-		$time_end = microtime(true);
-		// echo "Time : " . ($time_end - $time_start);
-
 	}
+
   function getOptionsObject ()  {
-      // Cette fonction retourne un objet option
-      // SI le block n'existe pas encore, ces options sont préréglées
-      // Si il existe on transfome la chaine de charactère en json
       if (!$this->bID) :
       	$options = new StdClass();
 				$options->value = 75;
@@ -78,7 +61,6 @@ class Controller extends BlockController {
       		$options = $options->options;
       endif;
     return $options ;
-
   }
 
   public function setAssetEdit () {
@@ -139,8 +121,6 @@ class Controller extends BlockController {
 		endif;
 
 		$blocks = $this->getBlockNavFromPage($c);
-		// echo "toto";
-		// var_dump($blocks); die();
 		$realNi = $blocks ? $this->getNavItemsFromBlocks($blocks) : array();
 		if (count($savedID) && count($realNi)):
 			// On cree un tableau dans l'ordre des sauvgardes

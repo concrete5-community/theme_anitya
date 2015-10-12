@@ -19,38 +19,37 @@ class Controller extends BlockController {
 	protected $btSupportsInlineAdd = true;
 
 
-	public function getBlockTypeName() {
-		return t('Page Section');
-	}
-	public function getBlockTypeDescription() {
-		return t('Add a navigation section into a one page layout. ');
-	}
-	public function add () {
-		$this->setAssetEdit();
-	}
-	public function edit () {
-		$this->setAssetEdit();
-	}
-  public function getOptionsObject ()  {
-      if (!$this->bID) :
-      	$options = new StdClass();
-				$options->ID = uniqid();
-      else:
-          $options = json_decode($this->options);
-          if (is_object($options->options))
-      		$options = $options->options;
-      endif;
-    return $options ;
-  }
+		public function getBlockTypeName() {
+			return t('Page Section');
+		}
+		public function getBlockTypeDescription() {
+			return t('Add a navigation section into a one page layout. ');
+		}
+		public function add () {
+			$this->setAssetEdit();
+		}
+		public function edit () {
+			$this->setAssetEdit();
+		}
+	  public function getOptionsObject ()  {
+	      if (!$this->bID) :
+	      	$options = new StdClass();
+					$options->ID = uniqid();
+	      else:
+	          $options = json_decode($this->options);
+	          if (is_object($options->options))
+	      		$options = $options->options;
+	      endif;
+	    return $options ;
+	  }
 
-  public function setAssetEdit () {
-		$this->set('options', $this->getOptionsObject());
-  }
+	  public function setAssetEdit () {
+			$this->set('options', $this->getOptionsObject());
+	  }
 
-	public function view () {
-      $this->set('options', $this->getOptionsObject());
-	}
-
+		public function view () {
+	      $this->set('options', $this->getOptionsObject());
+		}
 
 		// On va recupérer les infos
 		function getNavItemFromBlock () {
@@ -61,16 +60,11 @@ class Controller extends BlockController {
 			return $ni;
 		}
 
-    public function registerViewAssets() {
-        $this->requireAsset('css', 'font-awesome');
-    }
-
 		public function save($data) {
       $options = $data;
-      // unset($options['fID']);
+      unset($options['bID']);
       $data['options'] = json_encode($options);
 			parent::save($data);
-
 		}
     public function getImportData($blockNode, $page)
     {

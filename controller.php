@@ -194,13 +194,15 @@ class Controller extends \Concrete\Core\Package\Package {
 									$c = $e->getPageObject();
 									$blocks = $c->getBlocks();
 									if (count($blocks)) :
+										$b = array();
 										// On prend tous les blocks 'page_navigator'
 										foreach ( $blocks as $key => $block) :
 											if ($block->getBlockTypeHandle() == 'page_navigator') :
 												$b[] = $block;
 											endif;
 										endforeach;
-										foreach ( $b as $key => $block) :
+
+										foreach ($b as $key => $block) :
 											// Et pour chacun d'eux, on sauve la configuration actuelle de la page
 											// Pour que le monde voient la dernière configuration
 											$controller = $block->getController();

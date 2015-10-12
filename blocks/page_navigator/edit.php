@@ -2,9 +2,9 @@
 
 ?>
 <ul id="" class="ccm-inline-toolbar ccm-ui image-toolbar">
-    <li class="ccm-inline-toolbar-button ccm-inline-toolbar-button-options">
+    <!-- <li class="ccm-inline-toolbar-button ccm-inline-toolbar-button-options">
         <button id="options-button" type="button" class="btn btn-mini"><?php echo t("Options")?></button>
-    </li>
+    </li> -->
     <li class="ccm-inline-toolbar-button ccm-inline-toolbar-button-cancel">
         <button onclick="cancelBlockForm()" id="" type="button" class="btn btn-mini"><?php echo t("Cancel")?></button>
     </li>

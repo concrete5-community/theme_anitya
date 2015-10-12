@@ -18,7 +18,7 @@ $(document).ready(function(){
       scrollSpeed: 750,
       scrollThreshold: 0.5,
       easing: 'swing',
-      offset: 120,
+      offset: 120
   });
 })
 </script>

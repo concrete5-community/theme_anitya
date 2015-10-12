@@ -1,9 +1,9 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
 ?>
 <ul id="" class="ccm-inline-toolbar ccm-ui image-toolbar">
-    <li class="ccm-inline-toolbar-button ccm-inline-toolbar-button-options">
+    <!-- <li class="ccm-inline-toolbar-button ccm-inline-toolbar-button-options">
         <button id="options-button" type="button" class="btn btn-mini"><?php echo t("Options")?></button>
-    </li>
+    </li> -->
     <li class="ccm-inline-toolbar-button ccm-inline-toolbar-button-cancel">
         <button onclick="cancelBlockForm()" id="" type="button" class="btn btn-mini"><?php echo t("Cancel")?></button>
     </li>
@@ -14,11 +14,11 @@
     <?php endif ?>
  </ul>
 
-<div class="basic-image-form-wrapper ccm-ui">
+<div class="form-wrapper ccm-ui">
   <input type="hidden" name="ID" value="<?php echo $options->ID?>">
   <div class="form-group">
     <label for="name"><?php echo t('Name') ?></label>
-    <input type="text" name="name" value="<?php echo $options->name?>">
+    <input clas="page-section-text" type="text" name="name" value="<?php echo $options->name?>">
   </div>
 </div>
 <script type="text/javascript">
