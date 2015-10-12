@@ -255,12 +255,12 @@ $options = array(
 
    array(
        'name' => t('Responsive Lateral Nav (mmenu)'),
-       "desc" => t('Options the autonav template is "Surpemint  Mmenu"'),
+       "desc" => t('Options the autonav template is "Anitya  Mmenu"'),
        'type' => 'subsection'
    ),
    array(
        "name" => t("Choose the theme"),
-       "desc" => t("By choosing a element you select wich font (not size) to use for links in the navigation"),
+       "desc" => t("Theme for Mmenu"),
        "id" => "mmenu_theme",
        "default" => 'light',
        "options" => array(
@@ -277,8 +277,6 @@ $options = array(
        "id" => "mmenu_position",
        "default" => 'left',
        "options" => array(
-          //  'top' => t("Top"),
-          //  'bottom' => t("Bottom"),
            'left' => t("Left"),
            'right' => t("Right")
        ),

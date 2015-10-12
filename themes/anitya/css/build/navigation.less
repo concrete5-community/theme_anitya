@@ -60,7 +60,7 @@ nav.main-nav {
 
     &.navbar-hidden {
         top: -@top-nav-height-fixed-size;
-    }		
+    }
 	}
 
 	.logo {
@@ -254,6 +254,15 @@ nav.main-nav {
 		top:@top-nav-height-fixed-size !important;
 	}
 }
+.mega-menu > li.mgm-drop {
+	&:last-child {
+		div,ul {
+			right: -15px;
+			left: auto;			
+		}
+	}
+}
+
 li.mgm-multi-c-title {
 	padding: @space-xxs 0 !important;
 	margin-bottom: @space-xxs;
