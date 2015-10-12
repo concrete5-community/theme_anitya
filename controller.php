@@ -37,7 +37,7 @@ class Controller extends \Concrete\Core\Package\Package {
 
 	protected $pkgHandle = 'theme_anitya';
 	protected $appVersionRequired = '5.7.3';
-	protected $pkgVersion = '1.2.3.6';
+	protected $pkgVersion = '1.2.3.8';
 	protected $pkg;
 
 
@@ -109,6 +109,7 @@ class Controller extends \Concrete\Core\Package\Package {
 		$al->register( 'javascript', 'jquery-ui/accordion', 'js/build/jquery-ui-accordion.js', array('version' => '1.11.2'), $this );
 		$al->register( 'javascript', 'slick', 'js/build/slick.min.js', array('version' => '1.3.15'), $this );
 		$al->register( 'javascript', 'stellar', 'js/build/jquery.stellar.min.js', array('version' => '0.6.2'), $this );
+		// $al->register( 'javascript', 'onepagenav', 'js/build/jquery.onepagenav.js', array('version' => '3.0'), $this );
 
  		$al->register( 'css', 'YTPlayer', 'themes/anitya/css/addons/YTPlayer.css', array('version' => '2.7.5'), $this );
 		$al->register( 'css', 'slick', 'themes/anitya/css/addons/slick.css', array('version' => '1.3.15'), $this );
@@ -187,6 +188,26 @@ class Controller extends \Concrete\Core\Package\Package {
 											'href' => URL::to('/dashboard/anitya_options/theme_options')
 									));
 					});
+					Events::addListener(
+								'on_page_version_approve',
+								function($e) {
+									$c = $e->getPageObject();
+									$blocks = $c->getBlocks();
+									if (count($blocks)) :
+										// On prend tous les blocks 'page_navigator'
+										foreach ( $blocks as $key => $block) :
+											if ($block->getBlockTypeHandle() == 'page_navigator') :
+												$b[] = $block;
+											endif;
+										endforeach;
+										foreach ( $b as $key => $block) :
+											// Et pour chacun d'eux, on sauve la configuration actuelle de la page
+											// Pour que le monde voient la dernière configuration
+											$controller = $block->getController();
+											$controller->refreshDB();
+										endforeach;
+									endif;
+								});
 	}
 	public function registerRoutes() {
 			// Route::register(

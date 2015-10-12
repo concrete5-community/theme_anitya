@@ -2,6 +2,8 @@
 <concrete5-cif version="1.0">
     <blocktypes>
         <blocktype handle="pie_chart" package="theme_anitya"/>
+        <blocktype handle="page_navigator" package="theme_anitya"/>
+        <blocktype handle="page_section" package="theme_anitya"/>
     </blocktypes>
     <stacks>
       <stack name="Site Logo">
