@@ -72,6 +72,13 @@ $options = array(
         "type" => "page"
     ),
     array(
+        "name" => t("Displaysearch box in responsive top bar"),
+        "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
+        "id" => "display_responsive_searchbox",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    array(
         "name" => t("Display icon on first level if available"),
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "first_level_nav_icon",
@@ -89,17 +96,6 @@ $options = array(
        "default" => "3",
        "type" => "range"
    ),
-   array(
-        "name" => t("Dropdown Width"),
-        "desc" => t("Set width for dropdown in main navigation when it's on dropdown mode"),
-        "id" => "nav_sub_level_width",
-        "min" => "150",
-        "max" => "400",
-        "step" => "10",
-        "unit" => 'px',
-        "default" => "220",
-        "type" => "range"
-    ),
 
     // multicolumns
 
@@ -107,17 +103,6 @@ $options = array(
         'name' => t('Dropdown multicolumns mode'),
         "desc" => t('Options When the nav is in dropdown mode and the attribute "Display multi-columns dropdown" is activated'),
         'type' => 'subsection'
-    ),
-    array(
-        "name" => t("Multicolumns position"),
-        "desc" => t("Display multi-columns nav as full with or under parent"),
-        "id" => "full_width_multicolumn",
-        "default" => 0,
-        "options" => array(
-            0 => t("Aligned on left of the parent"),
-            1 => t("Full width mega-menu")
-        ),
-        "type" => "select"
     ),
      array(
         "name" => t("Number of link per columns"),
@@ -135,83 +120,6 @@ $options = array(
         "desc" => t("The number of columns is detreminated by the number of child page in second level"),
         "id" => "break_columns_on_child",
         "default" => 1,
-        "type" => "toggle"
-    ),
-
-    // Large
-
-    array(
-        'name' => t('Large Dropdown mode'),
-        "desc" => t('Options When the navigation style is is set on "Wide Large drop-down mode"'),
-        'type' => 'subsection'
-    ),
-    array(
-        "name" => t("Remove the regular place take by the naigation"),
-        "desc" => t("This advanced option let to control when the auto-embed nav is set on off and we want to play with this navigation place."),
-        "id" => "wide_navbar_colapse",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Contains navigation width to the content width"),
-        "desc" => t("If enabled, it disable the full width feature and display navigation as large as the content"),
-        "id" => "wide_navbar_contained",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Display the stack 'Site Logo' on left"),
-        "desc" => t("If enabled the content of the stack will be displayed on left"),
-        "id" => "wide_navbar_display_logo",
-        "default" => 1,
-        "type" => "toggle"
-    ),
-
-    // Lateral
-
-    array(
-        'name' => t('Lateral mode'),
-        "desc" => t('Options When the nav is diplayed on left'),
-        'type' => 'subsection'
-    ),
-    array(
-        "name" => t("Choose the font-family for links"),
-        "desc" => t("By choosing a element you select wich font (not size) to use for links in the navigation"),
-        "id" => "lateral_nav_element_font",
-        "default" => 'p',
-        "options" => array(
-            0 => t("Paragraph (default)"),
-            'alternate' => t("Alternate font-family"),
-            'h1' => t("H1 font-family"),
-            'h2' => t("H2 font-family"),
-            'h3' => t("H3 font-family"),
-            'h4' => t("H4 font-family"),
-            'h5' => t("H5 font-family"),
-            'h6' => t("H6 font-family")
-        ),
-        "type" => "select"
-    ),
-    array(
-       "name" => t("Font size for links items"),
-       "id" => "lateral_nav_element_size",
-       "min" => "10",
-       "max" => "25",
-       "step" => "1",
-       "unit" => 'px',
-       "default" => "14",
-       "type" => "range"
-   ),
-   array(
-       "name" => t("Make links uppercase"),
-       "id" => "lateral_nav_element_uppercase",
-       "default" => 0,
-       "type" => "toggle"
-   ),
-    array(
-        "name" => t("Activate the harmonize-text script"),
-        "desc" => t("This script try to harmonize title width to create a unique design. For now can display width smaller sometimes but always visible"),
-        "id" => "lateral_nav_element_harmonized",
-        "default" => 0,
         "type" => "toggle"
     ),
 

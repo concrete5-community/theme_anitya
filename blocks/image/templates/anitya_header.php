@@ -10,7 +10,7 @@ if ($c->isEditMode()):
   // ---
   // Quand il sera en View mode, il sera en position absolue, donc epousera la taille du conteneur (.intro) dont la hauuteur est définie dans les options quelque part :-)
   $pageTheme = $c->getCollectionThemeObject();
-  $header_height = $pageTheme->getClassSettings($b,'image-height');
+  $header_height = $pageTheme->getClassSettingsPrefixInt($b,'image-height');
 endif;
 if (is_object($f)) :
 	$fv = $f->getVersion();

@@ -4,7 +4,7 @@ use Concrete\Core\Block\View\BlockView;
 
 $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
-$open = $pageTheme->getClassSettings($b,'open');
+$open = $pageTheme->getClassSettingsPrefixInt($b,'open');
 
 $cp = new Permissions($c);
 if ($cp->canViewPageVersions()) {

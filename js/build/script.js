@@ -16,7 +16,7 @@ $(document).ready(function(){
 // Le parallax du header
     parallaxHandler();
 // Le breadcrumb
-    $("#jquery_breadcrumb").rcrumbs();
+    $(".rcrumbs").rcrumbs();
 
     detectOnView();
 

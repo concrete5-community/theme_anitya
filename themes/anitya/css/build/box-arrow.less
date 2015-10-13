@@ -21,7 +21,7 @@
 		margin-bottom: 0;
 	}
 
-	&.primary{
+	&.primary {
 		.box-arrow-color (@primary-color; @primary-text-color);
 		&.framed {
 			.box-framed (@primary-color);
@@ -53,6 +53,12 @@
 		.box-arrow-color (@white-color; @black-color);
 		&.framed {
 			.box-framed (@white-color);
+		}
+	}
+	&.light {
+		.box-arrow-color (@light-color; @black-color);
+		&.framed {
+			.box-framed (@light-color);
 		}
 	}
 	&.block{

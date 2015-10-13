@@ -6,19 +6,20 @@ $o = $pageTheme->getOptions();
 $cp = new Permissions($c);
 $styleObject = $pageTheme->getClassSettingsObject($b,$o->stack_carousel_slidesToShow,$o->stack_carousel_margin);
 
-if ($c->isEditMode()) : ?>
-	<?php $templateName = $controller->getBlockObject()->getBlockFilename() ?>
-    <div class="ccm-edit-mode-disabled-item" style="width: <?php echo $width; ?>; height: <?php echo $height; ?>">
-        <p style="padding: 40px 0px 40px 0px; color:#999 !important"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . t(' with ') . $styleObject->columns . t(' columns and ') . $styleObject->margin . t('px margin')?> </strong><?php echo  t(' disabled in edit mode.') ?></p>
-    </div>
-<?php else :
-
-
 if ($cp->canViewPageVersions()) {
 	$stack = Stack::getByID($stID);
 } else {
 	$stack = Stack::getByID($stID, 'ACTIVE');
 }
+$stackName = $stack ? $stack->getStackName() : t('No Stack selected');
+if ($c->isEditMode()) : ?>
+	<?php $templateName = $controller->getBlockObject()->getBlockFilename() ?>
+    <div class="ccm-edit-mode-disabled-item" style="width: <?php echo $width; ?>; height: <?php echo $height; ?>">
+        <p style="padding: 40px 0px 40px 0px; color:#999 !important"><strong><?php echo  ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . t(' on ') . $stackName . t(' with ') . $styleObject->columns . t(' columns and ') . $styleObject->margin . t('px margin')?> </strong><?php echo  t(' disabled in edit mode.') ?></p>
+    </div>
+<?php else :
+
+
 if (is_object($stack)) {
 	$ax = Area::get($stack, STACKS_AREA_NAME);
 	$axp = new Permissions($ax);

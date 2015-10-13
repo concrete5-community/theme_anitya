@@ -54,17 +54,18 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
     public function getThemeBlockClasses()
     {
 				$blocks_classes = array('block-primary', 'block-secondary', 'block-tertiary', 'block-quaternary');
+				$elements_colors = array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light');
 				$columns = $margin = array();
 				for ($i=1; $i < 7; $i++) $columnsClasses[] = "$i-column";
 				for ($i=0; $i < 40; $i+=10) $marginClasses[] =  "carousel-margin-{$i}px";
 
 				$image_height = array('image-height-30','image-height-50','image-height-80','image-height-100');
         return array(
-            'page_list' => array_merge(array(
-								'sidebar-wrapped',
+            'page_list' => array_merge(
 								// Accordions & tabs colors
-								'element-primary','element-secondary','element-tertiary','element-quaternary','element-light',
+								$elements_colors,
 								// Carousel dots
+								array(
                 'slider-dots-primary', "slider-dots-white", "slider-dots-black",
 								// sqlite_error_string
 								'tag-sorting','keyword-sorting',
@@ -76,7 +77,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 								// Margin size for carousel
 								$marginClasses),
 						'content' => array('image-caption','image-caption-inside','collapse-top-margin'),
-            'autonav' => array('sidebar-wrapped', 'small-text-size'),
+            'autonav' => array_merge($elements_colors,array()),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','thin','primary','secondary','tertiary','quaternary','dotted','hr-bold'),
             'topic_list' => array('sidebar-wrapped'),
 						'image' => array_merge($image_height,array(
@@ -232,15 +233,26 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 		}
 
 
-	  function getClassSettings ($block,$prefix) {
-	    $styleObject = new StdClass();
-	    if (is_object($block) && is_object($style = $block->getCustomStyle())) :
-				$classes = $style->getStyleSet()->getCustomClass();
-				$classesArray = explode(' ', $classes);
-				$styleObject->classesArray = $classesArray;
-	      preg_match('/' . $prefix . '-(\w+)/',$classes,$found);
-	      return isset($found[1]) ? (int)$found[1] : false;
-	    endif;
+		// Block Custom classes
+
+
+		function getClassSettingsString ($b) {
+			return (is_object($b) && is_object($style = $b->getCustomStyle())) ?  $style->getStyleSet()->getCustomClass() : '';
+		}
+
+		function getClassSettingsArray ($b) {
+				return explode(' ',  $this->getClassSettingsString($b));
+		}
+
+		function getClassSettingsPrefixInt ($b,$prefix) {
+      preg_match('/' . $prefix . '-(\w+)/',$this->getClassSettingsString($b),$found);
+      return isset($found[1]) ? (int)$found[1] : false;
+	  }
+
+		## return words AFTER $prefix (element-)primary
+	  function getClassSettingsPrefixString ($b,$prefix) {
+	    preg_match('/' . $prefix . '-(\w+)/',$this->getClassSettingsString($b),$found);
+	    return isset($found[1]) ? $found[1] : false;
 	  }
 
 		function getClassSettingsObject ($block, $defaultColumns = 3, $defaultMargin = 10  ) {
