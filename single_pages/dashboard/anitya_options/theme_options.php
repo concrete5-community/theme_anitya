@@ -54,7 +54,6 @@ $options = array(
     // Navigation
 
 
-
     array(
         "name" => t("Anitya Navigation"),
         "desc" => t('This section display options for the Header navigation'),
@@ -72,7 +71,7 @@ $options = array(
         "type" => "page"
     ),
     array(
-        "name" => t("Displaysearch box in responsive top bar"),
+        "name" => t("Display search box in responsive top bar"),
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "display_responsive_searchbox",
         "default" => 1,
@@ -82,6 +81,13 @@ $options = array(
         "name" => t("Display icon on first level if available"),
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "first_level_nav_icon",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    array(
+        "name" => t("Auto hidde top-bar"),
+        "desc" => t("If enabled, the small toolbar is hidde during scroll."),
+        "id" => "auto_hidde_top_bar",
         "default" => 1,
         "type" => "toggle"
     ),

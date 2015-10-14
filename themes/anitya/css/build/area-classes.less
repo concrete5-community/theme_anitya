@@ -72,6 +72,10 @@
 	&-space-xl {
 		padding:@space-xxl;
 	}
+	&-space-horizontal {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 
@@ -143,7 +147,6 @@
 	background-size: contain;
 }
 
-
 .grid-overlay {
 	// position: static;
 	.area-wrap {
@@ -158,5 +161,143 @@
 			height: 100%;
 			background-image:url(../../images/pattern/grid.png);
 		}
+	}
+}
+
+// Divi der style
+/* Double Diagonal line */
+
+.section-divider {
+	position: relative;
+	z-index: 1;
+	.edit-mode & {
+		z-index: auto; // Sinon les blocks ne sont plus deplacables ??
+	}
+	// margin-top: 160px;
+	// background: @primary-color;
+	&::before,
+	&::after {
+		position: absolute;
+    content: '';
+    pointer-events: none;
+	}
+}
+
+.sd-style-doublediagonal {
+
+	&::before,
+	&::after {
+		top: 0;
+		left: -25%;
+		z-index: -1;
+		width: 150%;
+		height: 75%;
+		background: inherit;
+		-webkit-transform: rotate(-2deg);
+		transform: rotate(-2deg);
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+	}
+
+	&::before {
+		height: 50%;
+		background: darken(@primary-color, 10%);
+		-webkit-transform: rotate(-3deg);
+		transform: rotate(-3deg);
+		-webkit-transform-origin: 3% 0;
+		transform-origin: 3% 0;
+	}
+	&.section-divider-secondary {
+		&::before {
+			background: darken(@secondary-color, 10%);
+		}
+	}
+	&.section-divider-tertiary {
+		&::before {
+			background: darken(@tertiary-color, 10%);
+		}
+	}
+	&.section-divider-quaternary {
+		&::before {
+			background: darken(@quaternary-color, 10%);
+		}
+	}
+}
+
+/* Half Circle */
+.sd-style-halfcircle {
+	&::before,
+	&::after {
+	left: 50%;
+	z-index: 10;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: inherit;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+	&:before {
+		top: -50px;
+	}
+	&::after {
+		bottom: -50px;
+	}
+}
+
+/* Multiple Triangles */
+.sd-style-multitriangles {
+	margin-top: 100px;
+	&::before,
+	&::after {
+		left: 50%;
+		width: 50px;
+		height: 50px;
+		-webkit-transform: translateX(-50%) rotate(45deg);
+		transform: translateX(-50%) rotate(45deg);
+		box-shadow: -50px 50px 0 @primary-color, 50px -50px 0 @primary-color;
+		background: inherit;
+	}
+	&::before {
+		top: -25px;
+	}
+	&::after {
+		bottom: -25px;
+		z-index: 10;
+	}
+	&.section-divider-secondary {
+	  &::before,&::after {
+			box-shadow: -50px 50px 0 @secondary-color, 50px -50px 0 @secondary-color;
+	  }
+	}
+	&.section-divider-tertiary {
+	  &::before,&::after {
+			box-shadow: -50px 50px 0 @tertiary-color, 50px -50px 0 @tertiary-color;
+	  }
+	}
+	&.section-divider-quaternary {
+	  &::before,&::after {
+			box-shadow: -50px 50px 0 @quaternary-color, 50px -50px 0 @quaternary-color;
+	  }
+	}
+}
+
+/* Zig Zag (3d up and simple down) */
+.sd-style-zigzag {
+	&::before{
+    right: 0;
+    left: 0;
+    z-index: 10;
+    display: block;
+    height: 90px;
+    background-size: 50px 100%;
+  }
+	&::before {
+		top: -90px;
+		background-image: -webkit-gradient(linear, 0 0, 300% 100%, color-stop(0.25, @primary-color), color-stop(0.25, darken(@primary-color, 10%)));
+		background-image:
+			linear-gradient(315deg, @primary-color 25%, transparent 25%),
+			linear-gradient(45deg, @primary-color 25%, transparent 25%);
+		background-position: 50%;
 	}
 }

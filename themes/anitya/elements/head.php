@@ -1,4 +1,6 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
+$pageTheme = $c->getCollectionThemeObject();
+$o = $pageTheme->getOptions();
 ?>
 <!DOCTYPE html>
 <html lang="<?php  echo Localization::activeLanguage()?>">
@@ -39,5 +41,5 @@
   <div class="small-display-nav-bar inherit-ccm-page"><?php $responsiveNav->display()?></div>
   <?php endif; ?>
   <!-- End Responsive Nav -->
-    <div class="<?php  echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('boxed_layout_mode') ? 'boxed-wrapper' : '' ?>">
+    <div class="<?php  echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('layout_mode') != 'default' && $c->getAttribute('layout_mode') ? $c->getAttribute('layout_mode') : $o->layout_mode ?>">
         <div class="an">

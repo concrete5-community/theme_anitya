@@ -17,7 +17,7 @@ class Controller extends BlockController {
   protected $btDefaultSet = 'navigation';
 	protected $btSupportsInlineEdit = true;
 	protected $btSupportsInlineAdd = true;
-
+  protected $btIgnorePageThemeGridFrameworkContainer = true;
 
 		public function getBlockTypeName() {
 			return t('Page Section');

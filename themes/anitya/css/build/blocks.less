@@ -1,14 +1,22 @@
 /* -- Popup-me -- */
+
+@max-popup-width: 500px;
+@max-large-popup-width: 800px;
+
 .mfp-effect.mfp-wrap .mfp-content {
   .transition(.5s);
 }
 .white-popup {
   position: relative;
   background: @white-color;
-  padding: 20px;
+  padding: @space-s;
   width:auto;
-  max-width: 500px;
+  max-width: @max-popup-width;
   margin: 20px auto;
+  &.large-popup {
+    max-width: @max-large-popup-width !important;
+    padding: @space-m;
+  }
 }
 
 /* -- Form in popup -- */

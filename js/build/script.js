@@ -9,7 +9,8 @@
 
 $(document).ready(function(){
     isDashboard = $('#ccm-dashboard-page').size();
-    if (isDashboard) return;
+    noScript = $('.no-script').size();
+    if (isDashboard || noScript ) return;
 // Le loader
     NProgress.configure({trickleRate: .5, trickleSpeed: 1000});
     NProgress.start();
@@ -104,8 +105,15 @@ $(document).ready(function(){
   	  		mainClass: 'mfp-effect',
   	  		removalDelay: 500
   	});
+    $('.ajax-popup-link').magnificPopup({
+      type: 'ajax',
+      midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+  	  mainClass: 'mfp-effect',
+  	  removalDelay: 500
+    });
   // AUto hidding responsive nav bar
-  	$('.small-display-nav-bar-inner, .top-bar, .small-display-nav-bar .regular-top-nav').autoHidingNavbar();
+  	$('.small-display-nav-bar-inner, .small-display-nav-bar').autoHidingNavbar();
+    if (themeConfig.autoHiddeTopBar) $('.top-bar').autoHidingNavbar();
 
 // Le breakpoint.js
     $(window).setBreakpoints();

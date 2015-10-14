@@ -10,7 +10,7 @@ use CollectionAttributeKey;
 
 defined('C5_EXECUTE') or die('Access Denied.');
 
-class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
+class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProviderInterface  {
 
 	public function registerAssets() {
 
@@ -18,6 +18,8 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 				$this->requireAsset('javascript', 'backstretch');
         $this->requireAsset('javascript', 'jquery');
         $this->requireAsset('javascript', 'bootstrap/dropdown');
+				$this->requireAsset('javascript', 'js/jquery-ui.js');
+        $this->requireAsset('javascript', 'jquery-ui/accordion');
 
         $this->requireAsset('javascript', 'imageloaded');
         $this->requireAsset('javascript', 'isotope');
@@ -28,8 +30,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         $this->requireAsset('javascript', 'breakpoint');
         $this->requireAsset('javascript', 'nprogress');
         $this->requireAsset('javascript', 'YTPlayer');
-        $this->requireAsset('javascript', 'js/jquery-ui.js');
-        $this->requireAsset('javascript', 'jquery-ui/accordion');
         $this->requireAsset('javascript', 'stellar');
 				$this->requireAsset('javascript', 'mmenu');
 				$this->requireAsset('javascript', 'wow');
@@ -95,6 +95,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 													)),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
 						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses, $marginClasses),
+						'core_area_layout' => array('left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','no-gap')
 
         );
     }
@@ -102,19 +103,21 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
     public function getThemeAreaClasses()
     {
 				// For multiple area
+				$divider_style = array('section-divider','sd-style-doublediagonal','sd-style-halfcircle','sd-style-multitriangles','section-divider-primary','section-divider-secondary','section-divider-tertiary','section-divider-quaternary');
         $main_area = array('Main');
-        $area_classes = array(
+        $area_classes = array_merge(array(
             // Colors
             'page-content-style','area-primary','area-secondary','area-tertiary','area-quaternary','area-white','area-black','area-body',
             // Spacing
-            'area-space-s','area-space-m','area-space-l','area-space-xl',
+            'area-space-s','area-space-m','area-space-l','area-space-xl','area-space-horizontal',
             // Topics
             'topic-get-in-touch','topic-idea','topic-help','topic-config','topic-news','topic-conversation',
             // Borders
             'border-thin','border-bold','border-bold-primary','border-bold-secondary','border-bold-tertiary','border-bold-quaternary','border-bold-white',
             // Animation
-            'wow','flipInX','fadeInDown','zoomIn'
-            );
+            'wow','flipInX','fadeInDown','zoomIn'),
+						// divider_style
+						$divider_style);
         for ($i=1; $i < 8; $i++) {
             $main_area['Main - ' . $i] = $area_classes;
             $main_area['Main Column ' . $i] = $area_classes;
@@ -155,6 +158,31 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
         );
     }
 
+		public function getThemeAreaLayoutPresets()
+    {
+        $presets = array(
+            array(
+                'handle' => 'three_nogap',
+                'name' => 'Three no-gap',
+                'container' => '<div class="row no-gap area-primary"></div>',
+                'columns' => array(
+                    '<div class="col-sm-4"></div>',
+                    '<div class="col-sm-4"></div>',
+										'<div class="col-sm-4"></div>'
+                ),
+            ),
+            array(
+                'handle' => 'two_nogap',
+                'name' => 'Two no-gap',
+                'container' => '<div class="row no-gap area-primary"></div>',
+                'columns' => array(
+                    '<div class="col-sm-6"></div>',
+                    '<div class="col-sm-6"></div>'
+                )
+            )
+        );
+        return $presets;
+    }
 	// -- Helpers -- \\
 
 	public function getOptions () {
@@ -244,16 +272,30 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  {
 				return explode(' ',  $this->getClassSettingsString($b));
 		}
 
-		function getClassSettingsPrefixInt ($b,$prefix) {
-      preg_match('/' . $prefix . '-(\w+)/',$this->getClassSettingsString($b),$found);
+		function getClassSettingsPrefixInt ($b,$prefix,$string = false) {
+			$_string = $tring ? $string : $this->getClassSettingsString($b);
+      preg_match('/' . $prefix . '-(\w+)/',$_string,$found);
       return isset($found[1]) ? (int)$found[1] : false;
 	  }
 
 		## return words AFTER $prefix (element-)primary
-	  function getClassSettingsPrefixString ($b,$prefix) {
-	    preg_match('/' . $prefix . '-(\w+)/',$this->getClassSettingsString($b),$found);
+		function getClassSettingsPrefixString ($b,$prefix,$string = false) {
+			$_string = $tring ? $string : $this->getClassSettingsString($b);
+      preg_match('/' . $prefix . '-(\w+)/',$_string,$found);
 	    return isset($found[1]) ? $found[1] : false;
 	  }
+
+		function getCustomStyleImage ($b) {
+			$style = $b->getCustomStyle();
+			if (is_object($style)) {
+			    $set = $style->getStyleSet();
+			    $image = $set->getBackgroundImageFileObject();
+			    if (is_object($image)) {
+			        return $image;
+			    }
+			}
+			return false;
+		}
 
 		function getClassSettingsObject ($block, $defaultColumns = 3, $defaultMargin = 10  ) {
 			$styleObject = new StdClass();

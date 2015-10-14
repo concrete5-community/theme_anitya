@@ -227,6 +227,7 @@
 	picture {
 	}
 	.info {
+		
 	}
 	.date {
 		// height: @space-l;
@@ -306,4 +307,39 @@ ul.filter-set {
     }
   }
 
+}
+
+// -- this is used to create a layer on the image
+.ccm-page-list .info {
+  position: absolute;
+  top:0;right: 0;bottom: 0;left: 0;
+  padding: @space-s;
+  background-color: fade(@light-color, 90%);
+  text-align: center;
+  // Basic animation
+  opacity: 0;
+  .transition(.3s);
+  &:hover {
+    opacity: 1;
+  }
+  p {
+    font-size: @font-size-small;
+    margin-bottom: @space-s;
+    // line-height:
+  }
+  h4{
+    position: relative;
+    padding-bottom: @space-xs;
+    margin-bottom: @space-xs;
+    &:after {
+      content:"";
+      position: absolute;
+      width: @space-s;
+      height: 2px;
+      background-color: @black-color;
+      bottom: 0;
+      left: 50%;
+      margin-left: -@space-s/2;
+    }
+    }
 }

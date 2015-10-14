@@ -166,8 +166,18 @@ class Controller extends \Concrete\Core\Package\Package {
 			Events::addListener(
 					'on_before_render',
 					function($e) {
-							$session = \Core::make('session');
+							// First we chacjk if the Id of page that call the event is the current.
+							// Otherwise it's probably a render that is called from a programmatically ->render()
+							$a = $e->getArguments();
+							$v = $a['view'];
+							$_c = $v->getCollectionObject();
+							$_cID = $_c->getCollectionID();
+
 							$c = Page::getCurrentPage();
+							if ($c->getCollectionID() != $_cID) return;
+
+							$session = \Core::make('session');
+
 							$mcl = new MclOptions($c);
 							// Register options into the session
 							$options = $mcl->get_options_from_active_preset_ID();

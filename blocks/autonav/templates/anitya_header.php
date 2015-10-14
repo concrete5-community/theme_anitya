@@ -2,13 +2,13 @@
 
 // Cette requete peut prendre plus d'une demi seconde !
 $navItems = $controller->getNavItems();
-$c = Page::getCurrentPage();
 $time_start = microtime(true);
 $prepare_start = microtime(true);
 $i = 0;
 // Les options
-$o = \Concrete\Package\ThemeAnitya\Src\Models\MclOptions::get();
+$c = Page::getCurrentPage();
 $pagetheme =  $c->getCollectionThemeObject();
+$o = $pagetheme->getoptions();
 
 $navigationStyle = 'regular-top-nav';
 
