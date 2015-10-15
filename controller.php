@@ -36,9 +36,12 @@ defined('C5_EXECUTE') or die('Access Denied.');
 class Controller extends \Concrete\Core\Package\Package {
 
 	protected $pkgHandle = 'theme_anitya';
+	protected $themeHandle = 'anitya';	
 	protected $appVersionRequired = '5.7.3';
 	protected $pkgVersion = '1.2.3.8';
 	protected $pkg;
+	protected $pkgAllowsFullContentSwap = true;
+	protected $startingPoint;
 
 
 	public function getPackageDescription() {
@@ -50,6 +53,11 @@ class Controller extends \Concrete\Core\Package\Package {
 	}
 
 	public function install($data) {
+
+		$this->startingPoint = $data['spHandle'];
+
+    if ($data['pkgDoFullContentSwap'] === '1' && $this->startingPoint === '0')
+        throw new \Exception(t('You must choose a Starting point to Swap all content'));
 
 	// Get the package object
 		$this->pkg = parent::install();
@@ -266,5 +274,85 @@ class Controller extends \Concrete\Core\Package\Package {
 					'/ThemeAnitya/tools/get_awesome_icons',
 					'\Concrete\Package\ThemeAnitya\Controller\Tools\AwesomeArray::getAwesomeArray'
 			);
+	}
+	public function swapContent($options) {
+
+			if ($this->validateClearSiteContents($options)) {
+					\Core::make('cache/request')->disable();
+
+					$pl = new PageList();
+					foreach ($pl->getResults() as $c) $c->delete();
+
+					$fl = new FileList();
+					foreach ($fl->getResults() as $f) $f->delete();
+
+					// clear stacks
+					$sl = new StackList();
+					foreach ($sl->get() as $c) $c->delete();
+
+					$home = Page::getByID(HOME_CID);
+					foreach ($home->getBlocks() as $b) $b->deleteBlock();
+
+					foreach (PageType::getList() as $ct) $ct->delete();
+
+					$startingPointFolder = $this->getPackagePath() . '/starting_points/'. $this->startingPoint;
+
+					// Import Files
+					if (is_dir($startingPointFolder . '/content_files')) {
+							$ch = new ContentImporter();
+							$computeThumbnails = true;
+							if ($this->contentProvidesFileThumbnails()) {
+									$computeThumbnails = false;
+							}
+							$ch->importFiles($startingPointFolder . '/content_files', true );
+					}
+
+					// Install the starting point.
+					if (is_file($startingPointFolder . '/content.xml')) :
+							$ci = new ContentImporter();
+							$ci->importContentFile($startingPointFolder . '/content.xml');
+					endif;
+
+					// Set it as default for the page theme
+					$this->setPresetAsDefault($this->startingPoint);
+
+					// Restore Cache
+					\Core::make('cache/request')->enable();
+			}
+	}
+
+	function setPresetAsDefault ($presetHandle) {
+			$outputError = false;
+			$baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
+			$pt = PageTheme::getByHandle($this->themeHandle);
+			$preset = $pt->getThemeCustomizablePreset($presetHandle);
+			if (!is_object($preset)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
+					return;
+			}
+			$styleList = $pt->getThemeCustomizableStyleList();
+			if (!is_object($styleList)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style List from ' . $presetHandle));
+					return;
+			}
+			$valueList = $preset->getStyleValueList();
+			$vl = new ValueList();
+
+			$sets = $styleList->getSets();
+			if (!is_array($sets)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style Set from ' . $presetHandle));
+					return;
+			}
+
+			foreach ($sets as $set) :
+			 foreach($set->getStyles() as $style)  :
+					$valueObject = $style->getValueFromList($valueList);
+					if (is_object($valueObject))
+							$vl->addValue($valueObject);
+			 endforeach;
+			endforeach;
+
+			$vl->save();
+			$pt->setCustomStyleObject($vl, $preset);
 	}
 }
