@@ -69,6 +69,8 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
                 'slider-dots-primary', "slider-dots-white", "slider-dots-black",
 								// sqlite_error_string
 								'tag-sorting','keyword-sorting',
+								// Popup result
+								'popup-link',
 								// Layout
 								'no-gap'
 								),

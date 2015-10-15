@@ -14,7 +14,7 @@ if ($linkURL) {
       </div>
 			<div class="front">
 				<div class='square-box'>
-				    <div class='square-content'>
+				    <div class='square-content area-primary'>
 				    	<div>
 				    		<span>
 				    			<i class="fa fa-<?php  echo $icon?> fa-4x primary-long-shadow"></i>
@@ -29,7 +29,7 @@ if ($linkURL) {
 			</div>
 			<div class="back">
 				<div class='square-box'>
-				    <div class='square-content'>
+				    <div class='square-content area-primary'>
 				    	<div>
 						    <?php  if ($paragraph) : ?>
 						        <p><?php  echo $paragraph?></p>

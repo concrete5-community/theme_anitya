@@ -31,21 +31,7 @@ $(document).ready(function(){
 
 	 	var settings = e.data('slick');
 		var options = {
-      // xtArrow:'<button type="button" class="slick-next"><i class="fa fa-angle-right"></i></button>',
-      // evArrow:'<button type="button" class="slick-prev"><i class="fa fa-angle-left"></i></button>',
-      //       customPaging: function(slider, i) {
-      //           return '<a href="" data-role="none">' + (i + 1) + '</a>';
-      //       },
 			  responsive: [
-			    // {
-			    //   breakpoint: 1024,
-			    //   settings: {
-			    //     slidesToShow: 3,
-			    //     slidesToScroll: 3,
-			    //     infinite: true,
-			    //     dots: true
-			    //   }
-			    // },
 			    {
 			      breakpoint: 600,
 			      settings: {
@@ -154,22 +140,24 @@ $(document).ready(function(){
 
 // Les accordions
     $('.anitya-accordion').each(function(){
-        var titles = $(this).find('.title');
+      var titles = $(this).find('.title');
 
-        titles.not('.active').each(function(){$(this).next('.content').hide()});
+      titles.not('.active').each(function(){$(this).next('.content').hide()});
 
-        titles.click(function(e){
-            e.preventDefault();
-            var title = $(this);
-            if (title.is('.active')) return;
+      titles.click(function(e){
+          e.preventDefault();
+          var title = $(this);
+          var active = title.is('.active') ? true : false;
 
-            var accordion = title.parent().parent();
-            accordion.find('.title.active').removeClass('active');
-            accordion.find('.content.active').slideUp().removeClass('active');
+          var accordion = title.parent().parent();
+          accordion.find('.title.active').removeClass('active');
+          accordion.find('.content.active').slideUp().removeClass('active');
 
-            title.addClass('active');
-            title.next(".content").slideDown().addClass('active');
-        });
+          if (active) return;
+
+          title.addClass('active');
+          title.next(".content").slideDown().addClass('active');
+      });
     });
 
     if(!editMode) {

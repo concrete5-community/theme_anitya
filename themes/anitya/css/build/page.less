@@ -18,6 +18,7 @@ body {
 .an {
 	// opacity: 0;
 	.transition(all .5s ease);
+	overflow: hidden;
 }
 div.loaded {
 	// opacity: 1;
@@ -91,6 +92,7 @@ div.loaded {
 }
 
 #sub-header-1 {
+	background-color: @white-color;
 	h1, h2, h3 {
 		margin: 0; padding: 0;
 	}
@@ -151,72 +153,4 @@ div.loaded {
 }
 #footer-bottom * {
 	color: @footer-bottom-text-color;
-}
-
-.two_nogap {
-	position: relative;
-	&:before, &:after {
-		overflow: hidden;
-		content: "";
-		position: absolute;
-		top:0;
-		bottom:0;
-		background-size: cover;
-	}
-	&:before {
-		left: 0;
-		right: 50%;
-		background-color: @quaternary-color;
-	}
-	&:after {
-		left: 50%;
-		right: 0;
-		background-color: @secondary-color;
-		z-index: -1; // Je ne sais pas pourquoi mais sinon le contenu est caché.
-	}
-
-	// left
-
-	&.left-primary {
-	  .color-left-nogap(@primary-color);
-	}
-	&.left-secondary {
-	  .color-left-nogap(@secondary-color);
-	}
-	&.left-tertiary {
-	  .color-left-nogap(@tertiary-color);
-	}
-	&.left-quaternary {
-	  .color-left-nogap(@quaternary-color);
-	}
-
-	// right
-
-	&.right-primary {
-	  .color-right-nogap(@primary-color);
-	}
-	&.right-secondary {
-	  .color-right-nogap(@secondary-color);
-	}
-	&.right-tertiary {
-	  .color-right-nogap(@tertiary-color);
-	}
-	&.right-quaternary {
-	  .color-right-nogap(@quaternary-color);
-	}
-}
-// Mixin
-.color-left-nogap (@color) {
-	&::before {
-		background-color: @color;
-	}
-}
-.color-right-nogap (@color) {
-	&::after {
-		background-color: @color;
-	}
-}
-.ccm-block-custom-template-two-nogap {
-	// Retirer toute modification du backgroun du conteneur
-	background: none !important;
 }

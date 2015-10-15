@@ -31,12 +31,11 @@ if ($c->isEditMode()) : ?>
 		$externalLink = $page->getAttribute('external_link');
 		$url = $externalLink ? $externalLink : $nh->getLinkToCollection($page);
 
-		// If popup
-		$url = "#portfolio-popup-{$page->getCollectionID()}";
-		$v = $page->getController()->getViewObject();
-		$page->isPopup = true;
-		// $v->setupRender();
-		//
+		if ($page->getPageTemplateHandle() == 'one_page_details' && in_array('popup-link',$styleObject->classesArray)):
+			$url = "#portfolio-popup-{$page->getCollectionID()}";
+			$v = $page->getController()->getViewObject();
+			$page->isPopup = true;
+		endif;
 
 		$title_text =  $th->entities($page->getCollectionName());
 		$title = $useButtonForLink ? "<a href=\"$url\" target=\"$target\">$title_text</a>" : $title_text;
@@ -82,7 +81,9 @@ if ($c->isEditMode()) : ?>
 			</div>
 			<?php endif ?>
 			<?php if (!$useButtonForLink): ?></a><?php endif ?>
+			<?php if ($page->isPopup): ?>
 			<div class='white-popup mfp-hide large-popup' id="portfolio-popup-<?php echo $page->getCollectionID()?>"><?php echo $v->render("one_page_details");?></div>
+			<?php endif ?>
    		</div>
 
 	<?php  endforeach; ?>

@@ -8,7 +8,7 @@ $display_sub_header = $sub_header->getTotalBlocksInArea($c) > 0 || $c->isEditMod
 $page_header = is_object($page_header) ? $page_header : new Area('Page Header');
 ?>
 <?php  if ($display_page_header) : ?>
-<section id="sub-header-1" class="area-white space-s">
+<section id="sub-header-1" class="space-s">
     <?php
     $page_header->enableGridContainer();
     $page_header->display($c);
