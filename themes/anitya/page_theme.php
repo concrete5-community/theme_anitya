@@ -78,6 +78,17 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 								$columnsClasses,
 								// Margin size for carousel
 								$marginClasses),
+						'image_slider' => array_merge(
+								// Carousel dots
+								array(
+                'slider-dots-primary', "slider-dots-white", "slider-dots-black",
+								// Layout
+								'no-gap'
+								),
+								// # columns for carousel
+								$columnsClasses,
+								// Margin size for carousel
+								$marginClasses),
 						'content' => array('image-caption','image-caption-inside','collapse-top-margin'),
             'autonav' => array_merge($elements_colors,array()),
             'horizontal_rule' => array('space-s','space-m','space-l','space-xl','thin','primary','secondary','tertiary','quaternary','dotted','hr-bold'),
@@ -186,6 +197,38 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
         return $presets;
     }
 	// -- Helpers -- \\
+
+	function get_footer_geometry ($footer_column) {
+		$footer_column = $footer_column ? $footer_column : 3;
+		$geometry = array();
+
+		if (is_numeric($footer_column)) :
+			for ($i = 1 ; $i < ((int)$footer_column + 1) ; $i++) :
+				$geometry[$i] = array();
+				$geometry[$i]['class'] = 'footer-item col-md-' . (12 / $footer_column );
+				$geometry[$i]['name'] = 'Footer ' . $i ;
+			endfor;
+		else :
+			switch($footer_column) :
+
+				case 'half_two':
+					$geometry[1] = array('class'=>'footer-item col-md-6', 'name'=>'Footer 1');
+					$geometry[2] = array('class'=>'footer-item col-md-3', 'name'=>'Footer 2');
+					$geometry[3] = array('class'=>'footer-item col-md-3 last', 'name'=>'Footer 3');
+					break;
+
+				case 'half_three':
+					$geometry[1] = array('class'=>'footer-item col-md-6', 'name'=>'Footer 1');
+					$geometry[2] = array('class'=>'footer-item col-md-2', 'name'=>'Footer 2');
+					$geometry[3] = array('class'=>'footer-item col-md-2', 'name'=>'Footer 3');
+					$geometry[4] = array('class'=>'footer-item col-md-2 last', 'name'=>'Footer 4');
+					break;
+			endswitch;
+
+		endif;
+
+	return $geometry;
+}
 
 	public function getOptions () {
 		return MclOptions::get();

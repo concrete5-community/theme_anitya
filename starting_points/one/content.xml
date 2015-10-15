@@ -944,8 +944,8 @@
       <attributes>
         <attributekey handle="tags">
           <value>
+            <option>Love</option>
             <option>Print</option>
-            <option>Team</option>
           </value>
         </attributekey>
         <attributekey handle="thumbnail">
@@ -1030,7 +1030,7 @@
       <attributes>
         <attributekey handle="tags">
           <value>
-            <option>Print</option>
+            <option>Colors</option>
             <option>Team</option>
           </value>
         </attributekey>
@@ -1116,7 +1116,7 @@
       <attributes>
         <attributekey handle="tags">
           <value>
-            <option>Print</option>
+            <option>Love</option>
             <option>Team</option>
           </value>
         </attributekey>

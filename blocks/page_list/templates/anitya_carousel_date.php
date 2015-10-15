@@ -35,7 +35,7 @@ if ($c->isEditMode()) : ?>
 	$slick->variableWidth = (bool)$o->carousel_variableWidth;
 	$slick->adaptiveHeight = (bool)$o->carousel_adaptiveHeight;
 	$slick->autoplay = (bool)$o->carousel_autoplay;
-	$slick->autoplaySpeed = $o->carousel_autoplaySpeed;
+	$slick->autoplaySpeed = (int)$o->carousel_autoplaySpeed;
 
 // Some internal variables
 

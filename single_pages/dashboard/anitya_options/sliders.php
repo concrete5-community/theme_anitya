@@ -195,40 +195,6 @@ $options = array(
 
 
 
-    // Anitya Simple image slide
-
-
-    array(
-        'name' => t("Simple slide"),
-        'desc' => t('The custom template "Anitya simple" on the built-in "image-slider" block use great CSS3 animation for image transitions. You can pick here the one you love.'),
-        "icon" => 'fa-picture-o',
-        'type' => 'section'
-    ),
-    array(
-        "name" => t("Image Slider Transition"),
-        "id" => "image_slider_effect",
-        "default" => 'fxSoftScale',
-        "options" => array(
-            "fxSoftScale" => t('Soft scale'),
-            "fxPressAway" => t('Press away'),
-            "fxSideSwing" => t('Side Swing'),
-            "fxFortuneWheel" => t('Fortune wheel'),
-            "fxSwipe" => t('Swipe'),
-            "fxPushReveal" => t('Push reveal'),
-            "fxSnapIn" => t('Snap in'),
-            "fxLetMeIn" => t('Let me in'),
-            "fxStickIt" => t('Stick it'),
-            "fxArchiveMe" => t('Archive me'),
-            "fxVGrowth" => t('Vertical growth'),
-            "fxSlideBehind" => t('Slide Behind'),
-            "fxSoftPulse" => t('Soft Pulse'),
-            "fxEarthquake" => t('Earthquake'),
-            "fxCliffDiving" => t('Cliff diving')
-        ),
-        "type" => "select"
-    ),
-
-
     //  Image slide - slider Custom template
 
 

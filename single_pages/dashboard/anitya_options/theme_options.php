@@ -28,28 +28,19 @@ $options = array(
         "type" => "select"
     ),
 
-    array(
-        'name' => t('Page List'),
-        "desc" => t('Options for the Built-in "Autonav" block'),
-        'type' => 'subsection'
-    ),
-
-    array(
-        "name" => t("Button text"),
-        "desc" => t('The default text to add on the button'),
-        "id" => "feature_link_text",
-        "size" => 40,
-        "type" => "text",
-        "default" => t('More')
-    ),
-
-    array(
-        "name" => t("Icon class on left of each navigation title"),
-        "desc" => t("Pick a icon from the <a href='http://fontawesome.io/icons/'>FontAwesome</a> Librairy. this icon will be used throught all autonav template"),
-        "id" => "default_nav_block_icon",
-        "type" => "awesome",
-        "default" => 'fa-chevron-circle-right'
-    ),
+    // array(
+    //     'name' => t('Page List'),
+    //     "desc" => t('Options for the Built-in "Autonav" block'),
+    //     'type' => 'subsection'
+    // ),
+    //
+    // array(
+    //     "name" => t("Icon class on left of each navigation title"),
+    //     "desc" => t("Pick a icon from the <a href='http://fontawesome.io/icons/'>FontAwesome</a> Librairy. this icon will be used throught all autonav template"),
+    //     "id" => "default_nav_block_icon",
+    //     "type" => "awesome",
+    //     "default" => 'fa-chevron-circle-right'
+    // ),
 
     // Navigation
 
@@ -72,7 +63,6 @@ $options = array(
     ),
     array(
         "name" => t("Display search box in responsive top bar"),
-        "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "display_responsive_searchbox",
         "default" => 1,
         "type" => "toggle"
@@ -209,45 +199,12 @@ $options = array(
        "default" => 0,
        "type" => "toggle"
    ),
-  //  array(
-  //      "name" => t("Use iconbar"),
-  //      "desc" => t("Enable If you want a small part of the menu to always be visible (most commonly when 'display Icon' is enabled)"),
-  //      "id" => "mmenu_iconbar",
-  //      "default" => 0,
-  //      "type" => "toggle"
-  //  ),
-
     // mega-menu
-
-
-
     array(
         "name" => t("Mega menu options"),
         "desc" => t('Options when a parent page display a Stack as mega-menu'),
         "icon" => 'fa-th-list',
-        "type" => "section"
-    ),
-    array(
-        "name" => t("Mega menu position when dropdown mode"),
-        "desc" => t("Display a mega menu as full with or under parent"),
-        "id" => "full_width_mega",
-        "default" => 1,
-        "options" => array(
-            0 => t("Aligned on left of the parent with fixed columns width"),
-            1 => t("Full width mega-menu with percent based columns width")
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Mega columns width"),
-        "desc" => t("Columns width in pixels for mega menu when aligned to the left"),
-        "id" => "mega_columns_width",
-        "min" => "100",
-        "max" => "600",
-        "step" => "10",
-        "unit" => 'px',
-        "default" => "200",
-        "type" => "range"
+        "type" => "subsection"
     ),
     array(
         "name" => t("Block title when exist"),
@@ -255,142 +212,6 @@ $options = array(
         "id" => "display_title_mega_menu",
         "default" => 0,
         "type" => "toggle"
-    ),
-    array(
-        "name" => t("Slide Navigation options"),
-        "desc" => t('Options available when navigation is set on "slide" mode'),
-        "icon" => 'fa-arrows-h',
-        "type" => "section"
-    ),
-    array(
-        "name" => t("Navigation Event"),
-        "desc" => t("Choose the event that activate the sliding menu (not on dropdown)"),
-        "id" => "nav_event",
-        "default" => t("click"),
-        "options" => array(
-            "click" => t("Click"),
-            "mouseenter" => t("On hover")
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Navigation Double click management"),
-        "desc" => t("Choose to open/close or go to the url on second click"),
-        "id" => "nav_dbl_click_event",
-        "default" => t("url"),
-        "options" => array(
-            "url" => t("Go to the Url"),
-            "toggle" => t("Toggle open/close")
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Open on load"),
-        "desc" => t("If enabled, Subnavs will be open if they are one subpage active. If desibled subnavs are closed on page load"),
-        "id" => "nav_open_on_load",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Display little arrow on right"),
-        "desc" => t(''),
-        "id" => "nav_slide_arrow",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Sub-page icon"),
-        "desc" => t("The icon from <a href='http://fontawesome.io/icons/'>FontAwesome</a> displayed on left of each sub-page"),
-        "id" => "default_nav_icon",
-        "type" => "awesome",
-        "default" => 'fa-chevron-circle-right'
-    ),
-    array(
-        "name" => t("Display pane title"),
-        "desc" => t("Display the first level page title & link on the top of each subnav panes"),
-        "id" => "display_pane_title",
-        "default" => 0,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Navigation column"),
-        "desc" => t("How many column you want in the sub navs"),
-        "id" => "nav_columns",
-        "default" => 4,
-        "options" => array(
-            1 => t("One"),
-            2 => t("Two"),
-            3 => t("Three"),
-            4 => t("Four"),
-            6 => t("Six")
-        ),
-        "type" => "select"
-    ),
-    array(
-        "name" => t("Columns margin"),
-        "desc" => t("Set space between columns in percent"),
-        "id" => "nav_columns_margin",
-        "min" => "0",
-        "max" => "15",
-        "step" => "1",
-        "unit" => '%',
-        "default" => "2",
-        "type" => "range"
-    ),
-    array(
-        "name" => t("Open speed"),
-        "desc" => t("Set the speed to open the nav"),
-        "id" => "nav_open_speed",
-        "min" => "0",
-        "max" => "1000",
-        "step" => "10",
-        "unit" => 'ms',
-        "default" => "300",
-        "type" => "range"
-    ),
-    array(
-        "name" => t("Close speed"),
-        "desc" => t("Set the speed to close the nav"),
-        "id" => "nav_close_speed",
-        "min" => "0",
-        "max" => "1000",
-        "step" => "10",
-        "unit" => 'ms',
-        "default" => "300",
-        "type" => "range"
-    ),
-    array(
-        "name" => t("Slide speed"),
-        "desc" => t("Set the speed when subnavs slide"),
-        "id" => "nav_slide_speed",
-        "min" => "0",
-        "max" => "1000",
-        "step" => "10",
-        "unit" => 'ms',
-        "default" => "300",
-        "type" => "range"
-    ),
-    array(
-        "name" => t("On mouse leave delay"),
-        "desc" => t("Set the how many time wait, after the mouse leave the nav for close the nav"),
-        "id" => "nav_mouseleave_delay",
-        "min" => "0",
-        "max" => "10000",
-        "step" => "100",
-        "unit" => 'ms',
-        "default" => "1000",
-        "type" => "range"
-    ),
-    array(
-        "name" => t("Shorten description on subnavs"),
-        "desc" => t("If set to 0 all description text will be displayed"),
-        "id" => "nav_shorten_desc",
-        "min" => "0",
-        "max" => "800",
-        "step" => "5",
-        "unit" => 'Char',
-        "default" => "0",
-        "type" => "range"
     ),
 
 
