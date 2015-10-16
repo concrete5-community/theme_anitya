@@ -12,6 +12,11 @@ defined('C5_EXECUTE') or die('Access Denied.');
 
 class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProviderInterface  {
 
+
+	protected $block;
+	protected $cc;
+	protected $cs;
+
 	public function registerAssets() {
 
 				$this->requireAsset('core/lightbox');
@@ -108,7 +113,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 													)),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
 						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses, $marginClasses),
-						'core_area_layout' => array('left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','no-gap')
+						'core_area_layout' => array('left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','no-gap','image-on-right','left-25','left-75')
 
         );
     }
@@ -307,33 +312,52 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 
 
 		// Block Custom classes
+		function setBlock ($b) {
 
+			// On definie le style de bloc que si il est completement different de celui déjà réglé dans la page
+			if (!is_object($this->block)) $this->block = $b;
+			if ($b->getBlockTypeHandle() != $this->block->getBlockTypeHandle() &&
+				  $b->getBlockID() != $this->block->getBlockID()
+				 ):
+
+				// on extrait les classes
+				// Et on les sauvegardes
+				$style = $b->getCustomStyle();
+				$this->cc = (is_object($b) && is_object($style)) ? $style->getStyleSet()->getCustomClass() : '';
+				$this->cs =  is_object($style) ? $style : false;
+
+			endif;
+		}
 
 		function getClassSettingsString ($b) {
-			return (is_object($b) && is_object($style = $b->getCustomStyle())) ?  $style->getStyleSet()->getCustomClass() : '';
+			$this->setBlock ($b);
+			return $this->cc;
 		}
 
 		function getClassSettingsArray ($b) {
-				return explode(' ',  $this->getClassSettingsString($b));
+			$this->setBlock ($b);
+			return explode(' ',  $this->cc);
 		}
 
 		function getClassSettingsPrefixInt ($b,$prefix,$string = false) {
-			$_string = $tring ? $string : $this->getClassSettingsString($b);
+			$this->setBlock ($b);
+			$_string = $tring ? $string : $this->cc;
       preg_match('/' . $prefix . '-(\w+)/',$_string,$found);
       return isset($found[1]) ? (int)$found[1] : false;
 	  }
 
 		## return words AFTER $prefix (element-)primary
 		function getClassSettingsPrefixString ($b,$prefix,$string = false) {
-			$_string = $tring ? $string : $this->getClassSettingsString($b);
+			$this->setBlock ($b);
+			$_string = $tring ? $string : $this->cc;
       preg_match('/' . $prefix . '-(\w+)/',$_string,$found);
 	    return isset($found[1]) ? $found[1] : false;
 	  }
 
 		function getCustomStyleImage ($b) {
-			$style = $b->getCustomStyle();
-			if (is_object($style)) {
-			    $set = $style->getStyleSet();
+			$this->setBlock ($b);
+			if ($this->cs) {
+			    $set = $this->cs->getStyleSet();
 			    $image = $set->getBackgroundImageFileObject();
 			    if (is_object($image)) {
 			        return $image;
@@ -343,11 +367,12 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 		}
 
 		function getClassSettingsObject ($block, $defaultColumns = 3, $defaultMargin = 10  ) {
+			$this->setBlock ($block);
 			$styleObject = new StdClass();
 
-			if (is_object($block) && is_object($style = $block->getCustomStyle())) :
+			if ($this->cs) :
 				// We get string as 'first-class second-class'
-				$classes = $style->getStyleSet()->getCustomClass();
+				$classes = $this->cc;
 				// And get array with each classes : 0=>'first-class', 1=>'second-class'
 				$classesArray = explode(' ', $classes);
 				$styleObject->classesArray = $classesArray;

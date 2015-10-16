@@ -1,8 +1,5 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
-$pageTheme = $c->getCollectionThemeObject();
-$header_height = $pageTheme->getClassSettingsPrefixInt($b,'image-height');
-
 
 // $header_count = $header_content->getTotalBlocksInArea($c);
 // $display_header_content = $header_count > 0 || $c->isEditMode();

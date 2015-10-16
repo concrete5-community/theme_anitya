@@ -221,7 +221,7 @@ class MclOptions extends Object
     $xml = new SimpleXMLElement('<mcl_preset></mcl_preset>');
 
     $config = $xml->addChild('config');
-    $config->addChild('theme', $pkg->getPackageVersion());
+    $config->addChild('theme', $pkg->getPackageHandle());
     $config->addChild('version', $pkg->getPackageVersion());
     $config->addChild('name', $this->get_preset_title($pID));
 

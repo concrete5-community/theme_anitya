@@ -4,6 +4,88 @@
         <pagetemplate icon="left_sidebar.png" name="Left Sidebar" handle="left_sidebar" package="theme_anitya" internal=""/>
         <pagetemplate icon="right_sidebar.png" name="Right Sidebar" handle="right_sidebar" package="theme_anitya" internal=""/>
         <pagetemplate icon="full.png" name="Full Wrapped" handle="full_wrapped" package="theme_anitya" internal=""/>
-        <pagetemplate icon="full.png" name="Simple content" handle="one_page_details" package="theme_anitya" internal=""/>    
+        <pagetemplate icon="full.png" name="Simple content" handle="one_page_details" package="theme_anitya" internal=""/>
     </pagetemplates>
+    <pagetypes>
+      <pagetype name="UI Content" handle="ui_content" package="" launch-in-composer="1" is-frequently-added="1">
+        <pagetemplates type="custom" default="one_page_details">
+          <pagetemplate handle="one_page_details"/>
+        </pagetemplates>
+        <target handle="all" package=""/>
+        <composer>
+          <formlayout>
+            <set name="Basics" description="">
+              <control custom-template="" required="1" custom-label="" description="" type="core_page_property" handle="name"/>
+              <control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target"/>
+              <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+              <control custom-template="" custom-label="" description="" type="collection_attribute" handle="tags"/>
+              <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
+              <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/>
+            </set>
+            <set name="Content" description="">
+              <control custom-template="" custom-label="" description="" output-control-id="8KJMuI7O" type="block" handle="content"/>
+            </set>
+          </formlayout>
+          <output>
+            <pagetemplate handle="one_page_details">
+              <page name="" path="" filename="" pagetype="ui_content" template="one_page_details" user="admin" description="" package="">
+                <area name="Main">
+                  <blocks>
+                    <block type="core_page_type_composer_control_output" name="" mc-block-id="aD3oPTve">
+                      <control output-control-id="8KJMuI7O"/>
+                    </block>
+                  </blocks>
+                </area>
+              </page>
+            </pagetemplate>
+          </output>
+        </composer>
+      </pagetype>
+      <pagetype name="Mega-menu Content" handle="mega_menu_content" package="" launch-in-composer="1">
+        <pagetemplates type="custom" default="one_page_details">
+          <pagetemplate handle="one_page_details"/>
+        </pagetemplates>
+        <target handle="parent_page" package="" path="/anitya-megamenu-content"/>
+        <composer>
+          <formlayout>
+            <set name="Basics" description="">
+              <control custom-template="" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/>
+              <control custom-template="" required="1" custom-label="" description="This is only for a visibility in the sitemap. Type a clear name for you" type="core_page_property" handle="name"/>
+              <control custom-template="" custom-label="" description="This content is only for basic example" output-control-id="EUqfszcv" type="block" handle="content"/>
+            </set>
+          </formlayout>
+          <output>
+            <pagetemplate handle="one_page_details">
+              <page name="" path="" filename="" pagetype="mega_menu_content" template="one_page_details" user="admin" description="" package="">
+                <area name="Main">
+                  <blocks>
+                    <block type="core_page_type_composer_control_output" name="" mc-block-id="NrslLquk">
+                      <control output-control-id="EUqfszcv"/>
+                    </block>
+                  </blocks>
+                </area>
+              </page>
+            </pagetemplate>
+          </output>
+        </composer>
+      </pagetype>
+    </pagetypes>
+    <pages>
+      <page name="Anitya Megamenu content" path="/anitya-megamenu-content" filename="" pagetype="page" template="one_page_details" user="admin" description="" package="">
+        <attributes>
+          <attributekey handle="exclude_nav">
+            <value><![CDATA[1]]></value>
+          </attributekey>
+          <attributekey handle="exclude_page_list">
+            <value><![CDATA[1]]></value>
+          </attributekey>
+          <attributekey handle="exclude_search_index">
+            <value><![CDATA[1]]></value>
+          </attributekey>
+          <attributekey handle="exclude_subpages_from_nav">
+            <value><![CDATA[1]]></value>
+          </attributekey>
+        </attributes>
+      </page>
+    </pages>
 </concrete5-cif>

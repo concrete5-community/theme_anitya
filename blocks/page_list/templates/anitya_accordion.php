@@ -53,6 +53,7 @@ $open = $pageTheme->getClassSettingsPrefixInt($b,'open');
   	endif;
 		if ($page->getPageTemplateHandle() == 'one_page_details'):
 			$v = $page->getController()->getViewObject();
+			// var_dump($page->themeObject); die();
 			$page->isPopup = true;
 		endif;
 

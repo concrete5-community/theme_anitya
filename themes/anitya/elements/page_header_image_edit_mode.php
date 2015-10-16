@@ -1,7 +1,5 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
-$pageTheme = $c->getCollectionThemeObject();
-$header_height = $pageTheme->getClassSettingsPrefixInt($b,'image-height');
 ?>
 <article class="intro <?php // echo $header_height ? 'image-height-' . $header_height : '' ?>">
     <?php

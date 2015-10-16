@@ -794,8 +794,8 @@
           <block type="core_area_layout" name="">
             <arealayout type="theme-grid" columns="12">
               <columns>
-                <column span="6" offset="0"/>
-                <column span="6" offset="0">
+                <column span="3" offset="0"/>
+                <column span="8" offset="1">
                   <block type="page_list" name="" custom-template="anitya_accordion.php">
                     <style>
                       <backgroundRepeat>no-repeat</backgroundRepeat>
@@ -805,6 +805,7 @@
                       <record>
                         <num><![CDATA[0]]></num>
                         <orderBy><![CDATA[display_asc]]></orderBy>
+                        <cParentID>{ccm:export:page:/home-page-accordion}</cParentID>
                         <cThis><![CDATA[0]]></cThis>
                         <useButtonForLink><![CDATA[0]]></useButtonForLink>
                         <buttonLinkText><![CDATA[]]></buttonLinkText>
@@ -825,7 +826,6 @@
                         <paginate><![CDATA[0]]></paginate>
                         <displayAliases><![CDATA[0]]></displayAliases>
                         <enableExternalFiltering><![CDATA[0]]></enableExternalFiltering>
-                        <ptID>{ccm:export:pagetype:work}</ptID>
                         <truncateSummaries><![CDATA[0]]></truncateSummaries>
                         <displayFeaturedOnly><![CDATA[0]]></displayFeaturedOnly>
                         <noResultsMessage><![CDATA[]]></noResultsMessage>
@@ -1197,6 +1197,163 @@
           </block>
         </blocks>
       </area>
+    </page>
+    <page name="Home Page Accordion" path="/home-page-accordion" filename="" pagetype="page" template="full" user="admin" description="The page that contains accordion content pages." package="">
+      <attributes>
+        <attributekey handle="exclude_nav">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+        <attributekey handle="exclude_page_list">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+        <attributekey handle="exclude_search_index">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[]]></content>
+              </record>
+            </data>
+          </block>
+        </blocks>
+      </area>
+    </page>
+    <page name="Our Services" path="/home-page-accordion/our-services" filename="" pagetype="ui_content" template="one_page_details" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " package="">
+      <attributes>
+        <attributekey handle="icon">
+          <value><![CDATA[fa-question-circle]]></value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p><span class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </span></p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="horizontal_rule" name=""/>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="6" offset="0">
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="horizontal_rule" name=""/>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+    </page>
+    <page name="Our Policy" path="/home-page-accordion/our-policy" filename="" pagetype="ui_content" template="one_page_details" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " package="">
+      <attributes>
+        <attributekey handle="icon">
+          <value><![CDATA[fa-question-circle]]></value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p><span class="lead">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </span></p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="horizontal_rule" name=""/>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="6" offset="0">
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="horizontal_rule" name=""/>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+    </page>
+    <page name="Don&#039;t forget us" path="/home-page-accordion/dont-forget-us" filename="" pagetype="ui_content" template="one_page_details" user="admin" description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " package="">
+      <attributes>
+        <attributekey handle="icon">
+          <value><![CDATA[fa-question-circle]]></value>
+        </attributekey>
+      </attributes>
+      <area name="Main">
+        <blocks>
+          <block type="content" name="">
+            <data table="btContentLocal">
+              <record>
+                <content><![CDATA[<p><span class="lead">Accordions can also display the content of pages. Everything is possible and Easy</span></p>]]></content>
+              </record>
+            </data>
+          </block>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="6" offset="0">
+                  <block type="horizontal_rule" name=""/>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="6" offset="0">
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="horizontal_rule" name=""/>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+        </blocks>
+      </area>
+      <area name="Other"/>
     </page>
   </pages>
   <sociallinks>

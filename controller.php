@@ -36,9 +36,9 @@ defined('C5_EXECUTE') or die('Access Denied.');
 class Controller extends \Concrete\Core\Package\Package {
 
 	protected $pkgHandle = 'theme_anitya';
-	protected $themeHandle = 'anitya';	
+	protected $themeHandle = 'anitya';
 	protected $appVersionRequired = '5.7.3';
-	protected $pkgVersion = '1.2.3.8';
+	protected $pkgVersion = '1.2.3.9';
 	protected $pkg;
 	protected $pkgAllowsFullContentSwap = true;
 	protected $startingPoint;
@@ -64,7 +64,7 @@ class Controller extends \Concrete\Core\Package\Package {
 
 	// Theme options
 		$o = new \Concrete\Package\ThemeAnitya\Src\Models\MclOptions($c);
-		$o->install_db();
+		$o->install_db($data['spHandle']);
 
 	// Setting up the editor clips
 		$plugins = Config::get('concrete.editor.plugins.selected');
@@ -85,11 +85,11 @@ class Controller extends \Concrete\Core\Package\Package {
 
 		$ci = new MclInstaller($this->pkg);
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/themes.xml');
-		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/attributes.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/single_page.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/systemcontenteditorsnippets.xml');
+		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 	}
 
 	public function uninstall() {
@@ -294,6 +294,13 @@ class Controller extends \Concrete\Core\Package\Package {
 					foreach ($home->getBlocks() as $b) $b->deleteBlock();
 
 					foreach (PageType::getList() as $ct) $ct->delete();
+
+					// Now we re-create the instalation base page & page-types
+					$ci = new MclInstaller($this);
+					// For stacks
+					$ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
+					// For pages, page-types
+					$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
 
 					$startingPointFolder = $this->getPackagePath() . '/starting_points/'. $this->startingPoint;
 

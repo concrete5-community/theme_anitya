@@ -1,7 +1,7 @@
 <?php
 defined('C5_EXECUTE') or die("Access Denied.");
 if (!$c->isPopup) :
-	$this->inc('elements/head.php');
+	$this->inc('elements/head.php',array('noNavigation'=>true));
 endif;
 //$this->inc('elements/top_bar.php');
 //$this->inc('elements/page_header_image.php');
@@ -14,11 +14,10 @@ endif;
 	if (!$c->isPopup) $a->enableGridContainer();
 	$a->display($c);
 	 ?>
-	<?php  // $this->inc('elements/multiple_area.php',array('c'=>$c,'area_name'=>'Main','attribute_handle'=>'number_of_main_areas'));  ?>
+
 </main>
-
-
-<?php
-if (!$c->isPopup) :
-	$this->inc('elements/footer_bottom.php');
-endif;
+<?php if (!$c->isPopup)	: $this->inc('elements/footer_bottom.php'); ?>
+	<style media="screen">
+		div.an {overflow: visible}
+	</style>
+<?php endif?>

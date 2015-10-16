@@ -35,7 +35,7 @@ $o = $pageTheme->getOptions();
   <?php
   $responsiveNav = new GlobalArea('Responsive Navigation');
   $responsiveNav->load($c);
-  $display_responsiveNav = $responsiveNav->getTotalBlocksInAreaEditMode () > 0 || $responsiveNav->getTotalBlocksInArea() > 0 || $c->isEditMode() ;
+  $display_responsiveNav = ($responsiveNav->getTotalBlocksInAreaEditMode () > 0 || $responsiveNav->getTotalBlocksInArea() > 0 || $c->isEditMode()) && !$noNavigation ;
   ?>
   <?php if ($display_responsiveNav): ?>
   <div class="small-display-nav-bar inherit-ccm-page"><?php $responsiveNav->display()?></div>
