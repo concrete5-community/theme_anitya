@@ -18,6 +18,8 @@ if (is_object($f)) :
     if ($styleObject->displayTitle) :
 	    $title = $title ? $title : $f->getTitle();
 	    $desc = $altText ? $altText : $f->getDescription();
+    else :
+      $title = $desc = false;
 	endif;
 endif;
 ?>

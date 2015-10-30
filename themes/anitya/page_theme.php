@@ -128,6 +128,8 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
             'page-content-style','area-primary','area-secondary','area-tertiary','area-quaternary','area-white','area-black','area-body',
             // Spacing
             'area-space-s','area-space-m','area-space-l','area-space-xl','area-space-horizontal',
+						// Placements
+						'vertical-align',
             // Topics
             'topic-get-in-touch','topic-idea','topic-help','topic-config','topic-news','topic-conversation',
             // Borders
@@ -315,9 +317,13 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 		function setBlock ($b) {
 
 			// On definie le style de bloc que si il est completement different de celui déjà réglé dans la page
-			if (!is_object($this->block)) $this->block = $b;
-			if ($b->getBlockTypeHandle() != $this->block->getBlockTypeHandle() &&
-				  $b->getBlockID() != $this->block->getBlockID()
+			if (!is_object($this->block)) {
+				$this->block = $b;
+				$new = true;
+			}
+			if (($b->getBlockTypeHandle() != $this->block->getBlockTypeHandle() &&
+				  $b->getBlockID() != $this->block->getBlockID()) ||
+					$new
 				 ):
 
 				// on extrait les classes

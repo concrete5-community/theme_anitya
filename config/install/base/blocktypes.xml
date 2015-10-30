@@ -5,11 +5,11 @@
         <blocktype handle="page_navigator" package="theme_anitya"/>
         <blocktype handle="page_section" package="theme_anitya"/>
     </blocktypes>
-    <stacks>
+    <!-- <stacks>
       <stack name="Site Logo">
         <area name="Main">
           <blocks/>
         </area>
       </stack>
-    </stacks>
+    </stacks> -->
 </concrete5-cif>

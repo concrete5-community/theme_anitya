@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+    <attributekeys>
+        <attributekey handle="blog_entry_topics" name="Blog Entry Topics" package="" searchable="1" indexed="1" type="topics" category="collection">
+            <tree name="Blog Entries" path="/"/>
+        </attributekey>
+        <attributekey handle="project_topics" name="Project Topics" package="" searchable="1" indexed="1" type="topics" category="collection">
+            <tree name="Projects" path="/"/>
+        </attributekey>
+        <attributekey handle="project_client" name="Client" package="" searchable="1" indexed="1" type="text" category="collection"/>
+        <attributekey handle="project_tasks" name="Task" package="" searchable="1" indexed="1" type="select" category="collection">
+            <type allow-multiple-values="1" display-order="display_asc" allow-other-values="0">
+                <options>
+                    <option value="Architecture" is-end-user-added="0"/>
+                    <option value="Multimedia" is-end-user-added="0"/>
+                    <option value="Design" is-end-user-added="0"/>
+                    <option value="Production" is-end-user-added="0"/>
+                    <option value="Development" is-end-user-added="0"/>
+                    <option value="Quality Assurance" is-end-user-added="0"/>
+                </options>
+            </type>
+        </attributekey>
+        <attributekey handle="project_skills" name="Skills" package="" searchable="1" indexed="1" type="select" category="collection">
+            <type allow-multiple-values="1" display-order="display_asc" allow-other-values="0">
+                <options>
+                    <option value="HTML" is-end-user-added="0"/>
+                    <option value="JavaScript" is-end-user-added="0"/>
+                    <option value="PHP" is-end-user-added="0"/>
+                    <option value="Database" is-end-user-added="0"/>
+                    <option value="CSS" is-end-user-added="0"/>
+                    <option value="Ruby" is-end-user-added="0"/>
+                    <option value="Java" is-end-user-added="0"/>
+                    <option value="iOS/Android/App Development" is-end-user-added="0"/>
+                    <option value="Photoshop" is-end-user-added="0"/>
+                    <option value="Python" is-end-user-added="0"/>
+                    <option value="Writing" is-end-user-added="0"/>
+                </options>
+            </type>
+        </attributekey>
+    </attributekeys>
+    <attributesets>
+    <attributeset handle="navigation" category="collection">
+        <attributekey handle="thumbnail"/>
+        <attributekey handle="exclude_subpages_from_nav"/>
+    </attributeset>
+    <attributeset handle="job_board" name="Jobs" package="" locked="0" category="collection">
+        <attributekey handle="job_posting_department"/>
+        <attributekey handle="job_location"/>
+    </attributeset>
+    <attributeset handle="blog" name="Blog" package="" locked="0" category="collection">
+        <attributekey handle="blog_entry_topics"/>
+    </attributeset>
+    <attributeset handle="portfolio" name="Portfolio" package="" locked="0" category="collection">
+        <attributekey handle="project_topics"/>
+        <attributekey handle="project_client"/>
+        <attributekey handle="project_tasks"/>
+        <attributekey handle="project_skills"/>
+    </attributeset>
+
+</attributesets>
+<pagetypes>
+<pagetype name="Blog Entry" handle="blog_entry" is-frequently-added="1" package="" launch-in-composer="1">
+    <pagetemplates type="custom" default="full_wrapped">
+        <pagetemplate handle="full_wrapped"/>
+    </pagetemplates>
+    <target handle="parent_page" package="" path="/blog"/>
+    <composer>
+        <formlayout>
+            <set name="Post Details">
+                <control custom-template="" custom-label="Entry Name" type="core_page_property" handle="name"/>
+                <control custom-template="" custom-label="" type="core_page_property" handle="url_slug"/>
+                <control custom-template="" custom-label="Short Description" type="core_page_property" handle="description"/>
+                <control custom-template="" custom-label="Topics" type="collection_attribute" handle="blog_entry_topics"/>
+            </set>
+            <set name="Content">
+                <control custom-template="" custom-label="" type="collection_attribute" handle="thumbnail"/>
+                <control custom-template="" custom-label="" type="block" handle="content"/>
+            </set>
+        </formlayout>
+      </composer>
+  </pagetype>
+  <pagetype name="Work" handle="work" is-frequently-added="1" package="" launch-in-composer="1">
+      <pagetemplates type="custom" default="full">
+          <pagetemplate handle="full"/>
+      </pagetemplates>
+      <target handle="parent_page" package="" path="/portfolio"/>
+      <composer>
+          <formlayout>
+              <set name="Page">
+                  <control custom-template="" custom-label="" type="core_page_property" handle="name" description="Give your portfolio project a name."/>
+                  <control custom-template="" custom-label="" type="core_page_property" handle="url_slug"/>
+                  <control custom-template="" type="core_page_property" handle="publish_target"/>
+              </set>
+              <set name="Project Data">
+                  <control custom-template="" custom-label="" type="collection_attribute" handle="project_topics"/>
+                  <control custom-template="" custom-label="Date Completed" type="core_page_property" handle="date_time"/>
+                  <control custom-template="" custom-label="" type="collection_attribute" handle="project_client"/>
+                  <control custom-template="" custom-label="" type="collection_attribute" handle="project_tasks"/>
+                  <control custom-template="" custom-label="" type="collection_attribute" handle="project_skills"/>
+                  <control custom-template="" custom-label="" type="collection_attribute" handle="thumbnail"/>
+              </set>
+              <set name="Body">
+                  <control custom-template="" custom-label="" output-control-id="yXxylvrI" type="block" handle="content"/>
+              </set>
+          </formlayout>
+      </composer>
+  </pagetype>
+</pagetypes>
+<trees>
+<tree type="topic" name="Blog Entries">
+    <topic_category name="Reviews">
+        <topic name="Gadgets"/>
+        <topic name="Movies"/>
+        <topic name="Books"/>
+        <topic name="Music"/>
+    </topic_category>
+    <topic name="Projects"/>
+    <topic name="Sports"/>
+    <topic name="Humor"/>
+</tree>
+<tree type="topic" name="Projects">
+    <topic name="Crafts"/>
+    <topic name="Homework"/>
+    <topic name="Supplies"/>
+    <topic name="Activities"/>
+</tree>
+<sociallinks>
+  <link service="facebook" url="https://www.facebook.com/myconcretelab"/>
+  <link service="flickr" url="https://www.flickr.com/photos/sebastienj/"/>
+  <link service="personal_website" url="http://new.myconcretelab.com/"/>
+  <link service="twitter" url="https://twitter.com/myconcretelab"/>
+</sociallinks>
+</trees>
+</concrete5-cif>

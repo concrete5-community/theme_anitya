@@ -241,8 +241,7 @@ class MclOptions extends Object
 
 	function importXML_preset ($file, $pID = false, $updateOnly = false) {
 
-
-	  $p = simplexml_load_file($file);
+	  $p = simplexml_load_file($file, null, LIBXML_NOCDATA);
 			// On teste les different conteneurs
 			if(isset($p->config) && isset($p->options)) :
 				if ($this->pkg->getPackageHandle() != $p->config->theme) return array ('error' => true, 'message' => t('This preset in not compatible with this theme'));
@@ -273,7 +272,6 @@ class MclOptions extends Object
   {
       foreach ( (array) $xmlObject as $index => $node )
           $out[$index] = ( is_object ( $node ) ) ? $this->xml2array ( $node ) : $node;
-
       return $out;
   }
 
@@ -317,7 +315,6 @@ class MclOptions extends Object
     // Si la function est appellé avec pHandle === false, on update, donc on ne change pas le pID actif
 		if ($pID && !$updateOnly)
 		  $this->set_default_pID($pID);
-
 	}
 
 }
