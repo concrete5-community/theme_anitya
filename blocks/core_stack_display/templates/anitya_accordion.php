@@ -26,7 +26,7 @@ if (is_array($blocks) && count($blocks)): ?>
 	<?php foreach ($blocks as $key => $block) :
 			$bv = new BlockView($block); ?>
        	<dt class="title <?php echo $key === $open ? 'active' : '' ?>">
-            <a href=""><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?>
+            <a href="" class="accordion-title"><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?>
                 <i class='fa fa-chevron-down icon'></i>
             </a>
         </dt>

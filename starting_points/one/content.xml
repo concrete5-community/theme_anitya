@@ -55,7 +55,7 @@
       </composer>
     </pagetype>
     <pagetype name="Work" handle="work" package="" launch-in-composer="1" is-frequently-added="1">
-      <pagetemplates type="custom" default="full">
+      <pagetemplates type="custom" default="one_page_details">
         <pagetemplate handle="one_page_details"/>
       </pagetemplates>
       <target handle="parent_page" package="" path="/portfolio"/>

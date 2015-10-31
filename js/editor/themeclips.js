@@ -169,7 +169,7 @@ RedactorPlugins.themeclips = function()
                 return String()
                     + t.textInput('content',selected)
                     + t.linkInput('link')
-                    + t.colorSelect(["default","primary","success","info","warning","danger"],false)
+                    + t.colorSelect(["default","primary","secondary","success","info","warning","danger"],false)
                     + t.selectInput('size',['default','lg','sm','xs'], 'default')
                     + t.awesomeSelect('icon')
                     + t.checkboxInput('variant', ["block","plain"]);

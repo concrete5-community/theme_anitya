@@ -92,11 +92,11 @@
 	hr {
 		background-color:fade(@contrast,50%);
 	}
-	a:not(.btn):not(.box), .lead strong {
+	a:not(.btn):not(.box):not(.accordion-title), .lead strong {
 		// Choisi entre la couleur par defaut des liens ou la couleur contraste
 		color:contrast(@color,
-			hsl(hue(@color),saturation(@color),lightness(@color)-30),
-			hsl(hue(@color),saturation(@color),lightness(@color)+35)
+			hsl(hue(@color),saturation(@color),lightness(@color)-40),
+			hsl(hue(@color),saturation(@color),lightness(@color)+45)
 			);
 	}
 	// Accordion and other contents that need to loose her background

@@ -56,6 +56,9 @@
 .btn-primary {
   .button-variant(@primary-color; transparent; @primary-color)
 }
+.btn-secondary {
+  .button-variant(@secondary-color; transparent; @secondary-color)
+}
 // Success appears as green
 .btn-success {
   .button-variant(@success-color; transparent; @success-color)
@@ -79,6 +82,9 @@
   }
   &.btn-primary {
     .button-fill(@primary-color);
+  }
+  &.btn-secondary {
+    .button-fill(@secondary-color);
   }
   &.btn-success {
     .button-fill(@success-color);
@@ -157,7 +163,7 @@ input[type="button"] {
 
 // Plain Colors
 
-.button-fill(@background; @color:contrast(@background,@white-color,@black-color); @border:darken(@background,10%) ) {
+.button-fill(@background; @color:contrast(@background,@white-color,@black-color,50%); @border:darken(@background,7%) ) {
   color: @color;
   background-color: @background;
   border-color: @border;
