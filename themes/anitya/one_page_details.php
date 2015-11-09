@@ -10,7 +10,7 @@ endif;
 
 <main class="full <?php echo !$c->isPopup ? 'no-script' : ''?>">
 	<?php
-	$a = new Area('Main');
+	$a = new Area('Simple Content');
 	if (!$c->isPopup) $a->enableGridContainer();
 	$a->display($c);
 	 ?>

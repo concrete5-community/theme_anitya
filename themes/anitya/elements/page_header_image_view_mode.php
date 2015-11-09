@@ -9,7 +9,7 @@ $c = Page::getCurrentPage();
 // $display_header_image = $header_image_count > 0 || $c->isEditMode();
 ?>
 
-<article class="intro <?php  // echo $header_height ? 'image-height-' . $header_height : '' ?> area-primary">
+<article class="intro <?php  // echo $header_height ? 'image-height-' . $header_height : '' ?>">
 	<a href="#" class="gotobottom"><i class="fa fa-arrow-circle-o-down"></i></a>
 	<div id="video_header_bg" class="elementPlayer" ></div>
     <div id="intro-content" class="<?php  if ($header_count == 0 && $c->isEditMode()) echo 'container' ?>  -vertical-align">

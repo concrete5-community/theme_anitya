@@ -26,6 +26,13 @@
 		padding:0 @space-s @space-s @space-s;
 		text-align: center;
 	}
+	.square-box {
+		background-color: @primary-color;
+		.transition(background-color .3s);
+		&:hover {
+			background-color: @secondary-color;
+		}
+	}
 }
 .long-shadow {
 	.icon {

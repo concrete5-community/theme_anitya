@@ -38,7 +38,7 @@ class Controller extends \Concrete\Core\Package\Package {
 	protected $pkgHandle = 'theme_anitya';
 	protected $themeHandle = 'anitya';
 	protected $appVersionRequired = '5.7.3';
-	protected $pkgVersion = '1.2.3.9';
+	protected $pkgVersion = '1.2.5';
 	protected $pkg;
 	protected $pkgAllowsFullContentSwap = true;
 	protected $startingPoint;
@@ -78,10 +78,10 @@ class Controller extends \Concrete\Core\Package\Package {
 	}
 	public function upgrade () {
 		$this->pkg = $this;
-		$this->installOrUpgrade();
+		$this->installOrUpgrade($data);
 	}
 
-	private function installOrUpgrade() {
+	private function installOrUpgrade($data = array()) {
 
 		$ci = new MclInstaller($this->pkg);
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/themes.xml');
@@ -90,6 +90,14 @@ class Controller extends \Concrete\Core\Package\Package {
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/single_page.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/systemcontenteditorsnippets.xml');
 		$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
+
+		if (!isset($data['pkgDoFullContentSwap']) || $data['pkgDoFullContentSwap'] === '0') :
+			$ci->importContentFile($this->getPackagePath() . '/config/install/base/pages.xml');
+			if (!is_object(PageType::getByHandle('ui_content')))
+				$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_type_ui_content.xml');
+			if (!is_object(PageType::getByHandle('mega_menu_content')))
+				$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_type_mega_menu_content.xml');
+		endif;
 	}
 
 	public function uninstall() {

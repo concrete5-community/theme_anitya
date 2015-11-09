@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+  <pages>
+    <page name="Anitya Megamenu content" path="/anitya-megamenu-content" filename="" pagetype="page" template="one_page_details" user="admin" description="" package="">
+      <attributes>
+        <attributekey handle="exclude_nav">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+        <attributekey handle="exclude_page_list">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+        <attributekey handle="exclude_search_index">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+        <attributekey handle="exclude_subpages_from_nav">
+          <value><![CDATA[1]]></value>
+        </attributekey>
+      </attributes>
+    </page>
+  </pages>
+  </concrete5-cif>

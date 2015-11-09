@@ -223,8 +223,6 @@ nav.main-nav {
   padding: @space-m;
   background-color: @nav-megamenu-bg-color;
   background-image: none;
-  border: 1px solid darken(@nav-megamenu-bg-color,10%);
-  border-top: none;
   img {
     max-width: 100%;
   }
@@ -234,9 +232,8 @@ nav.main-nav {
   .stack-footer {
 
   }
-  .stack-column {
+  [class*='col-'] {
     border-left: 1px solid @light-color;
-    .transition(.2s);
     &:first-child {
         border: none;
     }

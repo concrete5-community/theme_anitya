@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+  <pagetypes>
+    <pagetype name="Mega-menu Content" handle="mega_menu_content" package="" launch-in-composer="1">
+      <pagetemplates type="custom" default="one_page_details">
+        <pagetemplate handle="one_page_details"/>
+      </pagetemplates>
+      <target handle="parent_page" package="" path="/anitya-megamenu-content"/>
+      <composer>
+        <formlayout>
+          <set name="Basics" description="">
+            <control custom-template="" required="1" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/>
+            <control custom-template="" required="1" custom-label="" description="This is only for a visibility in the sitemap. Type a clear name for you" type="core_page_property" handle="name"/>
+            <control custom-template="" custom-label="" description="This block is only for basic example. Edit the page to add layouts and blocks" output-control-id="EUqfszcv" type="block" handle="content"/>
+          </set>
+        </formlayout>
+        <output>
+          <pagetemplate handle="one_page_details">
+            <page name="" path="" filename="" pagetype="mega_menu_content" template="one_page_details" user="admin" description="" package="">
+              <area name="Simple Content">
+                <blocks>
+                  <block type="core_page_type_composer_control_output" name="" mc-block-id="NrslLquk">
+                    <control output-control-id="EUqfszcv"/>
+                  </block>
+                </blocks>
+              </area>
+            </page>
+          </pagetemplate>
+        </output>
+      </composer>
+    </pagetype>
+  </pagetypes>
+</concrete5-cif>

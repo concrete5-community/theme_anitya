@@ -259,9 +259,13 @@ $(window).load(function() {
 function parallaxHandler () {
     var nav = $('#top-nav');
     var intro = $('#intro-content');
+    var p = intro.position()
+    if (!p) return;
+    var opacity = 1;
     $(window).scroll(function(i){
         var scrollVar = $(window).scrollTop();
-        intro.css({'top': .7*scrollVar });
+        opacity = 1 -((4*scrollVar) / 1000);
+        intro.css({'top': p - .4*scrollVar,'opacity' : opacity });
     })
 };
 

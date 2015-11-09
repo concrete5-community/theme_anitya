@@ -147,6 +147,26 @@
 	background-size: contain;
 }
 
+// -- Slick Slider -- \\
+.slider-dots {
+  &-primary {
+    .slider-dots-mixin(@primary-color);
+  }
+  &-white {
+    .slider-dots-mixin(@white-color);
+  }
+  &-black {
+    .slider-dots-mixin(@black-color);
+  }
+}
+
+.slider-dots-mixin (@color) {
+  .slick-wrapper .slick-prev:before,
+  .slick-wrapper .slick-next:before,
+  .slick-dots button:before
+  {color: @color}
+}
+
 .grid-overlay {
 	// position: static;
 	.area-wrap {
@@ -183,44 +203,48 @@
 	}
 }
 
-.sd-style-doublediagonal {
-
+.sd-style-doublediagonal,
+.sd-style-doublediagonal-inversed {
+	// margin-bottom: 5%;
+	// margin-top: 5%;
 	&::before,
 	&::after {
-		top: 0;
-		left: -25%;
 		z-index: -1;
 		width: 150%;
 		height: 75%;
 		background: inherit;
-		-webkit-transform: rotate(-2deg);
-		transform: rotate(-2deg);
-		-webkit-transform-origin: 0 0;
-		transform-origin: 0 0;
-	}
+		.transition(.3s);
 
+	}
+}
+.sd-style-doublediagonal,
+.sd-style-doublediagonal-inversed:hover {
 	&::before {
-		height: 50%;
-		background: darken(@primary-color, 10%);
-		-webkit-transform: rotate(-3deg);
-		transform: rotate(-3deg);
-		-webkit-transform-origin: 3% 0;
-		transform-origin: 3% 0;
+		left: -25%;
+		top: 0;
+		.transform (rotate(-2deg));
+		.transform-origin(0 0);
 	}
-	&.section-divider-secondary {
-		&::before {
-			background: darken(@secondary-color, 10%);
-		}
+	&::after {
+		right: -25%;
+		bottom: 0;
+		.transform (rotate(2deg));
+		.transform-origin(0 0);
 	}
-	&.section-divider-tertiary {
-		&::before {
-			background: darken(@tertiary-color, 10%);
-		}
+}
+.sd-style-doublediagonal:hover,
+.sd-style-doublediagonal-inversed {
+	&::before {
+		left: -25%;
+		top: 0;
+		.transform (rotate(2deg));
+		.transform-origin(100% 0);
 	}
-	&.section-divider-quaternary {
-		&::before {
-			background: darken(@quaternary-color, 10%);
-		}
+	&::after {
+		right: -25%;
+		bottom: 0;
+		.transform (rotate(-2deg));
+		.transform-origin(100% 0);
 	}
 }
 
@@ -234,14 +258,13 @@
 	height: 100px;
 	border-radius: 50%;
 	background: inherit;
-	-webkit-transform: translateX(-50%);
-	transform: translateX(-50%);
+	.transform(translateX(-50%));
 }
 	&:before {
 		top: -50px;
 	}
 	&::after {
-		bottom: -50px;
+		bottom: 50px;
 	}
 }
 
@@ -323,11 +346,12 @@
 		left: 50%;
 		right: 0;
 		background-color: @secondary-color;
-		z-index: 0;
+		z-index: -1;
 	}
-	[class*='col-'] {
-		z-index: 1;
-	}
+	// JE me demande : pourquoi pas -1 sur le :after et rien sur les col ?
+	// [class*='col-'] {
+	// 	z-index: 1;
+	// }
 
 	// left
 

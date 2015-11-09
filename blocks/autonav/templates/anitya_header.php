@@ -16,6 +16,14 @@ $navigationStyle = 'regular-top-nav';
 $c = Page::getCurrentPage();
 $cp = new Permissions($c);
 $canViewVersion = $cp->canViewPageVersions() ? 'ACTIVE' : null;
+// Et les mega menu
+$list = new \Concrete\Core\Page\PageList();
+$list->filterByPageTypeHandle('mega_menu_content');
+$megamenus = array();
+foreach ($list->getResults() as $page) {
+	$page->isPopup = true;
+	$megamenus[$page->getAttribute('megamenu_parent_page')] = $page;
+}
 
 foreach ($navItems as $navItem) {
 	if ($navItem->level == 1) :
@@ -73,6 +81,8 @@ foreach ($navItems as $niKey => $ni) :
 				$ni->blocks  = $ax->getAreaBlocksArray();
 			}
 		endif;
+		if (isset($megamenus[$ni->cObj->getCollectionID()]))
+			$ni->relatedMegaMenu = $megamenus[$ni->cObj->getCollectionID()];
 
 		// Maintenant on va déterminer les classes pour le dropdown
 		if($ni->cObj->getAttribute('display_multi_columns_drop') || count($ni->blocks))
@@ -93,7 +103,15 @@ endforeach;
 
 foreach ($navItems as $niKey => $ni) :
 	// On regarde si un stack à été prévu en temps que sous menu.
-	if ($ni->blocks) :
+	if (isset($ni->relatedMegaMenu)) :
+		ob_start();
+		Loader::PackageElement("navigation/megamenu", 'theme_anitya', array(
+			'ni' => $ni,
+			'o' => $o
+		));
+		$ni->sub = ob_get_clean();
+	// On charge le template 'drop'
+	elseif ($ni->blocks) :
 		ob_start();
 		Loader::PackageElement("navigation/stack", 'theme_anitya', array(
 			'ni' => $ni,
@@ -101,7 +119,6 @@ foreach ($navItems as $niKey => $ni) :
 			'classes' => 'absolute-container'
 		));
 		$ni->sub = ob_get_clean();
-	// On charge le template 'drop'
 	elseif ($ni->hasSubmenu && $ni->level == 1) :
 		$options = array(
 				'navItems'=> $navItems,

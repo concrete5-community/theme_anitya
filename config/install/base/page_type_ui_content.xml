@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+  <pagetypes>
+    <pagetype name="UI Content" handle="ui_content" package="" launch-in-composer="1" is-frequently-added="1">
+      <pagetemplates type="custom" default="one_page_details">
+        <pagetemplate handle="one_page_details"/>
+      </pagetemplates>
+      <target handle="all" package=""/>
+      <composer>
+        <formlayout>
+          <set name="Basics" description="">
+            <control custom-template="" required="1" custom-label="" description="" type="core_page_property" handle="name"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target"/>
+            <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="tags"/>
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
+            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/>
+          </set>
+          <set name="Content" description="">
+            <control custom-template="" custom-label="" description="" output-control-id="8KJMuI7O" type="block" handle="content"/>
+          </set>
+        </formlayout>
+        <output>
+          <pagetemplate handle="one_page_details">
+            <page name="" path="" filename="" pagetype="ui_content" template="one_page_details" user="admin" description="" package="">
+              <area name="Simple Content">
+                <blocks>
+                  <block type="core_page_type_composer_control_output" name="" mc-block-id="aD3oPTve">
+                    <control output-control-id="8KJMuI7O"/>
+                  </block>
+                </blocks>
+              </area>
+            </page>
+          </pagetemplate>
+        </output>
+      </composer>
+    </pagetype>
+  </pagetypes>
+</concrete5-cif>
