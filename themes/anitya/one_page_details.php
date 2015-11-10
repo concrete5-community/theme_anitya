@@ -3,9 +3,6 @@ defined('C5_EXECUTE') or die("Access Denied.");
 if (!$c->isPopup) :
 	$this->inc('elements/head.php',array('noNavigation'=>true));
 endif;
-//$this->inc('elements/top_bar.php');
-//$this->inc('elements/page_header_image.php');
-//$this->inc('elements/sub_header.php');
 ?>
 
 <main class="full <?php echo !$c->isPopup ? 'no-script' : ''?>">

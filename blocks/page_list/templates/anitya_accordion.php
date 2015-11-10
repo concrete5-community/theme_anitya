@@ -4,6 +4,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
 $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
 $open = $pageTheme->getClassSettingsPrefixInt($b,'open');
+$request = Request::getInstance();
 
 // Some settings for this template :
 
@@ -53,7 +54,6 @@ $open = $pageTheme->getClassSettingsPrefixInt($b,'open');
   	endif;
 		if ($page->getPageTemplateHandle() == 'one_page_details'):
 			$v = $page->getController()->getViewObject();
-			// var_dump($page->themeObject); die();
 			$page->isPopup = true;
 		endif;
 
@@ -66,7 +66,12 @@ $open = $pageTheme->getClassSettingsPrefixInt($b,'open');
         <dd class="content <?php echo $key === $open ? 'active' : '' ?>">
 			<div class='content-inner clearfix'>
 			<?php if ($page->isPopup): ?>
-			<?php echo $v->render("one_page_details");?>
+				<?php if (!$c->isEditMode()) :
+					$request->setCurrentPage($page);
+					echo $view->render("one_page_details");
+					$request->setCurrentPage($c);
+				endif;
+				?>
 			<?php else : ?>
 				<?php  if ($thumbnailUrl) : ?>
 				<div class="page-list-accordion-thumbnail">
