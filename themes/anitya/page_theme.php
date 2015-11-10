@@ -146,7 +146,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
             $main_area['Main Column 3 - ' . $i] = $area_classes;
             $main_area['Main Column 4 - ' . $i] = $area_classes;
 
-
         }
 				$image_height = array('image-height-30','image-height-50','image-height-80','image-height-100');
         // Default array
@@ -154,7 +153,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
             'Main' => $area_classes,
 						'Simple Content' => $area_classes,
             'Page Footer' => array('primary', 'secondary','tertiary'),
-						'Header Image' => $image_height,
+						'Header Image' => array_merge($image_height,$area_classes),
 						'Page Header' => $area_classes,
 						'Sub Header' => $area_classes,
         );

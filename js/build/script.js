@@ -261,11 +261,13 @@ function parallaxHandler () {
     var intro = $('#intro-content');
     var p = intro.position()
     if (!p) return;
+    p = p.top;
     var opacity = 1;
     $(window).scroll(function(i){
         var scrollVar = $(window).scrollTop();
         opacity = 1 -((4*scrollVar) / 1000);
-        intro.css({'top': p - .4*scrollVar,'opacity' : opacity });
+        topPos = p - (0.5*scrollVar);
+        intro.css({top: topPos,'opacity' : opacity });
     })
 };
 

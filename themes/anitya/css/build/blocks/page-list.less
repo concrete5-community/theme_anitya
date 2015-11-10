@@ -1,8 +1,3 @@
-// TODO : Move thios to a better place
-.glued-3 {
-	width: 33.3333333%;
-	float: left;
-}
 
 // TODO : LE css Bootstrap breadcrumb fait déjà bcp de ceci
 // cursor: changer la classe .tag par breadcrumb
@@ -62,10 +57,7 @@
 }
 
 .event-date {
-	// Pour que l'on puisse mettre un background sous le bloc, on met du padding :
-
 	.event {
-
 		&:first-child {
 			padding-top: @space-s;
 		}
@@ -227,7 +219,7 @@
 	picture {
 	}
 	.info {
-		
+
 	}
 	.date {
 		// height: @space-l;
@@ -281,7 +273,7 @@
   }
   &.with-gap {
     .masonry-item {
-      margin-bottom: @space-s;
+      margin-bottom: @grid-gutter-width;
     }
     .info {
       left: 15px; right: 15px;
@@ -307,6 +299,54 @@ ul.filter-set {
     }
   }
 
+}
+
+.page-list-icon {
+	.item {
+		.inner {
+			padding: @space-s;
+			background-color: @primary-color;
+		}
+		i,p,h5,a {
+			color: @primary-text-color;
+			text-align: center;
+			.transition(.2s);
+		}
+		h5 {
+			text-transform: uppercase;
+			font-weight: 300;
+			border-bottom: 1px solid transparent;
+			padding-bottom: @space-s;
+		}
+		p {
+			opacity: 0;
+			.transform(translateY(@space-xxs));
+		}
+		.iconwrapper {
+			font-size: 3rem;
+			line-height: 13rem;
+			text-align: center;
+			.transition(.2s);
+			i {
+				// margin: @space-m 0;
+			}
+		}
+		&:hover {
+			.iconwrapper {
+				font-size: 6rem;
+			}
+			p {
+				.transform(translateY(0));
+				opacity: 1;
+			}
+			h5 {
+				.transform(translateY(@space-xxs));
+				border-bottom-color: @primary-text-color;
+				padding-bottom: @space-xxs;
+			}
+		}
+
+	}
 }
 
 // -- this is used to create a layer on the image

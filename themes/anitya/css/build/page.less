@@ -57,6 +57,7 @@ div.loaded {
 	width: 100%;
 	background-size: auto;
 	background-position: 50% 50%;
+	background-color: @intro-image-default-color;
 	position: relative;
 	overflow: hidden;
 	z-index: 0;
@@ -95,6 +96,11 @@ div.loaded {
 	background-color: @white-color;
 	h1, h2, h3 {
 		margin: 0; padding: 0;
+	}
+	> hr, hr:last-of-type {
+		background: none;
+		height: @space-s;
+		margin: 0 !important;
 	}
 }
 
