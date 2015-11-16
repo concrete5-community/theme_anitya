@@ -332,6 +332,9 @@ ul.filter-set {
 			}
 		}
 		&:hover {
+			.inner {
+				background-color: darken(@primary-color,5%);
+			}
 			.iconwrapper {
 				font-size: 6rem;
 			}
@@ -342,7 +345,7 @@ ul.filter-set {
 			h5 {
 				.transform(translateY(@space-xxs));
 				border-bottom-color: @primary-text-color;
-				padding-bottom: @space-xxs;
+				// padding-bottom: @space-xxs;
 			}
 		}
 

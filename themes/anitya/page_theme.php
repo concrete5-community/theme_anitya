@@ -113,7 +113,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 													)),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
 						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses, $marginClasses),
-						'core_area_layout' => array('left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','no-gap','image-on-right','left-25','left-75')
+						'core_area_layout' => array('left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','no-gap','image-on-right','left-column-25','left-column-75')
 
         );
     }
@@ -121,7 +121,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
     public function getThemeAreaClasses()
     {
 				// For multiple area
-				$divider_style = array('section-divider','sd-style-doublediagonal','sd-style-halfcircle','sd-style-multitriangles','section-divider-primary','section-divider-secondary','section-divider-tertiary','section-divider-quaternary');
+				$divider_style = array('section-divider','sd-style-doublediagonal','sd-style-doublediagonal-inversed','sd-style-halfcircle','sd-style-multitriangles','section-divider-primary','section-divider-secondary','section-divider-tertiary','section-divider-quaternary');
         $main_area = array('Main');
         $area_classes = array_merge(array(
             // Colors
@@ -323,7 +323,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				$this->block = $b;
 				$new = true;
 			}
-			if (($b->getBlockTypeHandle() != $this->block->getBlockTypeHandle() &&
+			if (($b->getBlockTypeHandle() != $this->block->getBlockTypeHandle() ||
 				  $b->getBlockID() != $this->block->getBlockID()) ||
 					$new
 				 ):
