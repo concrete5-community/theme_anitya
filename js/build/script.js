@@ -273,19 +273,19 @@ function parallaxHandler () {
 
 
 function launchMasonry() {
-    l('launch masonry');
-    var $container = $('.masonry');
-    // initialize
-    $container.each(function(){
-        $c = $(this);
-        $c.imagesLoaded(function(){
-            $c.masonry({
-                columnWidth:'.grid-sizer',
-                itemSelector: '.item'
-            });
-        })
-
-    });
+    // l('launch masonry');
+    // var $container = $('.masonry');
+    // // initialize
+    // $container.each(function(){
+    //     $c = $(this);
+    //     $c.imagesLoaded(function(){
+    //         $c.masonry({
+    //             columnWidth:'.grid-sizer',
+    //             itemSelector: '.item'
+    //         });
+    //     })
+    //
+    // });
 };
 
 function initializeTabs () {

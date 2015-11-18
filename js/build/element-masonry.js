@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var $win = $(window),
-        $containers = $(".page-list-masonry"),
+        $containers = $(".masonry-wrapper"),
         // quick search regex
         qsRegex = false,
         activeButtonClass = "btn-primary";
@@ -38,7 +38,7 @@ $(document).ready(function(){
 
     function searchFilter(e) {
         var input = $(e.currentTarget);
-        var gallery = input.parent().parent().next('.page-list-masonry');
+        var gallery = input.parent().parent().next('.masonry-wrapper');
         // console.log(gallery);
         // return;
         var qsRegex = new RegExp(input.val(), 'gi');

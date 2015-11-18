@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <concrete5-cif version="1.0">
   <pagetypes>
-    <pagetype name="UI Content" handle="ui_content" package="" launch-in-composer="1" is-frequently-added="1">
+    <pagetype name="UI Content" handle="ui_content" package="theme_anitya" launch-in-composer="1" is-frequently-added="1">
       <pagetemplates type="custom" default="one_page_details">
         <pagetemplate handle="one_page_details"/>
       </pagetemplates>
@@ -16,7 +16,7 @@
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/>
           </set>
-          <set name="Content" description="">
+          <set name="Content" description="This block is only for basic example. Edit the page to add layouts and blocks">
             <control custom-template="" custom-label="" description="" output-control-id="8KJMuI7O" type="block" handle="content"/>
           </set>
         </formlayout>

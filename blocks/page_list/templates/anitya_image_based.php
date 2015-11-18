@@ -33,7 +33,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
 
 <?php Loader::PackageElement("page_list/sortable", 'theme_anitya', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID,'styleObject'=>$styleObject))?>
 <?php  if ($pageListTitle): ?><div class="page-list-header"><h3><?php  echo $pageListTitle?></h3></div><?php  endif?>
-<div class="page-list img-based page-list-masonry row <?php echo $gap ? 'with-gap' : 'no-gap' ?>" data-gridsizer=".<?php echo $column_class . intval(12 / $styleObject->columns)?>" data-bid="<?php echo $bID?>">
+<div class="page-list img-based masonry-wrapper row <?php echo $gap ? 'with-gap' : 'no-gap' ?>" data-gridsizer=".<?php echo $column_class?>" data-bid="<?php echo $bID?>">
 	<?php  foreach ($pages as $key => $page):
 
 		$pair = $key % 2 == 1 ? 'pair' : 'impair';
@@ -62,7 +62,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
 		  endif;
 		endif;
 ?>
-		<div class="<?php  echo $pair ?> <?php echo $column_class . intval(12 / $styleObject->columns)?> item masonry-item <?php echo $tags ?>">
+		<div class="<?php  echo $pair ?> <?php echo $column_class?> item masonry-item <?php echo $tags ?>">
 			<div class="inner">
 				<a href="<?php  echo $url ?>">
 					<?php  if ($thumbnailUrl) : ?>
