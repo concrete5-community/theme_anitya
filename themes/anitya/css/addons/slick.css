@@ -115,3 +115,12 @@
 
     border: 1px solid transparent;
 }
+
+/* Hide items during building */
+
+.slick-wrapper .item {
+  opacity: 0;
+}
+.slick-wrapper.slick-initialized .item {
+  opacity: 1
+}

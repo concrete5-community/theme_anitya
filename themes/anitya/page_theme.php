@@ -74,7 +74,8 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 								$elements_colors,
 								// Carousel dots
 								array(
-                'slider-dots-primary', "slider-dots-white", "slider-dots-black",
+								// page-list type
+								'is-masonry','is-carousel',
 								// sqlite_error_string
 								'tag-sorting','keyword-sorting',
 								// Popup result
@@ -83,9 +84,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 								'no-gap'
 								),
 								// # columns for carousel
-								$columnsClasses,
-								// Margin size for carousel
-								$marginClasses),
+								$columnsClasses),
 						'image_slider' => array_merge(
 								// Carousel dots
 								array(
@@ -426,7 +425,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				Les carousels sont activé par une classe "is-carousel"
 					=> Ajout de la classe 'slick-wrapper' sur le wrapper
 					=> Ajout des options slick sous forme Ajax et en temps qu'attribut data du wrapper
-				Les masonry sont par default, sauf si carousel ou classe "no-masonry"
+				Le masonry est activé par la classe 'is-masonry' , sauf si carousel.
 					=> Le wrapper contient la classe "masonry-wrapper"
 					=> Le wrapper contient l'attribut data-gridsizer avec la classe des colonnes
 					-- Si pas masonery
@@ -440,7 +439,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				L'affichage en popup est activé par la classe "popup-link" ou par l'option 'forcePopup'
 
 				Chaque page liste a un wrapper qui portera le nom du fichier en temps que classe
-
 			*/
 
 			$vars = array();
@@ -457,17 +455,17 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 			$displaytopics = $options['topics'];
 			$displayPopup = (in_array('popup-link',$styleObject->classesArray)) || ($options['forcePopup']);
 			$isCarousel = in_array('is-carousel',$styleObject->classesArray);
-			$isCarousel = !in_array('no-masonry',$styleObject->classesArray);
+			$isMasonry = in_array('is-masonry',$styleObject->classesArray) && !$isCarousel;
+			$isStaticGrid = !$isMasonry && !$isCarousel;
 
 			// Theme related
 			$vars['o'] = $o = $this->getOptions();
 			$vars['tagsObject'] = $tagsObject;
 			$vars['type'] = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle($options['type']);
 			$vars['styleObject'] = $styleObject;
-			$vars['column_class'] = ($styleObject->columns > 3 ? 'col-md-' : 'col-sm-') . intval(12 / $styleObject->columns);
-			$vars['$masonryWrapperAttributes'] = 'data-gridsizer=".' . $vars['column_class'] . '" data-bid="' . $controller->bID . '"';
+			$vars['$masonryWrapperAttributes'] = 'data-gridsizer=".' . $vars['column_class'] . '" data-bid="' . $b->getBlockID() . '"';
 			$vars['gap'] = (in_array('no-gap',$styleObject->classesArray)) ? 'no-gap' : 'with-gap';
-
+			$vars['column_class'] = ($styleObject->columns > 3 ? 'col-md-' : 'col-sm-') . intval(12 / $styleObject->columns);
 			// carousels
 			if ($isCarousel) :
 				$slick = new StdClass();
@@ -477,7 +475,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				$slick->dots = (bool)$o->carousel_dots;
 				$slick->arrows = (bool)$o->carousel_arrows;
 				$slick->infinite = (bool)$o->carousel_infinite;
-				$slick->speed = $o->carousel_speed;
+				$slick->speed = (int)$o->carousel_speed;
 				$slick->centerMode = (bool)$o->carousel_centerMode;
 				$slick->variableWidth = (bool)$o->carousel_variableWidth;
 				$slick->adaptiveHeight = (bool)$o->carousel_adaptiveHeight;
@@ -487,19 +485,33 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 			endif;
 
 			/***** Block related ****/
-			$templateName = $controller->getBlockObject()->getBlockFilename();
+			$templateName = $b->getBlockFilename();
+			$blockTypeHandle = str_replace('_', '-', $b->getBlockTypeHandle());
+			$templateCleanName = str_replace('_', '-', substr(substr( $templateName, 0, strlen( $templateName ) -4 ),7)); // Retire le '.php' et 'anitya_'
 			$vars['includeEntryText'] = ($controller->includeName || $controller->includeDescription || $controller->useButtonForLink) ? true :false;
+
 			// Wrapper classes
-			$wrapperClasses[] = ucwords(str_replace('_', '-', substr(substr( $templateName, 0, strlen( $templateName ) -4 ),7))); // Retire le '.php' et 'anitya_'
-			if ($isCarousel) $wrapperClasses[] = 'slick-wrapper';
+			$wrapperClasses[] = 'ccm-' . $blockTypeHandle;
+			$wrapperClasses[] =  $blockTypeHandle . '-' . $templateCleanName; //-> page-list-portfolio
+			if ($isCarousel) 	$wrapperClasses[] = 'slick-wrapper ';
+			if ($isMasonry) 	$wrapperClasses[] = 'masonry-wrapper';
+			$wrapperClasses[] = 'wrapper-'. $styleObject->columns . '-column';
 			$wrapperClasses[] = 'row';
 			$wrapperClasses[] = (in_array('no-gap',$styleObject->classesArray)) ? 'no-gap' : 'with-gap';
 			// Wrapper attributes
-			$wrapperAtrtribute[] = 'data-bid="' . $controller->bID . '"';
-			if ($isMasonry) $wrapperAtrtribute[] = 'data-gridsizer="' . $vars['column_class'] . '"';
-			if ($isCarousel) $wrapperAtrtribute[] = 'data-slick="' . json_encode($slick) . '"';
-
-			$wrapperOpenTag = '<div class="' . implode(' ', array_merge($wrapperClasses,$options['additionalWrapperClasses'])) . '" ' . implode(' ', $wrapperAtrtribute) . '>';
+			$wrapperAtrtribute[] = 'data-bid="' . $b->getBlockID() . '"';
+			if ($isMasonry) $wrapperAtrtribute[] = 'data-gridsizer=".' . $vars['column_class'] . '"';
+			if ($isCarousel) $wrapperAtrtribute[] = 'data-slick=\'' . json_encode($slick) . '\'';
+			// Finally, wrapper html
+			$vars['wrapperOpenTag'] = '<div class="' . implode(' ', array_merge($wrapperClasses,$options['additionalWrapperClasses'])) . '" ' . implode(' ', $wrapperAtrtribute) . '>';
+			$vars['wrapperCloseTag'] = '</div><!-- end .' . $blockTypeHandle . '-' . $templateCleanName . ' -->';
+			// Item classes
+			if(!$isCarousel) $itemClasses[] = $vars['column_class'];
+			$itemClasses[] = 'item';
+			if ($isMasonry) $itemClasses[] = 'masonry-item';
+			// itemTag
+			$itemAttributes = array();
+			if($isCarousel) $itemAttributes[] = (in_array('no-gap',$styleObject->classesArray) ? '' : 'style="margin:0 15px"');
 
 			/*****  Page related -- *****/
 
@@ -528,7 +540,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				$target = empty($target) ? '_self' : $target;
 				$page->mclDetails['target'] = $target;
 				$page->mclDetails['link'] = 'href="' . $page->mclDetails['url'] . '"' . ' target="' . $page->mclDetails['target'] . '"';
-				$page->mclDetails['to'] = $page->mclDetails['link'] . ' class="' . $page->mclDetails['popupClassLauncher'] . '"'
+				$page->mclDetails['to'] = $page->mclDetails['link'] . ' class="' . $page->mclDetails['popupClassLauncher'] . '"';
 
 				// title
 				$title_text =  $th->entities($page->getCollectionName());
@@ -537,6 +549,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				// date
 				$eventDate = $page->getAttribute($options['alternativeDateAttributeHandle']);
 		    $page->mclDetails['date'] =  $eventDate ? $dh->formatDate($eventDate) : date('M / d / Y',strtotime($page->getCollectionDatePublic()));
+				$page->mclDetails['rawdate'] =  $eventDate ? $dh->formatDate($eventDate) : strtotime($page->getCollectionDatePublic());
 
 				// user
 		    if ($displayUser) $page->mclDetails['original_author'] = Page::getByID($page->getCollectionID(), 1)->getVersionObject()->getVersionAuthorUserName();
@@ -544,8 +557,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				// tags
 				$tagsArray = $tagsObject->pageTags[$page->getCollectionID()];
 				$page->mclDetails['tagsArray'] = $tagsArray ? $tagsArray : array();
-				$page->mclDetails['tags'] = $tagsArray ? implode(' ',$tagsArray) : '';
-
 
 				// topics
 				if ($displaytopics) $page->mclDetails['topics'] = $page->getAttribute($options['topicAttributeKeyHandle']);
@@ -558,7 +569,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 				endif;
 
 				// Icon
-				$icon = $page->getAttribute('icon') ? "<i class=\"fa {$page->getAttribute('icon')}\"></i>" : false;
+				$page->mclDetails['icon'] = $page->getAttribute('icon') ? "<i class=\"fa {$page->getAttribute('icon')}\"></i>" : false;
 
 				// Thumbnail
 		    if ($controller->displayThumbnail) :
@@ -572,13 +583,31 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 		      endif;
 		    endif;
 
-				// pair
-				$page->mclDetails['pair'] = $key % 2 == 1 ? 'pair' : 'impair';
-			endforeach;
+				// Item classes
+				$itemClassesTemp = $itemClasses;
+				$itemClassesTemp[] = $key % 2 == 1 ? 'pair' : 'impair';
+				$itemClassesTemp[] = $tagsArray ? implode(' ',$tagsArray) : '';
+				// Item tag
+				$page->mclDetails['itemOpenTag'] = (($key%$styleObject->columns == 0 && $isStaticGrid) ? '<div class="row">' : '') . '<div class="' . implode(' ', $itemClassesTemp) . '" ' . implode(' ', $itemAttributes) . '>';
+				$page->mclDetails['itemCloseTag'] = '</div>' . (($key%$styleObject->columns == ($styleObject->columns) - 1 || ($key == count($fIDs)-1)) && $isStaticGrid ? '</div><!-- .row -->' : '');
 
+			endforeach;
 			if ($c->isEditMode() && $options['hideEditMode']) :
 			    echo '<div class="ccm-edit-mode-disabled-item">';
-					echo '<p style="padding: 40px 0px 40px 0px;"><strong>' . ucwords(str_replace('_', ' ', substr( $templateName, 0, strlen( $templateName ) -4 ))) . '</strong>' . t(' with ') .  $styleObject->columns . t(' columns and ') . ($gap ? t(' regular Gap ') : t('no Gap ')) . t(' disabled in edit mode.') . '</p>';
+					echo '<p style="padding: 40px 0px 40px 0px;">' .
+						'[ ' . $blockTypeHandle . ' ] ' .
+					  '<strong>' .
+						ucwords($templateCleanName) .
+						($isCarousel ? t(' carousel') : '') .
+						($isMasonry ? t(' masonry') : '') .
+						($isStaticGrid ? t(' static grid') : '') .
+						'</strong>' .
+						t(' with ') .
+						$styleObject->columns .
+						t(' columns and ') .
+						((in_array('no-gap',$styleObject->classesArray))? t(' regular Gap ') : t('no Gap ')) .
+						t(' disabled in edit mode.') .
+						'</p>';
 			    echo '</div>';
 			endif;
 
@@ -587,6 +616,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 		    echo '<h3>' . $controller->pageListTitle . '</h3>';
 		    echo '</div>';
 			endif;
+
+			if (!$c->isEditMode() && $isMasonry)
+				Loader::PackageElement("page_list/sortable", 'theme_anitya', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$b->getBlockID(),'styleObject'=>$styleObject));
 
 			return $vars;
 

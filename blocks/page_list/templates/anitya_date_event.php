@@ -4,11 +4,9 @@ $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
 extract ($pageTheme->getPageListVariables($b,$controller,$pages));
 if (!$c->isEditMode()) :
-Loader::PackageElement("page_list/sortable", 'theme_anitya', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID,'styleObject'=>$styleObject))?>
-
-<div class="page-list event-date masonry-wrapper row <?php echo $gap ? 'with-gap' : 'no-gap' ?>" data-gridsizer=".<?php echo $column_class?>" data-bid="<?php echo $bID?>">
-<?php  foreach ($pages as $key => $page): extract($page->mclDetails);	?>
-	<div class="event <?php echo $column_class?> item masonry-item <?php echo $tags ?>">
+  echo $wrapperOpenTag;
+  foreach ($pages as $key => $page): extract($page->mclDetails);
+  	echo $itemOpenTag;?>
 		<div class="inner">
 			<div class="meta clearfix">
 				<p class="ribbon primary pull-left">
@@ -24,7 +22,9 @@ Loader::PackageElement("page_list/sortable", 'theme_anitya', array('o'=>$o,'tags
 				<?php  if ($useButtonForLink): ?><a <?php echo $link ?> class="pull-right"><?php  echo $buttonLinkText?></a><?php  endif; ?>
 			</div>
 		</div>
-  </div>
+		<?php echo $popup ?>
+	<?php echo $itemCloseTag ?>
 	<?php  endforeach; ?>
-	</div><!-- end .ccm-block-page-list -->
+	<?php echo $wrapperCloseTag ?>
+	<?php Loader::PackageElement("page_list/utils", 'theme_anitya', array('b'=>$b,'controller' => $controller,'pages'=>$pages))?>
 <?php  endif; ?>

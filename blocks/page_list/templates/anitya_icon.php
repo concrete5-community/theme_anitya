@@ -4,10 +4,9 @@ $c = Page::getCurrentPage();
 $pageTheme = $c->getCollectionThemeObject();
 extract ($pageTheme->getPageListVariables($b,$controller,$pages));
 if (!$c->isEditMode()) :
- 	Loader::PackageElement("page_list/sortable", 'theme_anitya', array('o'=>$o,'tagsObject'=>$tagsObject,'bID'=>$bID,'styleObject'=>$styleObject))?>
-	<div class="page-list page-list-icon masonry-wrapper row <?php echo $gap ? 'with-gap' : 'no-gap' ?>" data-gridsizer=".<?php echo $column_class?>" data-bid="<?php echo $bID?>">
-	<?php  foreach ($pages as $key => $page): extract($page->mclDetails);	?>
-	<div class="<?php echo $column_class . ' ' . $tags ?> item masonry-item ">
+  echo $wrapperOpenTag;
+  foreach ($pages as $key => $page): extract($page->mclDetails);
+  	echo $itemOpenTag;?>
 			<div class="inner">
 				<a <?php echo $to ?>>
 					<div class="iconwrapper"><?php echo $icon ?></div>
@@ -20,8 +19,8 @@ if (!$c->isEditMode()) :
 				</a>
 				<?php echo $popup ?>
 			</div>
-		</div>
+		<?php echo $itemCloseTag ?>
 	<?php  endforeach ?>
-</div><!-- end .ccm-block-page-list -->
-<?php Loader::PackageElement("page_list/utils", 'theme_anitya', array('b'=>$b,'controller' => $controller,'pages'=>$pages)) ?>
+  <?php echo $wrapperCloseTag ?>
+  <?php Loader::PackageElement("page_list/utils", 'theme_anitya', array('b'=>$b,'controller' => $controller,'pages'=>$pages))?>
 <?php  endif ?>

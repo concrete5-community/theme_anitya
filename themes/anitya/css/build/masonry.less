@@ -1,0 +1,34 @@
+.masonry-wrapper {
+  margin-left: -15px;
+  // .transition(height .3s);
+  .masonry-item {
+  }
+  &.with-gap {
+    .masonry-item {
+      margin-bottom: @grid-gutter-width;
+    }
+    .info {
+      left: 15px; right: 15px;
+    }
+  }
+  &.no-gap {
+
+  }
+  .vertical-align {
+    left:@space-s;
+    right: @space-s;
+  }
+}
+ul.filter-set {
+  margin-bottom: @space-s;
+  li {
+    margin-right: @space-xxs;
+    &.search-filter-wrapper {
+      float: right;
+      input {
+        font-weight: 300;
+      }
+    }
+  }
+
+}

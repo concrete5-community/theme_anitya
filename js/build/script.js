@@ -27,8 +27,6 @@ $(document).ready(function(){
 // les sliders
 	 $('.slick-wrapper').each(function(){
 	 	var e = $(this);
-	 	var n = '<div class="slick-arrows"></div>';
-
 	 	var settings = e.data('slick');
 		var options = {
 			  responsive: [
