@@ -9,7 +9,7 @@ if (!$c->isEditMode()) :
   	echo $itemOpenTag;?>
     <figure class="snip1208">
       <?php if ($imageTag) : echo $imageTag; else:?><div class="placeholder"></div><?php endif ?>
-      <?php  if($includeDate): ?><div class="date"><span class="day"><?php echo date('d',$rawdate) ?></span><span class="month"><?php echo date('M',$rawdate) ?></span></div><?php echo $icon ?><?php endif ?>
+      <?php  if($includeDate): ?><div class="date void"><span class="day"><?php echo date('d',$rawdate) ?></span><span class="month"><?php echo date('M',$rawdate) ?></span></div><?php echo $icon ?><?php endif ?>
       <figcaption>
         <?php  if ($includeName): ?><h3><?php  echo $title ?></h3><?php  endif ?>
         <?php  if ($includeDescription): ?><p class="desc"><small><?php  echo $description ?></small></p><?php  endif ?>

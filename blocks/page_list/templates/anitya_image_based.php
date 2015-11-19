@@ -10,7 +10,7 @@ if (!$c->isEditMode()) :
 			<div class="inner">
 				<a href="<?php  echo $url ?>">
 					<?php if ($imageTag) : echo $imageTag; else:?><div class="placeholder"></div><?php endif ?>
-					<div class="info">
+					<div class="infos">
 						<?php  if ($includeName): ?><h2><?php  echo $title ?></h2><?php  endif ?>
 						<?php  if ($includeDescription): ?><p><?php  echo $description ?></p><?php  endif ?>
 						<?php  if (is_array($topics)): ?><p class="topics"><i><small><?php  foreach ($topics as $key => $topic) : ?><?php  echo $topic->getTreeNodeDisplayName() ?><?php  endforeach ?></small></i></p><?php  endif ?>

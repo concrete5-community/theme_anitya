@@ -124,10 +124,12 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
     {
 				// For multiple area
 				$divider_style = array('section-divider','sd-style-doublediagonal','sd-style-doublediagonal-inversed','sd-style-halfcircle','sd-style-multitriangles','section-divider-primary','section-divider-secondary','section-divider-tertiary','section-divider-quaternary');
-        $main_area = array('Main');
+				$twoNoGapClasses = array('two_nogap','left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','image-on-right','left-column-25','left-column-75');
+				$main_area = array('Main');
+
         $area_classes = array_merge(array(
             // Colors
-            'page-content-style','area-primary','area-secondary','area-tertiary','area-quaternary','area-white','area-black','area-body',
+            'area-primary','area-secondary','area-tertiary','area-quaternary','area-white','area-black','area-body',
             // Spacing
             'area-space-s','area-space-m','area-space-l','area-space-xl','area-space-horizontal',
 						// Placements
@@ -605,7 +607,7 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 						t(' with ') .
 						$styleObject->columns .
 						t(' columns and ') .
-						((in_array('no-gap',$styleObject->classesArray))? t(' regular Gap ') : t('no Gap ')) .
+						(!(in_array('no-gap',$styleObject->classesArray)) ? t(' regular Gap ') : t('no Gap ')) .
 						t(' disabled in edit mode.') .
 						'</p>';
 			    echo '</div>';

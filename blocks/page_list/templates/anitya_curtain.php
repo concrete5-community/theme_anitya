@@ -12,7 +12,7 @@ if (!$c->isEditMode()) :
       <figcaption>
         <?php echo $icon ?>
         <?php  if ($includeName): ?><h4><?php  echo $title ?></h4><?php  endif ?>
-        <?php  if ($includeDescription): ?><h2><?php  echo $description ?></h2><?php  endif ?>
+        <?php  if ($includeDescription): ?><h6><?php  echo $description ?></h6><?php  endif ?>
         <?php if ($useButtonForLink): ?><button href="<?php echo $url?>" class="btn btn-default <?php echo $popupClassLauncher ?>"><?php echo $buttonLinkText?></button><?php endif ?>
       </figcaption><a <?php echo $to ?>></a>
     </figure>
