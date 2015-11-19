@@ -205,10 +205,11 @@ class Controller extends \Concrete\Core\Package\Package {
 									$colors = PresetColors::GetColorsFromPage();
 									$session->set('anitya.colors',$colors);
 							endif;
-
-							if (!is_object($c)) return;
+							if (!is_object($c) || $GLOBALS['anityaButtonInitialized']) return;
+							$GLOBALS['anityaButtonInitialized'] = true;
 							// Now we build the button
 							$pt = $c->getCollectionThemeObject();
+
 							if ($pt->getThemeHandle() != 'anitya') return;
 							$status = t('Anitya Options');
 							$icon = 'toggle-on';
