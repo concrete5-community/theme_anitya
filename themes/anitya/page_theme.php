@@ -115,7 +115,11 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 													)),
             'testimonial' => array ('primary','secondary','tertiary','quaternary','white'),
 						'core_stack_display' => array_merge(array('element-primary','element-secondary','element-tertiary','element-quaternary','element-light','slider-dots-primary', "slider-dots-white", "slider-dots-black"),$columnsClasses, $marginClasses),
-						'core_area_layout' => array('left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','no-gap','image-on-right','left-column-25','left-column-75')
+						'core_area_layout' => array(
+							// Spacing
+	            'area-space-s','area-space-m','area-space-l','area-space-xl','area-space-horizontal',
+							// No gap
+							'left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','no-gap','image-on-right','left-column-25','left-column-75')
 
         );
     }
@@ -141,7 +145,11 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
             // Animation
             'wow','flipInX','fadeInDown','zoomIn'),
 						// divider_style
-						$divider_style);
+						$divider_style,
+						array(
+							// two no-gap
+							'two_nogap','left-primary','left-secondary','left-tertiary','left-quaternary','right-primary','right-secondary','right-tertiary','right-quaternary','left-column-25','left-column-75'
+						));
         for ($i=1; $i < 8; $i++) {
             $main_area['Main - ' . $i] = $area_classes;
             $main_area['Main Column ' . $i] = $area_classes;
@@ -493,8 +501,9 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 			$vars['includeEntryText'] = ($controller->includeName || $controller->includeDescription || $controller->useButtonForLink) ? true :false;
 
 			// Wrapper classes
-			$wrapperClasses[] = 'ccm-' . $blockTypeHandle;
+			$wrapperClasses[] = 'ccm-' . $blockTypeHandle; // ccm-page-list
 			$wrapperClasses[] =  $blockTypeHandle . '-' . $templateCleanName; //-> page-list-portfolio
+			$wrapperClasses[] = $templateCleanName; // -> portfolio
 			if ($isCarousel) 	$wrapperClasses[] = 'slick-wrapper ';
 			if ($isMasonry) 	$wrapperClasses[] = 'masonry-wrapper';
 			$wrapperClasses[] = 'wrapper-'. $styleObject->columns . '-column';

@@ -158,9 +158,13 @@ div.loaded {
 	padding: 60px 0;
 	background-color: @footer-bottom-background-color;
 }
-#footer-top * {
-	color: @footer-top-text-color;
+#footer-top {
+	p,li,span,:not(.void){
+		color: @footer-top-text-color;
+	}
 }
-#footer-bottom * {
-	color: @footer-bottom-text-color;
+#footer-bottom {
+	p,li,span,:not(.void){
+		color: @footer-bottom-text-color;
+	}
 }

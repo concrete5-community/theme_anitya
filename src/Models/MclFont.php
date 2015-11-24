@@ -51,7 +51,7 @@ class MclFont extends Model {
 		// Le varient utilisé par defaut
 		$this->defaultvariant = $o->{$this->defaultVariantName};
 		// SI cette police doit s'afficher en uppercase
-		$this->upp = $o->{$this->uppercaseName .'_fonts'}; // !!!! A verifier
+		$this->upp = $o->{$this->uppercaseName}; // 
 		// la taille minimale acceptées des fontes
 		$size_minimum = $o->size_minimum;
 		// Sa taille en regular

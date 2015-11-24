@@ -109,7 +109,7 @@
 
 .area-color (@color; @contrast) {
 	background-color: @color;
-	p,li,quote,div:not(.void),i,
+	p,li,quote,*:not(.void),i,
 	h1,h2,h3,h4,h5,h6,
 	input[type="submit"] {
 		color:@contrast;
@@ -120,12 +120,22 @@
 	hr {
 		background-color:fade(@contrast,50%);
 	}
-	a:not(.btn):not(.box):not(.accordion-title), .lead strong {
+
+	a:not(.btn-plain):not(.box):not(.accordion-title), .lead strong {
 		// Choisi entre la couleur par defaut des liens ou la couleur contraste
 		color:contrast(@color,
 			hsl(hue(@color),saturation(@color),lightness(@color)-40),
 			hsl(hue(@color),saturation(@color),lightness(@color)+45)
 			);
+	}
+	a.btn-default:not(.btn-plain) {
+		border-color:fade(contrast(@color,
+			hsl(hue(@color),saturation(@color),lightness(@color)-40),
+			hsl(hue(@color),saturation(@color),lightness(@color)+45)
+			),80%);
+	}
+	.fa-stack > i.fa-stack-1x {
+		color:@color;
 	}
 	// Accordion and other contents that need to loose her background
 	.content-inner {
@@ -217,7 +227,7 @@
 
 [class*='sd-style']{
 	position: relative;
-	z-index: 1;
+	z-index: 6; // Au dessus du layout parallax
 	.edit-mode & {
 		z-index: auto; // Sinon les blocks ne sont plus deplacables ??
 	}
@@ -357,6 +367,7 @@
 .two_nogap {
 	position: relative;
 	&:before, &:after {
+		// display: block !important; // Le ccm l'affiche en table enedit mode sur les areas..
 		overflow: hidden;
 		content: "";
 		position: absolute;

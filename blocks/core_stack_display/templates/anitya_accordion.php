@@ -26,11 +26,11 @@ if (is_array($blocks) && count($blocks)): ?>
 	<?php foreach ($blocks as $key => $block) :
 			$bv = new BlockView($block); ?>
        	<dt class="title <?php echo $key === $open ? 'active' : '' ?>">
-            <a href="" class="accordion-title"><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?>
+            <a href="" class="accordion-title void"><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?>
                 <i class='fa fa-chevron-down icon switch'></i>
             </a>
         </dt>
-        <dd class="content <?php echo $key === $open ? 'active' : '' ?>">
+        <dd class="content <?php echo $key === $open ? 'active' : '' ?> void">
 			<div class='content-inner'><?php echo $bv->render('view') ?></div>
         </dd>
 	<?php endforeach ?>

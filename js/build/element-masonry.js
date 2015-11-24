@@ -4,6 +4,7 @@ $(document).ready(function(){
         // quick search regex
         qsRegex = false,
         activeButtonClass = "btn-primary";
+        defautButtonClass = "btn-default";
 
     // Maintenant on va tourner dans tous le containers
     $containers.each(function(i){
@@ -29,8 +30,8 @@ $(document).ready(function(){
       $filters.on('click','a', function(e) {
           e.preventDefault();
           var a = $(this);
-          a.parent().parent().find('.' + activeButtonClass).removeClass(activeButtonClass);
-          a.addClass(activeButtonClass);
+          a.parent().parent().find('.' + activeButtonClass).removeClass(activeButtonClass).addClass(defautButtonClass);
+          a.addClass(activeButtonClass).removeClass(defautButtonClass);
           var filterValue = a.attr('data-filter');
           $container.isotope({ filter: filterValue });
       });

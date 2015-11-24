@@ -51,7 +51,10 @@
 // --------------------------------------------------
 
 .btn-default {
-  .button-variant(@btn-default-color; transparent; @btn-default-color)
+  background-color: transparent;
+  border-color: fade(@btn-default-color,80%);
+  color:fade(@btn-default-color,80%);
+  // .button-variant(@btn-default-color; transparent; @btn-default-color)
 }
 .btn-primary {
   .button-variant(@primary-color; transparent; @primary-color)

@@ -33,18 +33,11 @@
   .content {
     overflow: hidden;
     margin: 0;
-
     .content-inner {
-      // .transition(transform .3s ease);
-      // .transform (scale(.5));
       padding: @space-s;
-
     }
     &.active {
       display: block;
-      .content-inner {
-        // .transform (scale(1));
-      }
     }
     .page-list-accordion-thumbnail {
       width: 20%;
@@ -122,7 +115,10 @@
   .content {
     .content-inner {
       background-color: @light;
-      // color: @primary-text-color;
+      p,li,span {
+        color: @body-type-color !important;
+      }
+
     }
   }
 }

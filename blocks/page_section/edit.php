@@ -18,7 +18,7 @@
   <input type="hidden" name="ID" value="<?php echo $options->ID?>">
   <div class="form-group">
     <label for="name"><?php echo t('Name') ?></label>
-    <input clas="page-section-text" type="text" name="name" value="<?php echo $options->name?>">
+    <input clas="page-section-text void" type="text" name="name" value="<?php echo $options->name?>">
   </div>
 </div>
 <script type="text/javascript">

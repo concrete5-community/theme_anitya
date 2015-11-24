@@ -868,7 +868,7 @@
           </value>
         </attributekey>
       </attributes>
-      <area name="Main">
+      <area name="Simple Content">
         <blocks>
           <block type="image" name="">
             <data table="btContentImage">
@@ -954,7 +954,7 @@
           </value>
         </attributekey>
       </attributes>
-      <area name="Main">
+      <area name="Simple Content">
         <blocks>
           <block type="image" name="">
             <data table="btContentImage">
@@ -1040,7 +1040,7 @@
           </value>
         </attributekey>
       </attributes>
-      <area name="Main">
+      <area name="Simple Content">
         <blocks>
           <block type="image" name="">
             <data table="btContentImage">
@@ -1126,7 +1126,7 @@
           </value>
         </attributekey>
       </attributes>
-      <area name="Main">
+      <area name="Simple Content">
         <blocks>
           <block type="image" name="">
             <data table="btContentImage">
@@ -1228,7 +1228,7 @@
           <value><![CDATA[fa-question-circle]]></value>
         </attributekey>
       </attributes>
-      <area name="Main">
+      <area name="Simple Content">
         <blocks>
           <block type="content" name="">
             <data table="btContentLocal">
@@ -1272,7 +1272,7 @@
           <value><![CDATA[fa-question-circle]]></value>
         </attributekey>
       </attributes>
-      <area name="Main">
+      <area name="Simple Content">
         <blocks>
           <block type="content" name="">
             <data table="btContentLocal">
@@ -1316,7 +1316,7 @@
           <value><![CDATA[fa-question-circle]]></value>
         </attributekey>
       </attributes>
-      <area name="Main">
+      <area name="Simple Content">
         <blocks>
           <block type="content" name="">
             <data table="btContentLocal">
