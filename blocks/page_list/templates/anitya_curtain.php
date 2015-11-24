@@ -14,7 +14,7 @@ if (!$c->isEditMode()) :
         <?php  if ($includeName): ?><h4><?php  echo $title ?></h4><?php  endif ?>
           <?php  if($includeDate): ?><small class="date"><?php  echo $date ?></small><?php  endif ?>
         <?php  if ($includeDescription): ?><h6><?php  echo $description ?></h6><?php  endif ?>
-        <?php if ($useButtonForLink): ?><button href="<?php echo $url?>" class="btn btn-default <?php echo $popupClassLauncher ?>"><?php echo $buttonLinkText?></button><?php endif ?>
+        <?php if ($useButtonForLink): ?><a href="<?php echo $url?>" class="btn btn-default <?php echo $popupClassLauncher ?>"><?php echo $buttonLinkText?></a><?php endif ?>
       </figcaption><a <?php echo $to ?>></a>
     </figure>
 			<?php echo $popup ?>
