@@ -1,20 +1,3 @@
-// -- Demo Logo color
-.svg-quaternary .replaced-svg {
-  path {
-    fill: @quaternary-text-color !important;
-  }
-  polygon {
-   fill: @quaternary-color !important;
-  }
-}
-.svg-primary .replaced-svg {
-  path {
-    fill: @primary-color !important;
-  }
-  polygon {
-   fill: @primary-color !important;
-  }
-}
 
 // Le template Image header
 .ccm-intro-block {
@@ -36,8 +19,17 @@
     padding: 30% 0;
     background-color: #ccc;
 }
-
-
+// Used by the logo on nav template
+.img-background {
+  display: block !important;
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  // .ccm-dashboard-page & {
+  //   // FOr stack view
+  //   height: 100px;
+  // }
+}
 
 figure {
     margin: 0;

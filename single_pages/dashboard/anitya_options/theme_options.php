@@ -62,22 +62,9 @@ $options = array(
         "type" => "page"
     ),
     array(
-        "name" => t("Display search box in responsive top bar"),
-        "id" => "display_responsive_searchbox",
-        "default" => 1,
-        "type" => "toggle"
-    ),
-    array(
         "name" => t("Display icon on first level if available"),
         "desc" => t("If the atrtribute 'icon' is filled on a first-level page it will be displayed in the top-nav"),
         "id" => "first_level_nav_icon",
-        "default" => 1,
-        "type" => "toggle"
-    ),
-    array(
-        "name" => t("Auto hidde top-bar"),
-        "desc" => t("If enabled, the small toolbar is hidde during scroll."),
-        "id" => "auto_hidde_top_bar",
         "default" => 1,
         "type" => "toggle"
     ),
@@ -120,12 +107,12 @@ $options = array(
     ),
 
 
-    // Full screen
+    // Mobile
 
 
 
     array(
-        'name' => t('Responsive full width mode'),
+        'name' => t('Mobile mode'),
         "desc" => t('Options When the nav showed on mobile'),
         'type' => 'subsection'
     ),
@@ -137,10 +124,16 @@ $options = array(
         "type" => "toggle"
     ),
     array(
-        "name" => t("Display the regular Area Logo on Mobile"),
-        "desc" => t("If disabled, the Logo will be hidden when the mobile nav is shown"),
-        "id" => "display_main_logo_on_mobile",
-        "default" => 0,
+        "name" => t("Display search box in responsive top bar"),
+        "id" => "display_responsive_searchbox",
+        "default" => 1,
+        "type" => "toggle"
+    ),
+    array(
+        "name" => t("Auto hidde Mobile bar"),
+        "desc" => t("If enabled, the small toolbar is hidde during scroll."),
+        "id" => "auto_hidde_top_bar",
+        "default" => 1,
         "type" => "toggle"
     ),
     array(

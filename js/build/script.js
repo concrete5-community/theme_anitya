@@ -96,7 +96,7 @@ $(document).ready(function(){
   	  removalDelay: 500
     });
   // AUto hidding responsive nav bar
-  	$('.small-display-nav-bar-inner, .small-display-nav-bar').autoHidingNavbar();
+  	$('.auto-hidde-top-bar').autoHidingNavbar();
     if (themeConfig.autoHiddeTopBar) $('.top-bar').autoHidingNavbar();
 
 // Le breakpoint.js
@@ -422,7 +422,7 @@ $(window).bind('enterBreakpoint1024',function() {
               container.removeClass('overlay-open' );
               triggerBttn.removeClass('active');
           }
-          else {
+          else if (overlay.is('.close' )){
               overlay.addClass('open' );
               container.addClass('overlay-open' );
               triggerBttn.addClass('active');

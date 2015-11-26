@@ -1,5 +1,7 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
-
+$c = Page::getCurrentPage();
+$pageTheme = $c->getCollectionThemeObject();
+$o = $pageTheme->getOptions();
 $navItems = $controller->getNavItems();
 
 foreach ($navItems as $ni) {
@@ -14,19 +16,8 @@ foreach ($navItems as $ni) {
 	$ni->classes = implode(" ", $classes);
 }
 
-?>
-<div class="small-display-nav-bar-inner">
-	<a id="hamburger-icon" href="#" title="Menu">
-	  <span class="line line-1"></span>
-	  <span class="line line-2"></span>
-	  <span class="line line-3"></span>
-	</a>
-	<div id="responsive_logo"><a href="<?php   echo BASE_URL ?>"></a></div>
-	<div class="overlay overlay-contentscale">
-		<nav>
-			<ul>
-				<li><a href="<?php  echo  BASE_URL ?>"><i class="fa fa-home"></i>
-</a></li><?php
+echo '<div class="' . ( $o->auto_hidde_top_bar ? 'auto-hidde-top-bar' : ''). ' small-display-nav-bar-inner Fixed">';
+Loader::PackageElement("navigation/mobile", 'theme_anitya', array('o' => $o));
 foreach ($navItems as $ni) {
 
 	echo '<li class="' . $ni->classes . '">'; //opens a nav item

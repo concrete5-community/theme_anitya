@@ -186,6 +186,8 @@ class Controller extends \Concrete\Core\Package\Package {
 							// Otherwise it's probably a render that is called from a programmatically ->render()
 							$a = $e->getArguments();
 							$v = $a['view'];
+							if (!method_exists($v,'getCollectionObject')) return;
+							// var_dump(get_class($v)); die();
 							$_c = $v->getCollectionObject();
 							$_cID = $_c->getCollectionID();
 

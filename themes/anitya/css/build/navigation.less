@@ -29,6 +29,9 @@ nav.main-nav {
 		position: relative;
 		top:0;
 	}
+	.img-background {
+		height: @top-nav-height-size;
+	}
 
 	&.fixedtop {
 		width: 100%;
@@ -42,7 +45,19 @@ nav.main-nav {
 			top:48px;
 		}
 		.logo img {
-			max-height: @top-nav-height-fixed-size;
+			position: absolute;
+	    display: block;
+	    max-width: 100%;
+	    max-height: 100%;
+	    left: 15px;
+	    top: 0px;
+	    bottom: 0;
+	    margin: auto;
+			// max-height: @top-nav-height-fixed-size;
+		}
+		// le template anitya_logo place l'image en temps que background
+		.img-background {
+		  height: @top-nav-height-fixed-size;
 		}
 		.dropdown-menu {
 			top: (@top-nav-height-fixed-size)-3;
@@ -353,13 +368,16 @@ li.mgm-multi-c-title {
       // position: relative;
       // top: 49px;
     }
+		.img-background {
+			height: @top-nav-height-fixed-size;
+		}
 }
 
 .small-display-nav-bar-inner {
     display: none;
     z-index: 1000;
     position: fixed;
-    height:@top-nav-height-fixed-size;
+    min-height:@top-nav-height-fixed-size;
     width: 100%;
     top:0px;
     background-color: @primary-color;
@@ -386,6 +404,7 @@ li.mgm-multi-c-title {
     span.nav-logo {
         display: inline-block;
         height:@top-nav-height-fixed-size;
+				min-width: 30%; // parce que le template logo est une image de fond, donc a besoin d'une largeur..
         overflow: hidden;
         margin-right: @space-s;
         svg {

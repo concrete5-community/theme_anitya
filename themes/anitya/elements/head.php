@@ -38,7 +38,7 @@ $o = $pageTheme->getOptions();
   $display_responsiveNav = ($responsiveNav->getTotalBlocksInAreaEditMode () > 0 || $responsiveNav->getTotalBlocksInArea() > 0 || $c->isEditMode()) && !$noNavigation ;
   ?>
   <?php if ($display_responsiveNav): ?>
-  <div class="small-display-nav-bar inherit-ccm-page"><?php $responsiveNav->display()?></div>
+  <div class="<?php echo  $o->auto_hidde_top_bar ? 'auto-hidde-top-bar' : '' ?> small-display-nav-bar inherit-ccm-page"><?php $responsiveNav->display()?></div>
   <?php endif; ?>
   <!-- End Responsive Nav -->
     <div class="<?php  echo $c->getPageWrapperClass()?> <?php echo $c->getAttribute('boxed_layout_mode') ? 'boxed-wrapper' : $o->layout_mode ?>">
