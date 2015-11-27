@@ -1,3 +1,4 @@
+2.0		- Release of the new generation.
 1.2.4	- Fix the full screen nav home icon url
 1.2.3 - Fix the ccm-page background
 1.2.1	- Add Thumbnail types in installer
