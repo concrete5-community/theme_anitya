@@ -1,15 +1,5 @@
 <?xml version="1.0"?>
 <concrete5-cif version="1.0">
-  <pagetypepublishtargettypes>
-    <type handle="parent_page" name="Always publish below a certain page" package=""/>
-    <type handle="all" name="Choose from all pages when publishing" package=""/>
-    <type handle="page_type" name="Choose from pages of a certain type" package=""/>
-  </pagetypepublishtargettypes>
-  <composercontroltypes>
-    <type handle="block" name="Block" package=""/>
-    <type handle="core_page_property" name="Built-In Property" package=""/>
-    <type handle="collection_attribute" name="Custom Attribute" package=""/>
-  </composercontroltypes>
   <pagetypes>
     <pagetype name="Page" handle="page" package="" launch-in-composer="0" is-frequently-added="1">
       <pagetemplates type="all" default="full"/>
@@ -309,7 +299,7 @@
           <block type="image" name="" custom-template="anitya_header.php">
             <style>
               <backgroundRepeat>no-repeat</backgroundRepeat>
-              <customClass>image-height-50 no-text</customClass>
+              <customClass>image-height-80 no-text</customClass>
             </style>
             <data table="btContentImage">
               <record>
@@ -335,7 +325,7 @@
       <area name="Main - 1">
         <style>
           <backgroundRepeat>no-repeat</backgroundRepeat>
-          <customClass>section-divider section-divider-quaternary area-quaternary sd-style-doublediagonal area-space-m</customClass>
+          <customClass>area-space-l</customClass>
         </style>
         <blocks>
           <block type="page_section" name="">
@@ -355,7 +345,7 @@
           <block type="horizontal_rule" name="">
             <style>
               <backgroundRepeat>no-repeat</backgroundRepeat>
-              <customClass>space-m</customClass>
+              <customClass>space-xl</customClass>
             </style>
           </block>
           <block type="core_area_layout" name="">
@@ -364,64 +354,8 @@
                 <column span="4" offset="0">
                   <style>
                     <backgroundRepeat>no-repeat</backgroundRepeat>
-                    <customClass>area-space-s</customClass>
+                    <customClass>area-tertiary sd-style-halfcircle section-divider-tertiary area-space-s</customClass>
                   </style>
-                  <block type="image" name="">
-                    <data table="btContentImage">
-                      <record>
-                        <fID>{ccm:export:file:400x400.png}</fID>
-                        <maxWidth><![CDATA[0]]></maxWidth>
-                        <maxHeight><![CDATA[0]]></maxHeight>
-                        <externalLink><![CDATA[]]></externalLink>
-                        <altText><![CDATA[]]></altText>
-                        <title><![CDATA[]]></title>
-                      </record>
-                    </data>
-                  </block>
-                </column>
-                <column span="4" offset="0">
-                  <style>
-                    <backgroundRepeat>no-repeat</backgroundRepeat>
-                    <customClass>area-space-s</customClass>
-                  </style>
-                  <block type="image" name="">
-                    <data table="btContentImage">
-                      <record>
-                        <fID>{ccm:export:file:400x400.png}</fID>
-                        <maxWidth><![CDATA[0]]></maxWidth>
-                        <maxHeight><![CDATA[0]]></maxHeight>
-                        <externalLink><![CDATA[]]></externalLink>
-                        <altText><![CDATA[]]></altText>
-                        <title><![CDATA[]]></title>
-                      </record>
-                    </data>
-                  </block>
-                </column>
-                <column span="4" offset="0">
-                  <style>
-                    <backgroundRepeat>no-repeat</backgroundRepeat>
-                    <customClass>area-space-s</customClass>
-                  </style>
-                  <block type="image" name="">
-                    <data table="btContentImage">
-                      <record>
-                        <fID>{ccm:export:file:400x400.png}</fID>
-                        <maxWidth><![CDATA[0]]></maxWidth>
-                        <maxHeight><![CDATA[0]]></maxHeight>
-                        <externalLink><![CDATA[]]></externalLink>
-                        <altText><![CDATA[]]></altText>
-                        <title><![CDATA[]]></title>
-                      </record>
-                    </data>
-                  </block>
-                </column>
-              </columns>
-            </arealayout>
-          </block>
-          <block type="core_area_layout" name="">
-            <arealayout type="theme-grid" columns="12">
-              <columns>
-                <column span="4" offset="0">
                   <block type="content" name="">
                     <data table="btContentLocal">
                       <record>
@@ -429,21 +363,77 @@
                       </record>
                     </data>
                   </block>
-                </column>
-                <column span="4" offset="0">
-                  <block type="content" name="">
-                    <data table="btContentLocal">
+                  <block type="image" name="">
+                    <style>
+                      <backgroundRepeat>no-repeat</backgroundRepeat>
+                      <customClass>area-space-m</customClass>
+                    </style>
+                    <data table="btContentImage">
                       <record>
-                        <content><![CDATA[<h4>Great solutions</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>]]></content>
+                        <fID>{ccm:export:file:abstract.svg}</fID>
+                        <maxWidth><![CDATA[0]]></maxWidth>
+                        <maxHeight><![CDATA[0]]></maxHeight>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <altText><![CDATA[]]></altText>
+                        <title><![CDATA[]]></title>
                       </record>
                     </data>
                   </block>
                 </column>
                 <column span="4" offset="0">
+                  <style>
+                    <backgroundRepeat>no-repeat</backgroundRepeat>
+                    <customClass>area-primary area-space-s sd-style-multitriangles section-divider-primary</customClass>
+                  </style>
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h4 style="text-align: center;">Great solutions</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="image" name="">
+                    <style>
+                      <backgroundRepeat>no-repeat</backgroundRepeat>
+                      <customClass>area-space-m</customClass>
+                    </style>
+                    <data table="btContentImage">
+                      <record>
+                        <fID>{ccm:export:file:planet.svg}</fID>
+                        <maxWidth><![CDATA[0]]></maxWidth>
+                        <maxHeight><![CDATA[0]]></maxHeight>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <altText><![CDATA[]]></altText>
+                        <title><![CDATA[]]></title>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="4" offset="0">
+                  <style>
+                    <backgroundRepeat>no-repeat</backgroundRepeat>
+                    <customClass>area-tertiary area-space-s sd-style-halfcircle section-divider-tertiary</customClass>
+                  </style>
                   <block type="content" name="">
                     <data table="btContentLocal">
                       <record>
                         <content><![CDATA[<h4>Design tools</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                  <block type="image" name="">
+                    <style>
+                      <backgroundRepeat>no-repeat</backgroundRepeat>
+                      <customClass>area-space-m</customClass>
+                    </style>
+                    <data table="btContentImage">
+                      <record>
+                        <fID>{ccm:export:file:satelit.svg}</fID>
+                        <maxWidth><![CDATA[0]]></maxWidth>
+                        <maxHeight><![CDATA[0]]></maxHeight>
+                        <externalLink><![CDATA[]]></externalLink>
+                        <altText><![CDATA[]]></altText>
+                        <title><![CDATA[]]></title>
                       </record>
                     </data>
                   </block>
@@ -597,11 +587,11 @@
           <block type="core_area_layout" name="" custom-template="two_nogap.php">
             <style>
               <backgroundRepeat>no-repeat</backgroundRepeat>
-              <customClass>right-tertiary left-secondary</customClass>
+              <customClass>left-secondary right-primary</customClass>
             </style>
             <arealayout type="theme-grid" columns="12">
               <columns>
-                <column span="6" offset="0">
+                <column span="4" offset="0">
                   <style>
                     <backgroundRepeat>no-repeat</backgroundRepeat>
                     <customClass>area-space-horizontal area-space-l</customClass>
@@ -614,15 +604,15 @@
                     </data>
                   </block>
                 </column>
-                <column span="6" offset="0">
+                <column span="6" offset="2">
                   <style>
                     <backgroundRepeat>no-repeat</backgroundRepeat>
-                    <customClass>area-tertiary area-space-horizontal area-space-l</customClass>
+                    <customClass>area-space-horizontal area-space-l area-primary</customClass>
                   </style>
-                  <block type="page_list" name="" custom-template="anitya_portfolio.php">
+                  <block type="page_list" name="" custom-template="anitya_curtain.php">
                     <style>
                       <backgroundRepeat>no-repeat</backgroundRepeat>
-                      <customClass>tag-sorting no-gap 2-column popup-link</customClass>
+                      <customClass>tag-sorting no-gap 2-column popup-link is-masonry</customClass>
                     </style>
                     <data table="btPageList">
                       <record>
@@ -661,6 +651,73 @@
               </columns>
             </arealayout>
           </block>
+          <block type="horizontal_rule" name="">
+            <style>
+              <backgroundRepeat>no-repeat</backgroundRepeat>
+              <customClass>space-l</customClass>
+            </style>
+          </block>
+          <block type="core_area_layout" name="">
+            <arealayout type="theme-grid" columns="12">
+              <columns>
+                <column span="4" offset="0">
+                  <block type="content" name="">
+                    <data table="btContentLocal">
+                      <record>
+                        <content><![CDATA[<h3>Last from blog  </h3><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>]]></content>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+                <column span="6" offset="2">
+                  <block type="page_list" name="" custom-template="anitya_date_event.php">
+                    <style>
+                      <backgroundRepeat>no-repeat</backgroundRepeat>
+                      <customClass>1-column</customClass>
+                    </style>
+                    <data table="btPageList">
+                      <record>
+                        <num><![CDATA[3]]></num>
+                        <orderBy><![CDATA[display_asc]]></orderBy>
+                        <cThis><![CDATA[0]]></cThis>
+                        <useButtonForLink><![CDATA[0]]></useButtonForLink>
+                        <buttonLinkText><![CDATA[]]></buttonLinkText>
+                        <pageListTitle><![CDATA[]]></pageListTitle>
+                        <filterByRelated><![CDATA[0]]></filterByRelated>
+                        <filterByCustomTopic><![CDATA[0]]></filterByCustomTopic>
+                        <filterDateOption><![CDATA[]]></filterDateOption>
+                        <filterDateDays><![CDATA[0]]></filterDateDays>
+                        <filterDateStart><![CDATA[]]></filterDateStart>
+                        <filterDateEnd><![CDATA[]]></filterDateEnd>
+                        <relatedTopicAttributeKeyHandle><![CDATA[]]></relatedTopicAttributeKeyHandle>
+                        <customTopicAttributeKeyHandle><![CDATA[]]></customTopicAttributeKeyHandle>
+                        <customTopicTreeNodeID><![CDATA[0]]></customTopicTreeNodeID>
+                        <includeName><![CDATA[1]]></includeName>
+                        <includeDescription><![CDATA[1]]></includeDescription>
+                        <includeDate><![CDATA[1]]></includeDate>
+                        <includeAllDescendents><![CDATA[0]]></includeAllDescendents>
+                        <paginate><![CDATA[0]]></paginate>
+                        <displayAliases><![CDATA[0]]></displayAliases>
+                        <enableExternalFiltering><![CDATA[0]]></enableExternalFiltering>
+                        <ptID>{ccm:export:pagetype:work}</ptID>
+                        <truncateSummaries><![CDATA[0]]></truncateSummaries>
+                        <displayFeaturedOnly><![CDATA[0]]></displayFeaturedOnly>
+                        <noResultsMessage><![CDATA[]]></noResultsMessage>
+                        <displayThumbnail><![CDATA[0]]></displayThumbnail>
+                        <truncateChars><![CDATA[0]]></truncateChars>
+                      </record>
+                    </data>
+                  </block>
+                </column>
+              </columns>
+            </arealayout>
+          </block>
+          <block type="horizontal_rule" name="">
+            <style>
+              <backgroundRepeat>no-repeat</backgroundRepeat>
+              <customClass>space-l</customClass>
+            </style>
+          </block>
           <block type="page_section" name="">
             <data table="btPageSection">
               <record>
@@ -685,7 +742,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:1366-768.png}</fID>
+                        <fID>{ccm:export:file:shutterstock_241730380.jpg}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -703,7 +760,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:1366-768.png}</fID>
+                        <fID>{ccm:export:file:shutterstock_181044401.jpg}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -758,7 +815,7 @@
                   <block type="testimonial" name="" custom-template="anitya_box_small.php">
                     <data table="btTestimonial">
                       <record>
-                        <fID>{ccm:export:file:1366-500.png}</fID>
+                        <fID>{ccm:export:file:portrait-bg.jpg}</fID>
                         <name><![CDATA[John Doe]]></name>
                         <position><![CDATA[Boss]]></position>
                         <company><![CDATA[Anitya]]></company>
@@ -770,7 +827,7 @@
                   <block type="testimonial" name="" custom-template="anitya_box_small.php">
                     <data table="btTestimonial">
                       <record>
-                        <fID>{ccm:export:file:400x400.png}</fID>
+                        <fID>{ccm:export:file:portrait-1.jpg}</fID>
                         <name><![CDATA[John Doe]]></name>
                         <position><![CDATA[Designer]]></position>
                         <company><![CDATA[Anitya]]></company>
