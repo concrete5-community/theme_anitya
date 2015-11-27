@@ -1,4 +1,7 @@
 .anitya-accordion {
+  dl {
+    margin: 0
+  }
   .title {
     margin-left: 0;
     a {
@@ -11,7 +14,7 @@
       .transition(all 0.3s ease-in-out);
       overflow: hidden;
       font-weight: 300;
-    i {
+    i.switch {
       float: right;
       position: relative;
       left: -8px;
@@ -20,28 +23,22 @@
       .transition(all 0.3s ease-in-out);
       }
     }
-     &.active i {
+     &.active i.switch {
       opacity: .9;
-      .transform(rotate(0deg));      
+      .transform(rotate(0deg));
     }
   }
 
 
   .content {
     overflow: hidden;
-
+    margin: 0;
     .content-inner {
-      // .transition(transform .3s ease);
-      // .transform (scale(.5));  
       padding: @space-s;
-
     }
     &.active {
       display: block;
-      .content-inner {
-        // .transform (scale(1));  
-      }
-    }  
+    }
     .page-list-accordion-thumbnail {
       width: 20%;
       float: left;
@@ -59,23 +56,23 @@
     // -- content
 
   // Default behavior
-  .accordion-mixin-color(@brand-white-color; @link-color; @brand-light-color);
+  .accordion-mixin-color(@white-color; @link-color; @light-color);
 
-  .accordion-primary & {
-    .accordion-mixin-color(@brand-primary-color; @brand-primary-text-color; @brand-light-color);
-  }  // Customs Behavior 
-  .accordion-secondary & {
-    .accordion-mixin-color(@brand-secondary-color; @brand-secondary-text-color; @brand-light-color);
+  .element-primary & {
+    .accordion-mixin-color(@primary-color; @primary-text-color; @light-color);
+  }  // Customs Behavior
+  .element-secondary & {
+    .accordion-mixin-color(@secondary-color; @secondary-text-color; @light-color);
   }
-  .accordion-tertiary & {
-    .accordion-mixin-color(@brand-tertiary-color; @brand-tertiary-text-color; @brand-light-color);
+  .element-tertiary & {
+    .accordion-mixin-color(@tertiary-color; @tertiary-text-color; @light-color);
   }
-  .accordion-quaternary & {
-    .accordion-mixin-color(@brand-quaternary-color; @brand-quaternary-text-color; @brand-light-color);
+  .element-quaternary & {
+    .accordion-mixin-color(@quaternary-color; @quaternary-text-color; @light-color);
   }
-  .accordion-light & {
-    .accordion-mixin-color(@brand-light-color; @brand-black-color; @brand-white-color);
-  } 
+  .element-light & {
+    .accordion-mixin-color(@light-color; @black-color; @white-color);
+  }
 
   .ui-accordion-header {
     border: 0;
@@ -83,8 +80,8 @@
     padding: 0 @space-m;
     border-radius: 0;
     outline: none;
-    font-size: @body-type-font-size;
-    line-height: @space-m;    
+    font-size: @body-font-size;
+    line-height: @space-m;
   }
   .ui-accordion-content {
     border: 0;
@@ -108,7 +105,7 @@
         background-color: darken(@color, 5%);
     }
     i {
-      color: @light;
+      color: fade(@contrast,30%);
       }
     }
      &.active i {
@@ -118,7 +115,10 @@
   .content {
     .content-inner {
       background-color: @light;
-      // color: @brand-primary-text-color;
+      p,li,span {
+        color: @body-type-color !important;
+      }
+
     }
   }
 }

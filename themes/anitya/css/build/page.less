@@ -8,19 +8,23 @@ body {
 
 .boxed-wrapper { // (.ccm-page.boxed-wrapper)
   background-color: @content-bg-color;
-	box-shadow: 0px 0px 5px 0px fade(@brand-black-color,20%);
+	box-shadow: 0px 0px 5px 0px fade(@black-color,20%);
   width: 1200px;
   margin: 0 auto;
+	#sub-header-1.area-space-s {
+		padding: 0;
+	}
 }
 
-/* -- Wrpper -- */
+/* -- Wrapper -- */
 
 .an {
-	opacity: 0;
+	// opacity: 0;
 	.transition(all .5s ease);
+	overflow: hidden;
 }
 div.loaded {
-	opacity: 1;
+	// opacity: 1;
 }
 
 // -- Full wrapped page type -- \\
@@ -29,6 +33,85 @@ div.loaded {
 	background-color: @content-wrapped-color;
 	background-clip: content-box;
 }
+
+@media screen and (max-width: 720px){
+
+        height: auto;
+
+    & nav {
+        height: auto;
+        width: auto;
+        display: block;
+        text-align: center;
+    }
+
+}
+
+// -- Responsive nav --\\
+
+.small-display-nav-bar {
+	.edit-mode & {
+		margin-top: 49px;
+	}
+}
+
+
+.intro {
+	width: 100%;
+	background-size: auto;
+	background-position: 50% 50%;
+	background-color: @intro-image-default-color;
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+	min-height: 300px;
+	// N'est généré que si il y a une video
+	#video_header_bg {
+		margin: auto;
+		height: 100%;
+	}
+	.gotobottom {
+		position: absolute;
+		display: none;
+		bottom: 80px;
+		width: 100%;
+		font-size: 60px;
+		text-shadow: 0 0 12px fade(@black-color,50%);
+		color: @white-color;
+		text-align: center;
+		z-index: 10;
+	}
+	.edit-mode &  {
+		overflow: visible;
+		position: static;
+	}
+}
+
+
+#intro-content {
+	position: absolute;
+	left: 50%;
+	// margin-top: 9%;
+	top:45%;
+	z-index: 5;
+}
+
+#sub-header-1 {
+	background-color: @white-color;
+	h1, h2, h3 {
+		margin: 0; padding: 0;
+	}
+	> hr, hr:last-of-type {
+		background: none;
+		height: @space-s;
+		margin: 0 !important;
+	}
+}
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { /* zoom: 1; */ }
+
 
 // -- Right & left Sidebar -- \\
 
@@ -42,7 +125,7 @@ div.loaded {
 
  #footer-bottom nav, #footer-bottom .nav {
 	li + li {
-		border-top: 1px solid darken(@brand-quaternary-color,5%);
+		border-top: 1px solid darken(@quaternary-color,5%);
 	}
  }
 
@@ -60,7 +143,7 @@ div.loaded {
 }
 
 #main-lead {
-	background-color: @brand-white-color;
+	background-color: @white-color;
 	padding: 15px;
 	margin-top: 15px;
 }
@@ -75,9 +158,13 @@ div.loaded {
 	padding: 60px 0;
 	background-color: @footer-bottom-background-color;
 }
-#footer-top * {
-	color: @footer-top-text-color;
+#footer-top {
+	p,li,span,:not(.void){
+		color: @footer-top-text-color;
+	}
 }
-#footer-bottom * {
-	color: @footer-bottom-text-color;
+#footer-bottom {
+	p,li,span,:not(.void){
+		color: @footer-bottom-text-color;
+	}
 }

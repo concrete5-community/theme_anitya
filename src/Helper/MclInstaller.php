@@ -1,5 +1,8 @@
 <?php
 namespace Concrete\Package\ThemeAnitya\Src\Helper;
+
+use Concrete\Core\Backup\ContentImporter;
+
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
 use Page;
@@ -8,6 +11,7 @@ use SinglePage;
 use PageType;
 use BlockType;
 use Block;
+use Stack;
 use PageTheme;
 use Loader;
 use Core;
@@ -18,8 +22,9 @@ use UserAttributeKey;
 use \Concrete\Core\Block\BlockType\Set as BlockTypeSet;
 use \Concrete\Core\Attribute\Type as AttributeType;
 use \Concrete\Core\Attribute\Key\Category as AttributeKeyCategory;
+use Concrete\Core\Editor\Snippet as SystemContentEditorSnippet;
 
-class MclInstaller
+class MclInstaller extends ContentImporter
 {
 
     protected static $mcBlockIDs = array();
@@ -47,6 +52,7 @@ class MclInstaller
     protected function doImport($sx)
     {
         $this->importSinglePage($sx);
+        $this->importStacksStructure($sx);
         $this->importBlockTypes($sx);
         $this->importBlockTypeSets($sx);
         $this->importAttributeCategories($sx);
@@ -54,12 +60,22 @@ class MclInstaller
         $this->importAttributes($sx);
         $this->importAttributeSets($sx);
         $this->importThemes($sx);
-        $this->importPageTemplates($sx);
         $this->importFileImportantThumbnailTypes($sx);
+        $this->importSystemContentEditorSnippets($sx);
+
+        $this->importPageTemplates($sx);
+        $this->importPageTypesBase($sx);
+        $this->importPageStructure($sx);
+        $this->importPageFeeds($sx);
+        $this->importPageTypeTargets($sx);
+        $this->importPageTypeDefaults($sx);
+        $this->importSinglePageContent($sx);
+        $this->importStacksContent($sx);
+        $this->importPageContent($sx);
 
     }
 
-    protected function getPackageObject()
+    protected function getMclPackage()
     {
         return $this->pkg;
     }
@@ -69,7 +85,7 @@ class MclInstaller
 
         if (isset($sx->singlepages)) {
             foreach ($sx->singlepages->page as $p) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $sP = Page::getByPath($p['path']);
                 if (!is_object($sP) || $sP->isError()) {
                     $sP = SinglePage::add($p['path'],$pkg);
@@ -79,12 +95,25 @@ class MclInstaller
         }
     }
 
+    protected function importStacksStructure(\SimpleXMLElement $sx)
+    {
+        if (isset($sx->stacks)) {
+            foreach ($sx->stacks->stack as $p) {
+                $tack = Stack::getByName($p['name']);
+                if (!is_object($stack)) :
+                  $type = isset($p['type']) ? Stack::mapImportTextToType($p['type']) : 0 ;
+                  Stack::addStack($p['name'], $type);
+                endif;
+            }
+        }
+    }
+
 
     protected function importPageTemplates(\SimpleXMLElement $sx)
     {
         if (isset($sx->pagetemplates)) {
             foreach ($sx->pagetemplates->pagetemplate as $pt) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $ptt = PageTemplate::getByHandle($pt['handle']);
                 if (!is_object($ptt)) {
                     $ptt = PageTemplate::add(
@@ -103,11 +132,11 @@ class MclInstaller
     {
         if (isset($sx->blocktypes)) {
             foreach ($sx->blocktypes->blocktype as $bt) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 if (is_object($pkg)) {
                     if (!BlockType::getByHandle((string) $bt['handle']))
                         BlockType::installBlockTypeFromPackage((string) $bt['handle'], $pkg);
-                } 
+                }
             }
         }
     }
@@ -116,7 +145,7 @@ class MclInstaller
     {
         if (isset($sx->attributetypes)) {
             foreach ($sx->attributetypes->attributetype as $at) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $name = $at['name'];
                 if (!$name) {
                     $name = Loader::helper('text')->unhandle($at['handle']);
@@ -139,7 +168,7 @@ class MclInstaller
     {
         if (isset($sx->themes)) {
             foreach ($sx->themes->theme as $th) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $pThemeHandle = (string)$th['handle'];
                 $pt = PageTheme::getByHandle($pThemeHandle);
                 if (!is_object($pt)) {
@@ -158,7 +187,7 @@ class MclInstaller
             foreach ($sx->thumbnailtypes->thumbnailtype as $l) {
                 $thumbtype = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle((string) $l['handle']);
                 if (is_object($thumbtype)) continue;
-                
+
                 $type = new \Concrete\Core\File\Image\Thumbnail\Type\Type();
                 $type->setName((string) $l['name']);
                 $type->setHandle((string) $l['handle']);
@@ -171,13 +200,13 @@ class MclInstaller
             }
         }
     }
-    
+
 
     protected function importAttributeCategories(\SimpleXMLElement $sx)
     {
         if (isset($sx->attributecategories)) {
             foreach ($sx->attributecategories->category as $akc) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $akx = AttributeKeyCategory::getByHandle($akc['handle']);
                 if (!is_object($akx)) {
                     $akx = AttributeKeyCategory::add($akc['handle'], $akc['allow-sets'], $pkg);
@@ -193,7 +222,7 @@ class MclInstaller
             foreach ($sx->attributekeys->attributekey as $ak) {
 
                 $akc = AttributeKeyCategory::getByHandle($ak['category']);
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $type = AttributeType::getByHandle($ak['type']);
                 $txt = Loader::helper('text');
                 $c1 = '\\Concrete\\Core\\Attribute\\Key\\' . $txt->camelcase(
@@ -201,8 +230,8 @@ class MclInstaller
                     ) . 'Key';
 
                 $akID = $db->GetOne( "SELECT ak.akID FROM AttributeKeys ak INNER JOIN AttributeKeyCategories akc ON ak.akCategoryID = akc.akCategoryID  WHERE ak.akHandle = ? AND akc.akCategoryHandle = ?", array($ak['handle'],  $akc->getAttributeKeyCategoryHandle()));
-                // $test = $c1::getByHandle($ak['handle']);
-                if(!$akID) 
+
+                if(!$akID)
                     call_user_func(array($c1, 'import'), $ak);
                     // ISSUE : This create tha attribute but this one is not loadable for now, i think from a cache issue.
                     // It is impossible to retrieve the attribute to embed in a set for example.
@@ -215,8 +244,8 @@ class MclInstaller
                     if (count($row)) :
                         $new_akID = $row['akID'];
                         // We need to change the value 'akIsAutoCreated' for file attribute otherwise it is not available in the file properties
-                        if ($ak['category'] == 'file') 
-                            $db->Execute('UPDATE AttributeKeys SET akIsAutoCreated = 0 WHERE AttributeKeys.akID = ?',array($new_akID));                        
+                        if ($ak['category'] == 'file')
+                            $db->Execute('UPDATE AttributeKeys SET akIsAutoCreated = 0 WHERE AttributeKeys.akID = ?',array($new_akID));
                         $this->installedAk[$row['akHandle']] = $new_akID;
                     endif;
             }
@@ -231,7 +260,7 @@ class MclInstaller
                 $set = \Concrete\Core\Attribute\Set::getByHandle((string) $as['handle']); // Ici il faudrait que l'on charge un set relatif a uen categorie, au sinon, les set ne peuvent pas avoir les meme handle suivant les catégories
                 $akc = AttributeKeyCategory::getByHandle($as['category']);
                 if (!is_object($set)) {
-                    $pkg = $this->getPackageObject();
+                    $pkg = $this->getMclPackage();
                     $set = $akc->addSet((string)$as['handle'], (string)$as['name'], $pkg, $as['locked']);
                 }
                 // var_dump($akc);
@@ -243,7 +272,7 @@ class MclInstaller
                             $do = $db->GetOne('select max(displayOrder) from AttributeSetKeys where asID = ?', array($set->getAttributeSetID()));
                             $do++;
                             $db->Execute('insert into AttributeSetKeys (asID, akID, displayOrder) values (?, ?, ?)', array($set->getAttributeSetID(), $akID, $do));
-                        }                   
+                        }
                     } else {
                         $ak = $akc->getAttributeKeyByHandle((string)$ask['handle']);
                         if (is_object($ak)) {
@@ -254,11 +283,26 @@ class MclInstaller
             }
         }
     }
+
+    protected function importSystemContentEditorSnippets(\SimpleXMLElement $sx)
+    {
+        if (isset($sx->systemcontenteditorsnippets)) {
+            foreach ($sx->systemcontenteditorsnippets->snippet as $th) {
+                $pkg = $this->getMclPackage();
+                $scs = SystemContentEditorSnippet::getByHandle($th['handle']);
+                if (is_object($scs)) continue;
+                $scs = SystemContentEditorSnippet::add($th['handle'], $th['name'], $pkg);
+                $scs->activate();
+
+            }
+        }
+    }
+
     protected function importBlockTypeSets(\SimpleXMLElement $sx)
     {
         if (isset($sx->blocktypesets)) {
             foreach ($sx->blocktypesets->blocktypeset as $bts) {
-                $pkg = $this->getPackageObject();
+                $pkg = $this->getMclPackage();
                 $set = BlockTypeSet::getByHandle((string)$bts['handle']);
                 if (!is_object($set)) {
                     $set = BlockTypeSet::add((string)$bts['handle'], (string)$bts['name'], $pkg);
@@ -270,6 +314,54 @@ class MclInstaller
                     }
 
                 }
+            }
+        }
+    }
+    public function importPageAreas(Page $page, \SimpleXMLElement $px)
+    {
+        foreach ($px->area as $ax) {
+            if (isset($ax->blocks)) {
+                foreach ($ax->blocks->block as $bx) {
+                    if ($bx['type'] != '') {
+                        // we check this because you might just get a block node with only an mc-block-id, if it's an alias
+                        $bt = BlockType::getByHandle((string) $bx['type']);
+                        if (!is_object($bt)) {
+                            throw new \Exception(t('Invalid block type handle: %s', strval($bx['type'])));
+                        }
+                        $btc = $bt->getController();
+                        $btc->import($page, (string) $ax['name'], $bx);
+                    } else {
+                        if ($bx['mc-block-id'] != '') {
+                            // we find that block in the master collection block pool and alias it out
+                            $bID = array_search((string) $bx['mc-block-id'], self::$mcBlockIDs);
+                            if ($bID) {
+                                $mc = Page::getByID($page->getMasterCollectionID(), 'RECENT');
+                                $block = Block::getByID($bID, $mc, (string) $ax['name']);
+                                $block->alias($page);
+
+                                if ($block->getBlockTypeHandle() == BLOCK_HANDLE_LAYOUT_PROXY) {
+                                    // we have to go get the blocks on that page in this layout.
+                                    $btc = $block->getController();
+                                    $arLayout = $btc->getAreaLayoutObject();
+                                    $columns = $arLayout->getAreaLayoutColumns();
+                                    foreach ($columns as $column) {
+                                        $area = $column->getAreaObject();
+                                        $blocks = $area->getAreaBlocksArray($mc);
+                                        foreach ($blocks as $_b) {
+                                            $_b->alias($page);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (isset($ax->style)) {
+                $area = \Area::get($page, (string) $ax['name']);
+                $set = StyleSet::import($ax->style);
+                $page->setCustomStyleSet($area, $set);
             }
         }
     }

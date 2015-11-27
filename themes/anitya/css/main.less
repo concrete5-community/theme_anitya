@@ -1,34 +1,33 @@
 /* Import our theme variables. */
 @import "presets/defaults.less";
-
-/* Import Bootstrap files */
-@import "build/bootstrap/bootstrap.less";
+@import "variables.less";
 
 @import "build/mixins.less";
 
 @import ~"@{preset-fonts-file}";
 
-@import "build/body.less";
+@import "build/scaffolding.less";
 
 // Structure
-@import "build/header.less";
 @import "build/page.less";
+@import "build/masonry.less";
 
 // Elements
 @import "build/box-arrow.less";
 @import "build/label.less";
-@import "build/breadcrumb.less";
+@import "build/navigation.less";
 @import "build/hr.less";
-@import "build/decorative-header.less";
 @import "build/accordion.less";
+@import "build/tabs.less";
+@import "build/alerts.less";
 
 // Blocks
+@import "build/blocks.less";
 @import "build/blocks/autonav.less";
 @import "build/blocks/feature.less";
 @import "build/blocks/testimonial.less";
 @import "build/blocks/page-list.less";
 @import "build/blocks/image-slider.less";
-@import "build/blocks/image.less";
 @import "build/blocks/page-attribute-display.less";
 @import "build/blocks/faq.less";
 @import "build/blocks/topics.less";
@@ -37,9 +36,10 @@
 
 // Global classes
 @import "build/typography.less";
+@import "build/buttons.less";
 @import "build/flip.less";
-@import "build/list.less";
 @import "build/area-classes.less";
+@import "build/images.less";
 
 // Custom Design classes
 @import "build/custom-design-classes/content.less";
@@ -55,6 +55,7 @@
 
 // jQuery addons
 @import "build/addons/nprogress.less";
+@import "build/addons/mmenu-theme.less";
 
 
 body  when not(@body-bg-pattern-image = ""){

@@ -1,14 +1,19 @@
-<?php   defined('C5_EXECUTE') or die("Access Denied.");?>
+<?php   defined('C5_EXECUTE') or die("Access Denied.");
+$type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('tiny');
+$f = \File::getByID($fID);
+if($type != NULL && is_object($f))
+    $thumbnailUrl = $f->getThumbnailURL($type->getBaseVersion());
+?>
 <div class="tm-wrapper tm-small">
     <?php  if ($paragraph): ?>
         <div class="box-arrow framed desc"><?php  echo $paragraph?></div>
     <?php  endif; ?>
-        
-            
-                    
+
+
+
     <div class="details clearfix">
-        <?php  if ($image): ?>
-            <div class="image"><?php  echo $image?></div>
+        <?php  if ($thumbnailUrl): ?>
+            <div class="image" style="background-image:url('<?php echo $thumbnailUrl ?>')"></div>
         <?php  endif; ?>
         <div class="infos">
             <h5><?php  echo $name?></h5>

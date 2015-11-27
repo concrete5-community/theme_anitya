@@ -1,6 +1,6 @@
 .label, .ribbon, .ribbon:after {
 	.transition(background 0.1s linear);
-	font-family: @font-family-sans-serif;
+	// font-family: @font-family-sans-serif;
 }
 
 
@@ -21,16 +21,16 @@
 	.label-color (rgba(0, 0, 0, 0.65);#E8E8E8 );
 
 	&.primary {
-		.label-color (@brand-primary-color; @brand-primary-text-color);
+		.label-color (@primary-color; @primary-text-color);
 	}
 	&.secondary {
-		.label-color (@brand-secondary-color; @brand-secondary-text-color);
+		.label-color (@secondary-color; @secondary-text-color);
 	}
 	&.tertiary {
-		.label-color (@brand-tertiary-color; @brand-tertiary-text-color);
+		.label-color (@tertiary-color; @tertiary-text-color);
 	}
 	&.quaternary {
-		.label-color (@brand-quaternary-color; @brand-quaternary-text-color);
+		.label-color (@quaternary-color; @quaternary-text-color);
 	}
 
 }
@@ -45,7 +45,7 @@
 	padding: .5em .8em;
 	color: rgba(0,0,0,.65);
 	text-transform: uppercase;
-	font-weight: 400;	
+	font-weight: 400;
 	margin:0 @space-s 0 -@space-s;
 	padding-left: @space-m;
 	border-radius: 0 4px 4px 0;
@@ -63,16 +63,16 @@
 	}
 
 	&.primary {
-		.ribbon-color (@brand-primary-color; @brand-primary-text-color);
+		.ribbon-color (@primary-color; @primary-text-color);
 	}
 	&.secondary {
-		.ribbon-color (@brand-secondary-color; @brand-secondary-text-color);
+		.ribbon-color (@secondary-color; @secondary-text-color);
 	}
 	&.tertiary {
-		.ribbon-color (@brand-tertiary-color; @brand-tertiary-text-color);
+		.ribbon-color (@tertiary-color; @tertiary-text-color);
 	}
 	&.quaternary {
-		.ribbon-color (@brand-quaternary-color; @brand-quaternary-text-color);
+		.ribbon-color (@quaternary-color; @quaternary-text-color);
 	}
 
 }
@@ -93,7 +93,7 @@
 			border-color: transparent darken(@bg, 5%) transparent transparent;
 		}
 
-	}	
+	}
 	&:after {
 		border-color: transparent darken(@bg, 10%) transparent transparent;
 	}

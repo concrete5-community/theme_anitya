@@ -20,7 +20,7 @@ if ($linkURL) {
 	    </div>
 	</div>
 	    <?php  if ($title) { ?>
-	        <h4 class="box-arrow full primary-inverse"> <?php  echo $title?></h4>
+	        <h4 class="box-arrow block primary"> <?php  echo $title?></h4>
 	    <?php  } ?>
 	    <?php  if ($paragraph) { ?>
 	        <p><?php  echo $paragraph?></p>

@@ -1,0 +1,190 @@
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: @btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  font-weight: 300;
+  .button-size(@space-xxs; @space-s; @font-size-base; @line-height-base);
+  .user-select(none);
+  .transition(.3s);
+
+  // &,
+  // &:active,
+  // &.active {
+  //   &:focus {
+  //     .tab-focus();
+  //   }
+  // }
+
+  &:hover,
+  &:focus {
+    color: @btn-default-color;
+    border-color: @btn-default-border;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    .box-shadow(inset 0 3px 5px fade(@btn-default-border,10%));
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    opacity:.65;
+    .box-shadow(none);
+  }
+}
+
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-default {
+  background-color: transparent;
+  border-color: fade(@btn-default-color,80%);
+  color:fade(@btn-default-color,80%);
+  // .button-variant(@btn-default-color; transparent; @btn-default-color)
+}
+.btn-primary {
+  .button-variant(@primary-color; transparent; @primary-color)
+}
+.btn-secondary {
+  .button-variant(@secondary-color; transparent; @secondary-color)
+}
+// Success appears as green
+.btn-success {
+  .button-variant(@success-color; transparent; @success-color)
+}
+// Info appears as blue-green
+.btn-info {
+  .button-variant(@info-color; transparent; @info-color)
+}
+// Warning appears as orange
+.btn-warning {
+  .button-variant(@warning-color; transparent; @warning-color)
+}
+// Danger and error appear as red
+.btn-danger {
+  .button-variant(@danger-color; transparent; @danger-color)
+}
+
+.btn-plain {
+  &.btn-default {
+    .button-fill(@btn-default-color);
+  }
+  &.btn-primary {
+    .button-fill(@primary-color);
+  }
+  &.btn-secondary {
+    .button-fill(@secondary-color);
+  }
+  &.btn-success {
+    .button-fill(@success-color);
+  }
+  &.btn-info {
+    .button-fill(@info-color);
+  }
+  &.btn-warning {
+    .button-fill(@warning-color);
+  }
+  &.btn-danger {
+    .button-fill(@danger-color);
+  }
+}
+
+// --  Button Sizes -- \\
+
+.btn-lg {
+  .button-size(@space-s; @space-m; @font-size-large; @line-height-large);
+}
+.btn-sm {
+  .button-size(@space-xs; @space-s; @font-size-small; @line-height-small);
+}
+.btn-xs {
+  .button-size(@space-xxs/2; @space-xs; @font-size-small; @line-height-small);
+}
+.btn-block {
+  .button-size(@space-s; @space-m; @font-size-large; @line-height-large);
+  width:100%;
+}
+
+// --  Block button -- \\
+
+.btn-block {
+  display: block;
+  width: 100%;
+  &  + .btn-block {
+    margin-top: 5px;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+// --   Button float -- \\
+.pull-right.btn,.pull-left.btn,
+.pull-right .btn,.pull-left .btn {
+  margin: @space-s;
+}
+
+
+// -- Mixins -- \\
+
+// Default colors
+
+.button-variant(@color; @background; @border ) {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+
+  &:hover,
+  &:focus,
+  &:active
+  {
+    color:darken(@color,10%);
+    background-color: fade(@color,10%);
+    border-color: darken(@border,20%);
+  }
+}
+
+// Plain Colors
+
+.button-fill(@background; @color:contrast(@background,@white-color,@black-color,50%); @border:darken(@background,7%) ) {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+
+  &:hover,
+  &:focus,
+  &:active
+  {
+    background-color: saturate(@background,20%);
+    border-color: saturate(@border,10%);
+  }
+}
+
+// Button sizes
+
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  line-height: @line-height;
+  // border-radius: @border-radius;
+}

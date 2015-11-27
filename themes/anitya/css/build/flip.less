@@ -1,7 +1,7 @@
 .flip {
   .perspective(1000);
 
-  &:hover .flipper,  
+  &:hover .flipper,
   &.hover .flipper {
     .transform( rotateY(180deg));
     .edit-mode & {
@@ -11,12 +11,14 @@
 
   &, .front, .back {
     width: 100%;
-    height: 100%;
+    .transition(0.6s);
   }
 
   .flipper {
     .transition(0.6s);
     .transform-style(preserve-3d);
+    .backface-visibility(hidden);
+    -webkit-transform: scale(1);
 
     position: relative;
 
@@ -33,14 +35,13 @@
   }
 
   .front {
-    background: #fff;
+    // background: #fff;
     z-index: 2;
   }
 
   .back {
     .transform(rotateY(180deg));
-
-    background: #f8f8f8;
+    // background: #f8f8f8;
   }
 
 

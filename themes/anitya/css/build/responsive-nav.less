@@ -1,23 +1,19 @@
-.small-display-nav-bar-inner {
-    display: none;
-    z-index: 1000;
-    position: fixed;
-    height: 45px;
-    width: 100%;
-    background-color: @brand-primary-color;
-    .edit-mode & {
-        display: block;
-        position: relative;
-        z-index: auto;
+
+.nav-collapse {
+  margin-top:@top-nav-height-fixed-size;
+  li {
+    border-bottom: 1px solid fade(@primary-text-color,10%);
+    &:last-child {
+      border: none;
     }
-    .go-to-home {
-        position: absolute;
-        right: 20px;
-        top: 6px;
-        color: @brand-primary-text-color;
-        font-size: 25px;        
-    }
+  }
+  a {
+    display: block;
+    padding: @space-xs @space-s;
+    color: @primary-text-color;
+  }
 }
+
 #responsive_logo {
     float: left;
     & * {
@@ -34,7 +30,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: fade(@brand-primary-color,80%);
+    background: fade(@primary-color,80%);
     z-index: 1;
     overflow: scroll;
     nav {
@@ -59,10 +55,10 @@
                 font-size: 54px;
                 font-weight: 300;
                 display: block;
-                color: fade(@brand-primary-text-color,80%);
+                color: fade(@primary-text-color,80%);
                 .transition(color 0.2s);
                 &:hover {
-                    color: @brand-primary-text-color;
+                    color: @primary-text-color;
                 }
             }
             &.active {
@@ -70,7 +66,7 @@
                     font-weight: 600;
                 }
                 & > a:before {
-                    .triangle-right(@space-s/2,fade(@brand-primary-text-color,80%));
+                    .triangle-right(@space-s/2,fade(@primary-text-color,80%));
                     position: absolute;
                     left: -@space-s ;
                     top: 50%;
@@ -134,20 +130,20 @@
   display:block;
   margin: 10px ;
   z-index: 2;
-  float: left;
+  float: right;
   &:focus {
     outline: none;
   }
   .line {
     display:block;
-    background:@brand-primary-text-color;
+    background:@primary-text-color;
     width:@width-line;
     height:@height-line;
     position:absolute;
     left:0;
     border-radius:(@height-line / 2);
     .transition(all @transition-time);
-    
+
     &.line-1 {
       top:0;
     }
@@ -170,4 +166,3 @@
     }
   }
 }
-

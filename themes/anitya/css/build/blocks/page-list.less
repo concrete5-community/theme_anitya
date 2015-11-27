@@ -1,8 +1,3 @@
-// TODO : Move thios to a better place 
-.glued-3 {
-	width: 33.3333333%;
-	float: left;	
-}
 
 // TODO : LE css Bootstrap breadcrumb fait déjà bcp de ceci
 // cursor: changer la classe .tag par breadcrumb
@@ -18,12 +13,50 @@
 }
 
 
-.page-list {
+.ccm-page-list {
 	h1, h2, h3, h4 {
 		margin: 0 0 @space-s 0;
 		line-height: 1em;
 	}
 }
+
+
+
+// -- this is used to create a layer on the image
+.ccm-page-list .info {
+  position: absolute;
+  top:0;right: 0;bottom: 0;left: 0;
+  padding: @space-s;
+  background-color: fade(@light-color, 90%);
+  text-align: center;
+  // Basic animation
+  opacity: 0;
+  .transition(.3s);
+  &:hover {
+    opacity: 1;
+  }
+  p {
+    font-size: @font-size-small;
+    margin-bottom: @space-s;
+    // line-height:
+  }
+  h4{
+    position: relative;
+    padding-bottom: @space-xs;
+    margin-bottom: @space-xs;
+    &:after {
+      content:"";
+      position: absolute;
+      width: @space-s;
+      height: 2px;
+      background-color: @black-color;
+      bottom: 0;
+      left: 50%;
+      margin-left: -@space-s/2;
+    }
+    }
+}
+
 
 // -- The default page-list template from C5 -- \\
 
@@ -31,25 +64,25 @@
 .ccm-block-page-list-page-entry-horizontal {
 	margin-bottom: @space-m;
 	padding: @space-s;
-	border-bottom: 3px solid @brand-primary-color;	
-	background: @brand-white-color;
+	border-bottom: 3px solid @primary-color;
+	background: @white-color;
 }
 
 .ccm-block-page-list-title {
 	margin-bottom: @space-s;
 	font-weight: lighter;
 	font-size: 18px;
-	color: @brand-primary-color;
+	color: @primary-color;
 }
 .ccm-block-page-list-page-entry-read-more {
 	float: right;
-	background-color:@brand-primary-color;
+	background-color:@primary-color;
 	padding: @space-s/2 @space-s;
 	margin-right: -20px;
-	margin-bottom: -20px;	
+	margin-bottom: -20px;
 	a {
-		color: @brand-primary-text-color;
-	} 
+		color: @primary-text-color;
+	}
 }
 // Pour rectifier le "read more" qui est en float
 .ccm-block-page-list-wrapper:after,
@@ -61,66 +94,9 @@
 	clear: both;
 }
 
+// -- Date
 
-// -- Page-slider 1 page -- \\
-// TODO : Rendre le flickity reurtilisable pour des slide multi-page
-
-.flickity-1-page {
-	.captions {
-		position: absolute;
-		top:15%;
-		left: 15%;
-		width: 70%;
-
-		.image-caption(@brand-primary-color, @brand-primary-text-color);
-		.date {
-			display: inline-block;
-			float: right;
-			font-size: @space-s;
-			
-		}
-	}
-	.gallery-cell {
-		overflow: hidden;
-		background-size: cover;
-		.transform-origin(50%);
-		.scale(.8);
-		.transition(transform .3s ease);
-		&.is-selected {
-			.transform(scale(1));
-		}
-	}
-	/* smaller, dark, rounded square */
-	.flickity-prev-next-button {
-	  width: @space-m;
-	  height: @space-m;
-	  border-radius: 0;
-	  background-color: fade(@brand-primary-color,80%);
-	  .transition(background .2s ease);
-	  outline: none;
-	  &:hover {
-	  	background-color: @brand-primary-color;
-	  }
-	}
-	/* arrow color */
-	.flickity-prev-next-button .arrow {
-	  fill: @brand-primary-text-color;
-	}
-	.flickity-prev-next-button.no-svg {
-	  color: @brand-primary-text-color;
-	}
-	.dummy {
-		position: absolute;
-		background-color: fade(@brand-white-color, 50%);
-		height: 100%;
-		width: 100%;
-	}
-
-}
-
-
-.event-date {
-	// Pour que l'on puisse mettre un background sous le bloc, on met du padding :
+.page-list-date-event {
 	.event {
 		&:first-child {
 			padding-top: @space-s;
@@ -128,6 +104,10 @@
 		&:last-child {
 			padding-bottom: @space-s;
 		}
+	}
+	.inner {
+		background-color: @white-color;
+		padding-bottom: 1px;
 	}
 	.content {
 		padding: 0 @space-m;
@@ -144,7 +124,7 @@
 }
 
 
-.img-based {
+.page-list-image-based {
 	.item {
 		// TODO : ajuster cette hauteur pour les mobiles
 		overflow: hidden;
@@ -154,18 +134,22 @@
 		}
 
 		&.pair {
-			background-color: @brand-primary-color;
-			* {
-				color: @brand-primary-text-color
+			.inner {
+				background-color: @primary-color;
+				* {
+					color: @primary-text-color
+				}
 			}
 		}
 		&.impair {
-			background-color: @brand-secondary-color;
-			* {
-				color: @brand-primary-text-color
+			.inner {
+				background-color: @secondary-color;
+				* {
+					color: @primary-text-color
+				}
 			}
 		}
-		.info {
+		.infos {
 			padding: @space-s;
 
 			h2 {
@@ -173,35 +157,73 @@
 			}
 		}
 		img {
-			max-height: 400px;
+			max-height: 450px;
 		}
 		.topics {
 			float: right;
 			opacity: .4;
 		}
 	}
+	&.slick-wrapper.wrapper-1-column {
+		.item {
+			background-color:none;
+			.thumb {
+				max-height: 400px;
+				overflow: hidden;
+			}
+			img {
+				max-height: none;
+			}
+			.info {
+				position: absolute;
+				right: 0;
+		    left: 0;
+				bottom: 0;
+				background-color:fade(@black-color,80%);
+				opacity: 0;
+				.transition(.3s);
+				* {
+					color:@white-color;
+				}
+
+			}
+		}
+		&:hover {
+			.info {
+				opacity:1
+			}
+		}
+	}
+
 }
-.img-date-based {
+
+
+
+.page-list-date-image-based {
 	.item {
 		overflow: hidden;
-		background-color: @brand-white-color;
+		.inner {
+			background-color: @white-color;
+			&:hover {
+				background-color: @secondary-color;
+			}
+		}
 
 		&:hover {
-			background-color: @brand-secondary-color;
 			.info, h4 {
-				color: @brand-secondary-text-color;
+				color: @secondary-text-color;
 			}
 			.date {
-				background-color: @brand-secondary-text-color;
-				color: @brand-secondary-color; 
+				background-color: @secondary-text-color;
+				color: @secondary-color;
 			}
-		}		
+		}
 	}
 	picture {
 		max-height: 350px;
 		display: block;
 	}
-	.info {
+	.infos {
 		padding: @space-s;
 		min-height: @space-l * 3;
 	}
@@ -211,47 +233,40 @@
 		margin-top: 0;
 		top: -(@space-s * 2);
 		margin-bottom: -(@space-s * 2);
-		height: @space-xl;
+		height: @space-l;
 		padding: @space-s @space-m 0 @space-s;
-		background-color: @brand-primary-color;
-		color: @brand-primary-text-color;
+		background-color: @primary-color;
+		color: @primary-text-color;
 		& + * {
-			margin-top: -@space-s+5;
+			// margin-top: -@space-s+5;
 		}
 	}
 	p {
-		
+
 	}
-}
-.img-date-based.gallery {
-	.gallery-cell {
-		// width: 40%;
-		// margin-right: 2%;
-		float: left;
-		height: auto;
-		background-color: @brand-white-color;
-		// margin-bottom: @space-s;
+	&.slick-wrapper {
 	}
-	picture {
-	}
-	.info {
-	}
-	.date {
-		// height: @space-l;
-		font-size: 14px;
-		padding: @space-s @space-m 0 @space-s;
-	}	
 }
 
-.text-based {
+.page-list-text-based {
 	& * {
-		color: @brand-primary-color;
+		color: @primary-color;
 	}
-	
 	.item {
-		background-color: @brand-white-color;
-		min-height: @space-m * 8;
-		padding: @space-s;
+		.inner {
+			background-color: @white-color;
+			padding: @space-s;
+			&:hover {
+				background-color: @secondary-color;
+				* {
+					color: @secondary-text-color;
+				}
+				hr {
+					background-color: @secondary-text-color;
+				}
+			}
+		}
+		// min-height: @space-m * 8;
 		hr {
 			margin: 0;
 		}
@@ -264,19 +279,248 @@
 				float: left;
 				width: @space-l;
 				margin-right: @space-s;
-			}		
+			}
+		}
+	}
+}
+
+
+.page-list-icon {
+	.item {
+		.inner {
+			padding: @space-s;
+			background-color: @primary-color;
+		}
+		i,p,h5,a {
+			color: @primary-text-color;
+			text-align: center;
+			.transition(.2s);
+		}
+		h5 {
+			text-transform: uppercase;
+			font-weight: 300;
+			border-bottom: 1px solid transparent;
+			padding-bottom: @space-s;
+		}
+		p {
+			opacity: 0;
+			.transform(translateY(@space-xxs));
+		}
+		.iconwrapper {
+			font-size: 3rem;
+			line-height: 13rem;
+			text-align: center;
+			.transition(.2s);
+			i {
+				// margin: @space-m 0;
+			}
+		}
+		&:hover {
+			.inner {
+				background-color: darken(@primary-color,5%);
+			}
+			.iconwrapper {
+				font-size: 6rem;
+			}
+			p {
+				.transform(translateY(0));
+				opacity: 1;
+			}
+			h5 {
+				.transform(translateY(@space-xxs));
+				border-bottom-color: @primary-text-color;
+				// padding-bottom: @space-xxs;
+			}
 		}
 
-
-		&:hover {
-			background-color: @brand-secondary-color;
-			* {
-				color: @brand-secondary-text-color;
-			}
-			hr {
-				background-color: @brand-secondary-text-color;
-			}
-		}	
 	}
+}
 
+
+//  -- Card -- \\
+
+.page-list-card figure{
+	position: relative;
+    background-color: @white-color;
+		overflow: hidden;
+    * {
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+    img {
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    figcaption {
+        padding: @space-s;
+        position: relative;
+    }
+    .date, i {
+       background-color: @primary-color;
+       top: @space-s;
+       color: @primary-text-color !important;
+       left: @space-s;
+       min-height: 60px;
+       min-width: 60px;
+       position: absolute;
+       text-align: center;
+   }
+    h3, p {
+       margin: 0;
+       padding: 0;
+   }
+    .date {
+        -webkit-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+        font-size: 22px;
+        text-transform: uppercase;
+        span {
+            display: block;
+            line-height: 30px;
+        }
+        .month {
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+    i {
+        line-height: 60px;
+        font-size: 30px;
+        -webkit-transform: rotateY(-90deg);
+        transform: rotateY(-90deg);
+        -webkit-transition-delay: 0s;
+        transition-delay: 0s;
+    }
+    h3 {
+        margin-bottom: 10px;
+        display: inline-block;
+        color: @black-color;
+        text-transform: uppercase;
+    }
+    p {
+        font-size: 	@font-size-small;
+        margin-bottom: @space-s;
+        line-height: 1.6;
+    }
+    & > a {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 1;
+    }
+    &:hover img,&.hover img {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    &:hover .date,&.hover .date {
+        -webkit-transform: rotateY(90deg);
+        transform: rotateY(90deg);
+        -webkit-transition-delay: 0s;
+        transition-delay: 0s;
+    }
+    &:hover i,&.hover i {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+        -webkit-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+    }
+}
+
+.curtain figure {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    * {
+        -webkit-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+    }
+    img {
+        vertical-align: top;
+    }
+		.placeholder {
+			padding: 50% 0;
+		}
+    figcaption {
+        top: 50%;
+        left: @space-s;
+        right: @space-s;
+        position: absolute;
+        opacity: 0;
+        z-index: 1;
+    }
+    h6 {
+        font-weight: 100;
+				.col-md-3 & {
+					font-size: 13px;
+					line-height: 1.4;
+				}
+    }
+    h4 {
+        font-weight: 100;
+        text-transform: uppercase !important;
+    }
+    i {
+        font-size: 32px;
+    }
+		small {
+			display: block;
+			margin-bottom: @space-xs;
+		}
+		h6,h4,i {
+			margin-bottom: @space-xs;
+		}
+    & > a {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 1;
+    }
+
+    &:after {
+        background-color: fade(@light-color,80%);
+        position: absolute;
+        content: "";
+        display: block;
+        top: @space-xs;
+        left: @space-xs;
+        right: @space-xs;
+        bottom: @space-xs;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 0;
+				.area-primary & {
+					background-color: fade(@primary-color,90%);
+				}
+				.area-secondary & {
+					background-color: fade(@secondary-color,90%);
+				}
+				.area-tertiary & {
+					background-color: fade(@tertiary-color,90%);
+				}
+				.area-quaternary & {
+					background-color: fade(@quaternary-color,90%);
+				}
+    }
+    &:hover figcaption,&.hover figcaption {
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        opacity: 1;
+        -webkit-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+    }
+    &:hover:after,&.hover:after {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        opacity: 0.9;
+    }
 }

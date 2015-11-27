@@ -1,0 +1,70 @@
+/* -- Popup-me -- */
+
+@max-popup-width: 500px;
+@max-large-popup-width: 800px;
+
+.mfp-effect.mfp-wrap .mfp-content {
+  .transition(.5s);
+}
+.white-popup {
+  position: relative;
+  background: @white-color;
+  padding: @space-s;
+  width:auto;
+  max-width: @max-popup-width;
+  margin: 20px auto;
+  &.large-popup {
+    max-width: @max-large-popup-width !important;
+    padding: @space-m;
+  }
+}
+
+/* -- Form in popup -- */
+
+.white-popup div.ccm-block-type-form div.form-group label.control-label {
+	font-weight: normal;
+}
+.white-popup span.text-muted.small {
+	font-size: 13px;
+	color: @primary-color;
+}
+
+/* -- Button for popup -- */
+
+a.mpf-inline.open-popup-link {
+	margin-bottom: @space-s
+}
+
+// -- Content Block -- \\
+
+// Image caption is alsoused in image.less
+.image-caption {
+  padding: @space-xs @space-s;
+  background-color: fade(@light-color,90%);
+  color: @grey-color;
+  font-size: @font-size-small;
+  p {
+    margin: 0
+  }
+}
+.image-caption-inside {
+  .image-caption();
+  position: absolute;
+  z-index: 1;
+  left: 15px;
+  right: 15px;
+  background-color: fade(@light-color,60%);
+  color: fade(@black-color,90%);
+  transform: translateY(-100%);
+  .edit-mode & {
+    position: relative;
+    transform: translateY(0);
+  }
+}
+
+// -- Page Attribute --- \\
+#sub-header-1 p.ccm-block-page-attribute-display-wrapper {
+  padding-bottom: @space-xs;
+  border-bottom: 1px solid @grey-color;
+
+}

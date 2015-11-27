@@ -1,3 +1,22 @@
+// -- Slider template for image-slider block -- //
+
+.an-image-slider {
+  .content-inner {
+    position: absolute;
+    width: 45%;
+    left: 0;
+    top: 10%;    
+    padding: 0 @space-s;
+  }
+  p,h3 {
+    color: @white-color;
+    font-weight: 300;
+    line-height: 1.1;
+    text-shadow:0 0 3px fade(@black-color, 80%)
+  }
+}
+
+
 .ccm-image-slider-container {
 
   background-color: transparent;
@@ -5,7 +24,7 @@
   /* background-image is moved to main.less because it needs to be in the theme root */
 
   .ccm-image-slider {
-  
+
     .rslides {
       li {
         max-height: 500px;
@@ -22,7 +41,7 @@
   .ccm-image-slider-text {
     // Width's defined in responsive.less
     left: 15%;
-    .image-caption(@brand-primary-color, @brand-primary-text-color);
+    .image-caption(@primary-color, @primary-text-color);
   }
 
   &.ccm-block-image-slider-arrows {
@@ -46,7 +65,7 @@
       margin-right: 5px;
       &.rslides_here {
         a {
-          background: @brand-primary-color;
+          background: @primary-color;
         }
       }
       a {
@@ -69,11 +88,11 @@
   height: 38px;
   margin-top: -20px;
   width: 38px;
-  color: @brand-primary-text-color !important;
-  background-color: @brand-primary-color !important;
+  color: @primary-text-color !important;
+  background-color: @primary-color !important;
   &:hover {
       opacity: .8;
-  }  
+  }
   &.next {
     .transition(background .35s ease-in-out);
     right: 40px;

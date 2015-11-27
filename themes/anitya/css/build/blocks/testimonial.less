@@ -8,22 +8,21 @@
     .details {
         .image {
             margin: @space-s auto;
+            width: @space-m;
+            height: @space-m;
+            background-size: cover;
+            background-position: center;
             overflow: hidden;
-            img {
-                // Drole de truc pour que les images plus large que haute rentrent bien
-            width: 150px;
-            height: 150px;
             border-radius: 100%;
-            }
         }
         text-align: center;
         p {
             font-size: @font-size-small;
-            // color: @gray;
+            // color: @grey-color;
         }
         h5,p {
             margin: 0;
-        }   
+        }
     }
 }
 .tm-wrapper.tm-small {

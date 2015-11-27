@@ -4,5 +4,6 @@
         <pagetemplate icon="left_sidebar.png" name="Left Sidebar" handle="left_sidebar" package="theme_anitya" internal=""/>
         <pagetemplate icon="right_sidebar.png" name="Right Sidebar" handle="right_sidebar" package="theme_anitya" internal=""/>
         <pagetemplate icon="full.png" name="Full Wrapped" handle="full_wrapped" package="theme_anitya" internal=""/>
+        <pagetemplate icon="full.png" name="Simple content" handle="one_page_details" package="theme_anitya" internal=""/>
     </pagetemplates>
 </concrete5-cif>

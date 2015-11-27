@@ -3,18 +3,20 @@
 use Concrete\Core\Block\View\BlockView;
 
 $c = Page::getCurrentPage();
+$pageTheme = $c->getCollectionThemeObject();
+$open = $pageTheme->getClassSettingsPrefixInt($b,'open');
+
 $cp = new Permissions($c);
 if ($cp->canViewPageVersions()) {
-	$stack = Stack::getByID($stID);	
+	$stack = Stack::getByID($stID);
 } else {
 	$stack = Stack::getByID($stID, 'ACTIVE');
 }
-if (is_object($stack)) { 
+if (is_object($stack)) {
 	$ax = Area::get($stack, STACKS_AREA_NAME);
 	$axp = new Permissions($ax);
 	if ($axp->canRead()) {
-        $ax->disableControls();
-		//$ax->display($stack);
+    $ax->disableControls();
 		$blocks = $ax->getAreaBlocksArray();
 	}
 }
@@ -23,14 +25,14 @@ if (is_array($blocks) && count($blocks)): ?>
 	 <dl>
 	<?php foreach ($blocks as $key => $block) :
 			$bv = new BlockView($block); ?>
-       	<dt class="title <?php echo $key === 0 ? 'active' : '' ?>">
-            <a href=""><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?>
-                <i class='fa fa-chevron-down icon'></i>
+       	<dt class="title <?php echo $key === $open ? 'active' : '' ?>">
+            <a href="" class="accordion-title void"><?php echo $block->getBlockName() ? $block->getBlockName() : t('Title ') . $key ?>
+                <i class='fa fa-chevron-down icon switch'></i>
             </a>
-        </dt>		
-        <dd class="content <?php echo $key === 0 ? 'active' : '' ?>">
+        </dt>
+        <dd class="content <?php echo $key === $open ? 'active' : '' ?> void">
 			<div class='content-inner'><?php echo $bv->render('view') ?></div>
-        </dd>				
+        </dd>
 	<?php endforeach ?>
 	</dl>
 </div>

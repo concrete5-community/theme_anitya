@@ -10,3 +10,41 @@
 @import "mixins/font-size.less";
 
 @import "mixins/image-caption.less";
+
+@import "mixins/vendor-prefixes.less";
+
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+.reset-container {
+  width: 100%;
+  left: 0;
+  margin: 0 auto;
+}
+// -- Container
+
+.container-fixed(@gutter: @grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+  .clearfix();
+}
+
+// -- Clearfix
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}

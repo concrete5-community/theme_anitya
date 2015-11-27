@@ -1,39 +1,54 @@
-
-// -- HR tag -- \\
-// Les classe se trouve POUR les HR (hr.class)
-// ainsi que pour les style de bloc (div.class > hr)
-hr {
+hr.dashed {
+    margin: 30px auto;
     border: 0;
-    height: 5px;
-    margin: (@space-l / 2)-2 auto (@space-l / 2)-3 auto;  // 79px height
-    background-color: @brand-quaternary-color; // darken(@brand-tertiary-color, 20%);
+    border-bottom: 1px dashed fade(@black-color, 50%);
+    background:fade(@black-color, 90%) ;
+}
 
-    &.primary, .primary & { background: @brand-primary-color }
-    &.secondary, .secondary & { background: @brand-secondary-color }
-    &.tertiary, .tertiary & { background: @brand-tertiary-color }
-    &.quaternary, .quaternary & { background: @brand-quaternary-color }
+hr {
+    position: relative;
+    border: 0;
+    height: 1px;
+    margin: (@space-l / 2)-.1 auto (@space-l / 2) auto;  // 60px height
+    background-color: @grey-color;
+    clear: both;
+
+    &.primary{ background: @primary-color }
+    &.secondary { background: @secondary-color }
+    &.tertiary { background: @tertiary-color }
+    &.quaternary { background: @quaternary-color }
+
+    // Pour ceux qui sont dans des boxes coloré, on prend sont contraste
+    .primary & { background: @primary-text-color }
+    .secondary & { background: @secondary-text-color }
+    .tertiary & { background: @tertiary-text-color }
+    .quaternary & { background: @quaternary-text-color }
 
     &.thin, .thin & {
-        background:@brand-quaternary-color;// darken(@brand-tertiary-color,5%);
+        background: darken(@tertiary-color,5%);
         height:1px;
     }
     &.dotted, .dotted & {
          border-bottom-style:dotted;
     }
-    &.space-s, &.space-m, &.space-l, &.space-xl, .space-s &, .space-m &, .space-l &, .space-xl & {
-        background: none;
+    &.space-s, &.space-m, &.space-l, &.space-xl,
+    .space-s &, .space-m &, .space-l &, .space-xl & {
+        background: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        &:after {display: none;}
     }
-    &.space-s, .space-s & { margin: @space-s auto (@space-s)-1 auto }  
-    &.space-m, .space-m & {} // Inherit from default
-    &.space-l, .space-l & { margin: @space-l auto (@space-l)-1 auto}
-    &.space-xl, .space-xl & { margin: @space-xl auto (@space-xl)-1 auto}
-}
 
+    &.space-s, .space-s & { height: @space-s !important}
+    &.space-m, .space-m & { height: @space-m !important}
+    &.space-l, .space-l & { height: @space-l !important}
+    &.space-xl, .space-xl & { height: @space-xl !important}
+  }
 // HR under elements
 .hr-bold {
     padding-bottom: 25px;
     margin-bottom: 24px;
-    border-bottom: 5px solid @brand-quaternary-color;
+    border-bottom: 5px solid @quaternary-color;
 }
 
 // Element under Content block

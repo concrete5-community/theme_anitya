@@ -2,3 +2,15 @@
 	.zero-list();
 	text-transform: uppercase;
 }
+.nav.simple, .nav {
+	padding: @space-s 0;
+	a {
+		padding-left:@space-xs;
+	}
+	li.active,
+	li:hover,
+	li.nav-selected,
+	li.nav-path-selected {
+		background: fade(@grey-color,10%);
+	}
+}

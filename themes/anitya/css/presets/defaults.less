@@ -1,43 +1,57 @@
 @preset-name: "Blue lime";
-@preset-icon: concrete-icon(#499DB7, #4f3d38, #97c4b9);
+@preset-icon: concrete-icon(#C14953, #4f3d38, #97c4b9);
 @preset-fonts-file: "build/fonts/defaults.less";
 
 
 // -- Global color -- \\
 
 
-	@brand-primary-color : 		#499DB7;
-	@brand-secondary-color : 	#ba433c;
-	@brand-tertiary-color : 	#f8f7f6; // A light color // edf4f4
-	@brand-quaternary-color : 	#4b4750; // A darker color
+	@primary-color : 		#f24b4b;
+	@secondary-color : 	#457B9D;
+	@tertiary-color : 	#F7F2EF; // A light color // edf4f4
+	@quaternary-color : 	#4F5659; // A darker color
 
-	@brand-white-color: 			#ffffff;
-	@brand-black-color : 			#1f2222;
-	@brand-grey-color : 			lighten(@brand-black-color, 50%);
-	@brand-light-color : 			darken(@body-bg-color,2%);
+	@white-color: 			#ffffff;
+	@black-color : 			#1f2222;
+	@grey-color : 			lighten(@black-color, 50%);
+	@light-color : 			darken(@body-bg-color,2%);
 
-	@brand-primary-text-color :  	contrast(@brand-primary-color, @brand-black-color, @brand-white-color,50%);
-	@brand-secondary-text-color : 	contrast(@brand-secondary-color, @brand-black-color, @brand-white-color,50%);
-	@brand-tertiary-text-color : 	contrast(@brand-tertiary-color, @brand-black-color, @brand-white-color,50%);
-	@brand-quaternary-text-color : 	contrast(@brand-quaternary-color, @brand-black-color, @brand-white-color,50%);
+	@primary-text-color :  	contrast(@primary-color, @black-color, @white-color,50%);
+	@secondary-text-color : 	contrast(@secondary-color, @black-color, @white-color,50%);
+	@tertiary-text-color : 	contrast(@tertiary-color, @black-color, @white-color,50%);
+	@quaternary-text-color : 	contrast(@quaternary-color, @black-color, @white-color,50%);
 
-	@brand-primary-light-color : 		hsl(hue(@brand-primary-color),saturation(@brand-primary-color),95%);
-	@brand-secondary-light-color : 		hsl(hue(@brand-secondary-color),saturation(@brand-secondary-color),95%);
-	@brand-tertiary-light-color : 		hsl(hue(@brand-tertiary-color),saturation(@brand-tertiary-color),95%);
-	@brand-quaternary-light-color : 	hsl(hue(@brand-quaternary-color),saturation(@brand-quaternary-color),95%);	
+	@primary-light-color : 		hsl(hue(@primary-color),saturation(@primary-color),95%);
+	@secondary-light-color : 		hsl(hue(@secondary-color),saturation(@secondary-color),95%);
+	@tertiary-light-color : 		hsl(hue(@tertiary-color),saturation(@tertiary-color),95%);
+	@quaternary-light-color : 	hsl(hue(@quaternary-color),saturation(@quaternary-color),95%);
 
-	@brand-success-color:         #5cb85c;
-	@brand-info-color:            #5bc0de;
-	@brand-warning-color:         #f0ad4e;
-	@brand-danger-color:          #d9534f;
+	@success-color:         #5cb85c;
+	@info-color:            #5bc0de;
+	@warning-color:         #f0ad4e;
+	@danger-color:          #d9534f;
 
+	@state-success-text:             #3c763d;
+	@state-success-bg:               hsl(hue(@success-color),saturation(@success-color),90%);
+	@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
 
+	@state-info-text:                #31708f;
+	@state-info-bg:                  hsl(hue(@info-color),saturation(@info-color),90%);
+	@state-info-border:              darken(spin(@state-info-bg, -10), 7%);
+
+	@state-warning-text:             #8a6d3b;
+	@state-warning-bg:               hsl(hue(@warning-color),saturation(@warning-color),90%);
+	@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+
+	@state-danger-text:              #a94442;
+	@state-danger-bg:                hsl(hue(@danger-color),saturation(@danger-color),90%);
+	@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
 // -- Global Page -- \\
 
 	// Page
 	@body-bg-color:               #fcfbfa;
-	@body-bg-pattern-image:       "../images/pattern/noise.png"; 
-	@content-bg-color: 			#fff;	
+	@body-bg-pattern-image:       "../images/pattern/noise.png";
+	@content-bg-color: 			#fff;
 
 	// Elements
 	@sidebar-bg-color: 				lighten(@body-bg-color, 2%);
@@ -45,90 +59,96 @@
 	// Couleur pour les element avec fond blanc
 	@content-wrapped-color: 		@sidebar-bg-color;
 
-	@body-type-font-family: "Open Sans", "Open Sans", "Helvetica";
-	@body-type-color: 		#4b4750;
-	@body-type-font-size: 	16px;
-	@body-type-font-weight: 400;
-	
-	// links
-	@link-color:            #499DB7;
-	@link-hover-color:      darken(@link-color, 15%);
 
 
 
 // -- Header -- \\
 
 	// Top nav
-	@top-nav-bg-color : 	@brand-white-color;
-	@top-nav-text-color : 	@brand-primary-color;
-	@top-nav-text-hover : 	lighten(@brand-primary-color, 10%);
+	@top-nav-bg-color : 	@white-color;
+	@top-nav-text-color : 	@black-color;
+	@top-nav-text-hover : 	lighten(@primary-color, 10%);
 	@top-nav-height-size : 		90px;
 	@top-nav-height-fixed-size :60px;
 	@top-nav-top-size :			20px;
 
+	@nav-dropdown-bg-color : 	@white-color;
+	@nav-megamenu-bg-color : 	@white-color;
+	@nav-dropdown-a-color : 	@black-color;
+
 	// Intro
-	@intro-image-default-color : @brand-primary-color;
-	@intro-image-default-image : "../images/pattern/triangular.png";
+	@intro-image-default-color : @primary-color;
+	@intro-image-default-image : "../images/pattern/60-lines.png";
 	@intro-image-height-size: 	640px;
 	@intro-height-without-img-size: 	350px; // When they are no images
 
 	// Subs header
-	@sub-header-1-bg-color : @brand-white-color;;
+	@sub-header-1-bg-color : @white-color;;
 	@sub-header-1-type-font-family: "Open Sans";
 	@sub-header-1-type-color: #254c4c;
 	@sub-header-1-type-font-size: 3.1em;
 	@sub-header-1-type-font-weight: 700;
 
-	@sub-header-2-bg-color : @brand-primary-color;
-	@sub-header-2-text-color : 	@brand-primary-text-color;
+	@sub-header-2-bg-color : @primary-color;
+	@sub-header-2-text-color : 	@primary-text-color;
 
 
-// -- Headings -- \\
+	// -- Typography -- \\
+
+	@body-type-color 		: 		@black-color;
+
+	@body-font-size 		: 		14px;
+	@font-size-base 		: 		@body-font-size;
+	@font-size-large 		: 		1.8rem;
+	@font-size-small 		: 		1.2rem;
+	@body-type-font-weight : 	normal;
+
+	@line-height-base 		: 	1.9;
+	@line-height-computed 	: floor((@font-size-base * @line-height-base)); // ~20px
+	@line-height-large : 			2.5;
+	@line-height-small : 			1.1;
+	// links
+	@link-color:            @primary-color;
+	@link-darken : 					darken(@link-color, 15%);
+	@link-hover-color:      @link-darken;
+
+	@btn-default-color : 		@grey-color;
+	@btn-default-border : 	@grey-color;
+	@btn-default-bg : 			transparent;
+	@btn-font-weight : 			normal;
 
 
-	@h1-type-font-family: "Open Sans";
-	@h1-type-color: @brand-primary-color; // #348e9d;
-	@h1-type-font-size: 48px;
-	@h1-type-font-weight: 700;
+	@h1-color: @primary-color;
+	@h2-color: @primary-color;
+	@h3-color: @primary-color;
+	@h4-color: @black-color;
+	@h5-color: @black-color;
+	@h6-color: @black-color;
 
-	@h2-type-font-family: "Open Sans";
-	@h2-type-color: @brand-primary-color; // #348e9d;
-	@h2-type-font-size: 36px;
-	@h2-type-font-weight: 700;
+	@headings-small-color : @grey-color;
 
-	@h3-type-font-family: "Open Sans";
-	@h3-type-color: @brand-primary-color; // #348e9d;
-	@h3-type-font-size: 30px;
-	@h3-type-font-weight: 700;
+	@font-family-monospace :  Menlo, Monaco, Consolas, "Courier New", monospace;
 
-	@h4-type-font-family: "Open Sans";
-	@h4-type-color: @brand-black-color; // #348e9d;
-	@h4-type-font-size: 24px;
-	@h4-type-font-weight: 400;
+	@pre-bg: 						#f5f5f5;
+	@pre-color: 				@grey-color;
+	@pre-border-color:  @light-color;
 
-	@h5-type-font-family: "Open Sans";
-	@h5-type-color: @brand-black-color; // #348e9d;
-	@h5-type-font-size: 18px;
-	@h5-type-font-weight: 400;
-	// @h5-type-text-transform: uppercase;
+	@code-color: 				#c7254e;
+	@code-bg:          	@light-color;
+	@breadcrumb-separator: "/";
 
-	@h6-type-font-family: "Open Sans";
-	@h6-type-color: @brand-black-color; // #348e9d;
-	@h6-type-font-size: 16px;
-	@h6-type-font-weight: 400;
-	// @h6-type-text-transform: uppercase;
 
 
 // -- Footer -- \\
 
 
 	// Backgrounds
-	@footer-top-background-color: 		@brand-primary-color;
-	@footer-bottom-background-color: 	@brand-quaternary-color;
+	@footer-top-background-color: 		@primary-color;
+	@footer-bottom-background-color: 	@quaternary-color;
 
 	// Text
-	@footer-top-text-color: 			contrast(@brand-primary-color, @brand-black-color, @brand-white-color,50%);
-	@footer-bottom-text-color: 			contrast(@brand-quaternary-color, @brand-black-color, @brand-white-color,50%);;
+	@footer-top-text-color: 			contrast(@primary-color, @black-color, @white-color,50%);
+	@footer-bottom-text-color: 			contrast(@quaternary-color, @black-color, @white-color,50%);;
 
 	// Links
 	@footer-link-color: #75ca2a;
@@ -153,12 +173,3 @@
 	@image-slider-paragraph-type-font-family: "Open Sans";
 	@image-slider-paragraph-type-font-size: 1.1em;
 	@image-slider-paragraph-type-font-weight: 400;
-
-// -- Miscalenous -- \\
-
-	@space-s : 19px;
-	@space-m : 49px;
-	@space-l : 79px;
-	@space-xl : 90px;
-	@space-xxl : @space-l*2;
-
