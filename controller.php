@@ -23,6 +23,7 @@ use FileList;
 use PageList;
 use StackList;
 use Config;
+use Database;
 use Concrete\Core\StyleCustomizer\Style\ValueList;
 
 use Concrete\Package\ThemeAnitya\Src\Helper\MclInstaller;
@@ -63,7 +64,7 @@ class Controller extends \Concrete\Core\Package\Package {
 		$this->pkg = parent::install();
 
 	// Theme options
-		$o = new \Concrete\Package\ThemeAnitya\Src\Models\MclOptions($c);
+		$o = new MclOptions($c);
 		$o->install_db($data['spHandle']);
 
 	// Setting up the editor clips
@@ -77,8 +78,13 @@ class Controller extends \Concrete\Core\Package\Package {
 
 	}
 	public function upgrade () {
+		parent::upgrade();
 		$this->pkg = $this;
-		$this->installOrUpgrade($data);
+		$this->installOrUpgrade();
+
+		// Theme options
+		$o = new MclOptions($c);
+		$o->update_db();
 	}
 
 	private function installOrUpgrade($data = array()) {
@@ -187,7 +193,6 @@ class Controller extends \Concrete\Core\Package\Package {
 							$a = $e->getArguments();
 							$v = $a['view'];
 							if (!method_exists($v,'getCollectionObject')) return;
-							// var_dump(get_class($v)); die();
 							$_c = $v->getCollectionObject();
 							$_cID = $_c->getCollectionID();
 
@@ -196,6 +201,9 @@ class Controller extends \Concrete\Core\Package\Package {
 
 							$session = \Core::make('session');
 
+							$db = Database::connection();
+							$tableExist = $db->executeQuery("SHOW TABLES LIKE 'AnityaOptions'");
+							if (!$tableExist->FetchRow()) return;
 							$mcl = new MclOptions($c);
 							// Register options into the session
 							$options = $mcl->get_options_from_active_preset_ID();
