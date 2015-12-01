@@ -39,7 +39,7 @@ class Controller extends \Concrete\Core\Package\Package {
 	protected $pkgHandle = 'theme_anitya';
 	protected $themeHandle = 'anitya';
 	protected $appVersionRequired = '5.7.3';
-	protected $pkgVersion = '2.0';
+	protected $pkgVersion = '2.0.1';
 	protected $pkg;
 	protected $pkgAllowsFullContentSwap = true;
 	protected $startingPoint;
@@ -53,7 +53,7 @@ class Controller extends \Concrete\Core\Package\Package {
 		return t("Anitya Theme");
 	}
 
-	public function install($data) {
+	public function install($data = array()) {
 
 		$this->startingPoint = $data['spHandle'];
 

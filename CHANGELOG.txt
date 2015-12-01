@@ -1,10 +1,11 @@
-2.0		- Release of the new generation.
+2.0.1	- Add argument to install function
+2.0	- Release of the new generation.
 1.2.4	- Fix the full screen nav home icon url
-1.2.3 - Fix the ccm-page background
+1.2.3 	- Fix the ccm-page background
 1.2.1	- Add Thumbnail types in installer
-			- Fix Attribute installer settings for files
-1.2		- Add Boxed layout mode
-1.1		- Add MCL Installer
+	- Fix Attribute installer settings for files
+1.2	- Add Boxed layout mode
+1.1	- Add MCL Installer
 1.0 	- Add tiny thumbnail type
 			- Improve Masonry
 			- Add link to feature views
