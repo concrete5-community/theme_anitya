@@ -78,15 +78,22 @@
 		padding:@space-m;
 	}
 	&-space-l {
-		padding:@space-xl;
+		padding:@space-xl @space-l;
 	}
 	&-space-xl {
-		padding:@space-xxl;
+		padding:@space-xxl @space-l;
 	}
 	&-space-horizontal {
-		padding-left: 0;
-		padding-right: 0;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
 	}
+	@media (max-width: @screen-md-max) {
+		&-space-l, &-space-xl {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+
 }
 
 // -- Header image Area height -- \\
@@ -422,6 +429,11 @@
 	&.right-quaternary {
 	  .color-right-nogap(@quaternary-color);
 	}
+  @media (max-width: @screen-xs-max) {
+		&::after,&::before {
+			background: none !important;
+		}
+	}
 }
 // Mixin
 .color-left-nogap (@color) {
@@ -434,6 +446,57 @@
 		background-color: @color;
 	}
 }
+
+@media (max-width: @screen-xs-max) {
+	.two_nogap {
+		[class*='col-'] {
+			background-size: cover;
+			background-position:center;
+		}
+		.color-left-nogap-small-screen (@quaternary-color);
+	  .color-right-nogap-small-screen (@secondary-color);
+
+		&.left-primary {
+		  .color-left-nogap-small-screen (@primary-color);
+		}
+		&.left-secondary {
+		  .color-left-nogap-small-screen (@secondary-color);
+		}
+		&.left-tertiary {
+		  .color-left-nogap-small-screen (@tertiary-color);
+		}
+		&.left-quaternary {
+		  .color-left-nogap-small-screen (@quaternary-color);
+		}
+
+		// right
+
+		&.right-primary {
+		  .color-right-nogap-small-screen (@primary-color);
+		}
+		&.right-secondary {
+		  .color-right-nogap-small-screen (@secondary-color);
+		}
+		&.right-tertiary {
+		  .color-right-nogap-small-screen (@tertiary-color);
+		}
+		&.right-quaternary {
+		  .color-right-nogap-small-screen (@quaternary-color);
+		}
+	}
+}
+
+.color-left-nogap-small-screen (@color) {
+	[class*='col-']:first-child {
+		background-color:@color;
+	}
+}
+.color-right-nogap-small-screen (@color) {
+	[class*='col-']:last-child {
+		background-color:@color;
+	}
+}
+
 .ccm-block-custom-template-two-nogap {
 	// Retirer toute modification du backgroun du conteneur
 	background: none !important;

@@ -28,4 +28,16 @@ $columnPercent = $columnPercent ? $columnPercent : 50;
     background-image: url('<?php echo $image->getURL() ?>');
     <?php endif ?>
   }
+@media (max-width: 768px) {
+  #two-nogap-<?php echo $bID?> [class*='col-']:first-child  {
+    <?php if ($image && $imageSide == 'left') : ?>
+    background-image: url('<?php echo $image->getURL() ?>');
+    <?php endif ?>
+  }
+  #two-nogap-<?php echo $bID?> [class*='col-']:last-child  {
+    <?php if ($image && $imageSide == 'right') : ?>
+    background-image: url('<?php echo $image->getURL() ?>');
+    <?php endif ?>
+  }
+}
 </style>

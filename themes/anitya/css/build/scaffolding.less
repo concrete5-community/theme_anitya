@@ -44,10 +44,23 @@ body {
   }
 }
 
+.boxed-wrapper {
+  @media (min-width: @screen-sm-min) {
+    width: @container-sm + 58;
+  }
+  @media (min-width: @screen-md-min) {
+    width: @container-md + 58;
+  }
+  @media (min-width: @screen-lg-min) {
+    width: @container-lg + 58;
+  }
+}
+
 .absolute-container {
   position: absolute !important;
   left: 50%;
   top:0;
+  z-index: -1; // Pour que le two_nogap::after soit visibles
 
   @media (min-width: @screen-sm-min) {
     margin-left: -@container-sm/2;

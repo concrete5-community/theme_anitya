@@ -97,7 +97,7 @@ $(document).ready(function(){
     });
   // AUto hidding responsive nav bar
   	$('.auto-hidde-top-bar').autoHidingNavbar();
-    if (themeConfig.autoHiddeTopBar) $('.top-bar').autoHidingNavbar();
+//    if (themeConfig.autoHiddeTopBar) $('.top-bar').autoHidingNavbar();
 
 // Le breakpoint.js
     $(window).setBreakpoints();

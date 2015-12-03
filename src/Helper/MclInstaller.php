@@ -99,7 +99,7 @@ class MclInstaller extends ContentImporter
     {
         if (isset($sx->stacks)) {
             foreach ($sx->stacks->stack as $p) {
-                $tack = Stack::getByName($p['name']);
+                $stack = Stack::getByName($p['name']);
                 if (!is_object($stack)) :
                   $type = isset($p['type']) ? Stack::mapImportTextToType($p['type']) : 0 ;
                   Stack::addStack($p['name'], $type);
