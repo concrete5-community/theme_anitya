@@ -1,11 +1,16 @@
+2.1 	- Two-nog-gap layout is now responsive
+			- Now don’t install multiple same stack
+			- Area-space is more responsible
+			- Area on top of parallax can be now edited
+			- Page wrapped is now responsive
 2.0.1	- Add argument to install function
-2.0	- Release of the new generation.
+2.0		- Release of the new generation.
 1.2.4	- Fix the full screen nav home icon url
-1.2.3 	- Fix the ccm-page background
+1.2.3 - Fix the ccm-page background
 1.2.1	- Add Thumbnail types in installer
-	- Fix Attribute installer settings for files
-1.2	- Add Boxed layout mode
-1.1	- Add MCL Installer
+			- Fix Attribute installer settings for files
+1.2		- Add Boxed layout mode
+1.1		- Add MCL Installer
 1.0 	- Add tiny thumbnail type
 			- Improve Masonry
 			- Add link to feature views
@@ -14,4 +19,4 @@
 			- Add page-list sliders
 			- Change default colors theme
 			- Add dynamic css height on custom classes
-0.9.2 	- Fix the color propagation of colors on ccm-ui - Add CHANGELOG.txt
+0.9.2 - Fix the color propagation of colors on ccm-ui - Add CHANGELOG.txt
