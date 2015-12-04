@@ -38,7 +38,7 @@ class Controller extends \Concrete\Core\Package\Package {
 
 	protected $pkgHandle = 'theme_anitya';
 	protected $themeHandle = 'anitya';
-	protected $appVersionRequired = '5.7.3';
+	protected $appVersionRequired = '5.7.5';
 	protected $pkgVersion = '2.1';
 	protected $pkg;
 	protected $pkgAllowsFullContentSwap = true;
