@@ -77,7 +77,7 @@ foreach ($navItems as $niKey => $ni) :
 			$ax = Area::get($relatedStack, STACKS_AREA_NAME);
 			$axp = new Permissions($ax);
 			if ($axp->canRead()) {
-		        $ax->disableControls();
+		    $ax->disableControls();
 				$ni->blocks  = $ax->getAreaBlocksArray();
 			}
 		endif;
@@ -85,7 +85,7 @@ foreach ($navItems as $niKey => $ni) :
 			$ni->relatedMegaMenu = $megamenus[$ni->cObj->getCollectionID()];
 
 		// Maintenant on va déterminer les classes pour le dropdown
-		if($ni->cObj->getAttribute('display_multi_columns_drop') || count($ni->blocks))
+		if($ni->cObj->getAttribute('display_multi_columns_drop') || count($ni->blocks) || isset($megamenus[$ni->cObj->getCollectionID()]))
 			$classes[] = 'mgm-drop mgm-full-width';
 		elseif ($ni->hasSubmenu)
 			$classes[]  = 'mgm-drop mgm-levels';
