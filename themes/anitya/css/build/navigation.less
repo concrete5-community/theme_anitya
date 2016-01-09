@@ -45,15 +45,7 @@ nav.main-nav {
 			top:48px;
 		}
 		.logo img {
-			position: absolute;
-	    display: block;
-	    max-width: 100%;
-	    max-height: 100%;
-	    left: 15px;
-	    top: 0px;
-	    bottom: 0;
-	    margin: auto;
-			// max-height: @top-nav-height-fixed-size;
+			max-height: @top-nav-height-fixed-size;
 		}
 		// le template anitya_logo place l'image en temps que background
 		.img-background {
@@ -407,13 +399,9 @@ li.mgm-multi-c-title {
 				min-width: 30%; // parce que le template logo est une image de fond, donc a besoin d'une largeur..
         overflow: hidden;
         margin-right: @space-s;
-        svg {
-            width: 100%;
-            height: auto;
-        }
-        & > * {
+        img {
             display: inline-block;
-            margin-right: 5px;
+						max-height: @top-nav-height-fixed-size;
         }
     }
     .searchbox {
