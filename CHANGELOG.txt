@@ -1,3 +1,6 @@
+2.1.1 - change logo on mobile bar
+			- fix mega-menu class when content is keeper from page
+			- add .text-white-color class
 2.1 	- Two-nog-gap layout is now responsive
 			- Now don’t install multiple same stack
 			- Area-space is more responsible
