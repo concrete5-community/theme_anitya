@@ -74,7 +74,7 @@ class Controller extends BlockController {
 		$blocks = $c->getBlocks();
 		if (count($blocks)) :
 			foreach ( $blocks as $key => $block) :
-				if ($block->getBlockTypeHandle() == 'page_section') :
+				if (is_object($block) && $block->getBlockTypeHandle() == 'page_section') :
 					$b[] = $block;
 				endif;
 			endforeach;

@@ -243,7 +243,7 @@ class Controller extends \Concrete\Core\Package\Package {
 										$b = array();
 										// On prend tous les blocks 'page_navigator'
 										foreach ( $blocks as $key => $block) :
-											if ($block->getBlockTypeHandle() == 'page_navigator') :
+											if (is_object($block) && $block->getBlockTypeHandle() == 'page_navigator') :
 												$b[] = $block;
 											endif;
 										endforeach;

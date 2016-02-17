@@ -78,14 +78,7 @@ class Controller extends BlockController {
     }
 
 	public function view () {
-		// var_dump($this->getOptionsObject());
-        $this->set('options', $this->getOptionsObject());
-		$c = Page::getCurrentPage();
-		// var_dump(count($c->getBlocks()));
-		foreach ($c->getBlocks() as $key => $value) {
-			// var_dump($value->getBlockTypeHandle());
-		}
-		// die();
+    $this->set('options', $this->getOptionsObject());
 	}
 
     public function registerViewAssets() {
