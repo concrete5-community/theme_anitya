@@ -5,7 +5,7 @@ $styleObject = $pageTheme->getClassSettingsObject($b);
 
 if ($c->isEditMode()):
   // En Edit mode, si l'utilisateur n'a pas ajouté de classe de hauteur sur le bloc image (image-height-80)
-  // Le bloc devient invisible car coincé dans sont parent de Concrete qui est bein petit.
+  // Le bloc devient invisible car coincé dans sont parent de Concrete qui est bien petit.
   // Il faut donc lui donner une hauteur minimum (image-height-30)
   // ---
   // Quand il sera en View mode, il sera en position absolue, donc epousera la taille du conteneur (.intro) dont la hauuteur est définie dans les options quelque part :-)
