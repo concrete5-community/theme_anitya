@@ -81,7 +81,7 @@ class Controller extends BlockController {
     $this->set('options', $this->getOptionsObject());
 	}
 
-    public function registerViewAssets() {
+    public function registerViewAssets($outputContent = '') {
         $this->requireAsset('css', 'font-awesome');
     }
 

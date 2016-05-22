@@ -139,7 +139,7 @@ class Controller extends BlockController {
 		$this->save($this->updateAndGetNavItems(array(),$c));
 	}
 
-  public function registerViewAssets() {
+  public function registerViewAssets($outputContent = '') {
       $this->requireAsset('css', 'font-awesome');
   }
 
