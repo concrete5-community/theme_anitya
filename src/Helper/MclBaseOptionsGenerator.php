@@ -245,6 +245,10 @@ class MclBaseOptionsGenerator {
 		$fontList = Config::get('mcl.anitya.googlefonts');
 		if (!$fontList) :
 			$fontList = json_decode(Core::make('helper/file')->getContents('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAsT5OzRSuWghytRLmwLagJ4BCl49qC1kM'));
+			if (!$fontList) :
+				// Si nous n'avaons pas pu recurérer le fichier, on charge celui prechargé.
+				$fontList = json_decode(Core::make('helper/file')->getContents(__DIR__ . '/../../js/webfonts.json'));
+			endif;
 			Config::set('mcl.anitya.googlefonts',$fontList);
 		endif;
 		if (!$fontList)	echo '<p>' . t('Sorry we can\'t connect to Google Fonts, perhaps you are not connected to Internet ?') . '<p>';
