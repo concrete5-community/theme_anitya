@@ -1,3 +1,4 @@
+2.1.3  - Add static Google Font list 
 2.1.2	- Probably fix the Error with AnityaOption
 	- Fix the « Call to a member function getBlockTypeHandle() on null »
 	- hard code columns class	
