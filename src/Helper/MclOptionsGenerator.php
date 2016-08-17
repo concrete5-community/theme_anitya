@@ -70,10 +70,10 @@ class MclOptionsGenerator {
 			echo '</td>';
 			echo '<td class="input" data-type="' . $option['type'] . '">';
 
-			$this->generator->$option['type']($option);
+			$this->generator->{$option['type']}($option);
 			echo '</td></tr>';
 		} elseif (method_exists($this, $option['type'])) {
-			$this->$option['type']($option);
+			$this->{$option['type']}($option);
 		}
 	}
 
@@ -133,7 +133,7 @@ class MclOptionsGenerator {
 	}
 	function custom ($item) {
 		if (method_exists($this->generator, $item['function']))
-			$this->generator->$item['function']($item);
+			$this->generator->{$item['function']}($item);
 	}
 	function openSection ($item) {
 

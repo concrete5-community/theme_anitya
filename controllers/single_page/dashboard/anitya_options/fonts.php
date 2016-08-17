@@ -1,4 +1,4 @@
-<?php     
+<?php
 namespace Concrete\Package\ThemeAnitya\Controller\SinglePage\Dashboard\AnityaOptions;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
@@ -10,15 +10,15 @@ class Fonts extends SmController {
 
 
     function view() {
-        
+
         parent::view();
 
-                
+
     }
 
-    function save_options() {
+    function save_options($POST = null) {
 
         parent::save_options($_POST);
     }
-    
+
 }
