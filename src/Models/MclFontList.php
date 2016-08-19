@@ -9,7 +9,7 @@ use Concrete\Package\ThemeAnitya\Src\Models\MclFont;
 
 class MclFontList {
 
-	var $googleUrl = "http://fonts.googleapis.com/css";
+	var $googleUrl = "https://fonts.googleapis.com/css";
 	var $subsetUrl = "subset";
 	var $familyUrl = "family";
 
