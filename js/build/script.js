@@ -300,6 +300,7 @@ function initializeTabs () {
 // -- Ajoute la classe 'view' sur les element '.detect' une fois qu'il arrive dans le viewport -- \\
 function detectOnView () {
     l('launch detectOnView');
+    parallaxHandler(); // Ajuste les titre parrallax dans le header. // cette declaration a étét ajouté ici lors d'un support, sans tester vraiment toutes les conséquences.
     $('.detect').each(function(i){
         var $e = $(this);
         var detectWatch = scrollMonitor.create($e);
