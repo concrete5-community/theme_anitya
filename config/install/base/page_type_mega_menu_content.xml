@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <concrete5-cif version="1.0">
+  <pagetemplates>
+      <pagetemplate icon="left_sidebar.png" name="One page details" handle="one_page_details" package="theme_anitya" internal=""/>
+  </pagetemplates>
   <pagetypes>
     <pagetype name="Mega-menu Content" handle="mega_menu_content" package="" launch-in-composer="1">
       <pagetemplates type="custom" default="one_page_details">
@@ -9,7 +12,7 @@
       <composer>
         <formlayout>
           <set name="Basics" description="">
-            <control custom-template="" required="1" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/>
+            <!-- <control custom-template="" required="1" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/> -->
             <control custom-template="" required="1" custom-label="" description="This is only for a visibility in the sitemap. Type a clear name for you" type="core_page_property" handle="name"/>
             <control custom-template="" custom-label="" description="This block is only for basic example. Edit the page to add layouts and blocks" output-control-id="EUqfszcv" type="block" handle="content"/>
           </set>

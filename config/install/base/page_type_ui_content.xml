@@ -14,7 +14,7 @@
             <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="tags"/>
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
-            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/>
+            <!-- <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon_awesome"/> -->
           </set>
           <set name="Content" description="This block is only for basic example. Edit the page to add layouts and blocks">
             <control custom-template="" custom-label="" description="" output-control-id="8KJMuI7O" type="block" handle="content"/>

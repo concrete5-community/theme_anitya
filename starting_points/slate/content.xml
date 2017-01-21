@@ -110,7 +110,7 @@
             <control custom-template="" custom-label="" description="This content is only for basic example" output-control-id="u0nHfRXk" type="block" handle="content"/>
           </set>
           <set name="Basics" description="">
-            <control custom-template="" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/>
+            <!-- <control custom-template="" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/> -->
             <control custom-template="" required="1" custom-label="" description="This is only for a visibility in the sitemap. Type a clear name for you" type="core_page_property" handle="name"/>
             <control custom-template="" custom-label="" description="This content is only for basic example" output-control-id="HcP55RoO" type="block" handle="content"/>
           </set>

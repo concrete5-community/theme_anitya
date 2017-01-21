@@ -25,6 +25,7 @@ use StackList;
 use Config;
 use Database;
 use Concrete\Core\StyleCustomizer\Style\ValueList;
+use Concrete\Core\Package\ContentSwapper;
 
 use Concrete\Package\ThemeAnitya\Src\Helper\MclInstaller;
 use Concrete\Package\ThemeAnitya\Src\Models\MclOptions;
@@ -38,11 +39,11 @@ class Controller extends \Concrete\Core\Package\Package {
 
 	protected $pkgHandle = 'theme_anitya';
 	protected $themeHandle = 'anitya';
-	protected $appVersionRequired = '5.7.5';
-	protected $pkgVersion = '2.1.4';
+	protected $appVersionRequired = '5.8';
+	protected $pkgVersion = '2.2';
 	protected $pkg;
 	protected $pkgAllowsFullContentSwap = true;
-	protected $startingPoint;
+	public $startingPoint;
 
 
 	public function getPackageDescription() {
@@ -295,63 +296,12 @@ class Controller extends \Concrete\Core\Package\Package {
 					'\Concrete\Package\ThemeAnitya\Controller\Tools\AwesomeArray::getAwesomeArray'
 			);
 	}
-	public function swapContent($options) {
 
-			if ($this->validateClearSiteContents($options)) {
-					\Core::make('cache/request')->disable();
-
-					$pl = new PageList();
-					foreach ($pl->getResults() as $c) $c->delete();
-
-					$fl = new FileList();
-					foreach ($fl->getResults() as $f) $f->delete();
-
-					// clear stacks
-					$sl = new StackList();
-					foreach ($sl->get() as $c) $c->delete();
-
-					$home = Page::getByID(HOME_CID);
-					foreach ($home->getBlocks() as $b) $b->deleteBlock();
-
-					foreach (PageType::getList() as $ct) $ct->delete();
-
-					// Now we re-create the instalation base page & page-types
-					$ci = new MclInstaller($this);
-					// For stacks
-					$ci->importContentFile($this->getPackagePath() . '/config/install/base/blocktypes.xml');
-					// For pages, page-types
-					$ci->importContentFile($this->getPackagePath() . '/config/install/base/page_templates.xml');
-
-					$startingPointFolder = $this->getPackagePath() . '/starting_points/'. $this->startingPoint;
-
-					// Import Files
-					if (is_dir($startingPointFolder . '/content_files')) {
-							$ch = new ContentImporter();
-							$computeThumbnails = true;
-							if ($this->contentProvidesFileThumbnails()) {
-									$computeThumbnails = false;
-							}
-							$ch->importFiles($startingPointFolder . '/content_files', true );
-					}
-
-					// Install the starting point.
-					if (is_file($startingPointFolder . '/content.xml')) :
-							$ci = new ContentImporter();
-							$ci->importContentFile($startingPointFolder . '/content.xml');
-					endif;
-
-					// Set it as default for the page theme
-					$this->setPresetAsDefault($this->startingPoint);
-
-					// Restore Cache
-					\Core::make('cache/request')->enable();
-			}
-	}
-
-	function setPresetAsDefault ($presetHandle) {
+	function setPresetAsDefault ($package) {
+			$presetHandle = $package->startingPoint;
 			$outputError = false;
 			$baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
-			$pt = PageTheme::getByHandle($this->themeHandle);
+			$pt = PageTheme::getByHandle('anitya');
 			$preset = $pt->getThemeCustomizablePreset($presetHandle);
 			if (!is_object($preset)) {
 					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
@@ -382,4 +332,67 @@ class Controller extends \Concrete\Core\Package\Package {
 			$vl->save();
 			$pt->setCustomStyleObject($vl, $preset);
 	}
+
+	function compat_is_version_8() {
+			return interface_exists('\Concrete\Core\Export\ExportableInterface');
+	 }
+
+	 public function getContentSwapper() {
+		 return new MclContentSwapper();
+	 }
+
+
 }
+
+class MclContentSwapper extends ContentSwapper {
+
+ public function swapContent (Package $package, $options) {
+
+		 if ($this->validateClearSiteContents($options)) {
+				 \Core::make('cache/request')->disable();
+
+				 $pl = new PageList();
+				 $pages = $pl->getResults();
+				 foreach ($pages as $c) $c->delete();
+
+				 $fl = new FileList();
+				 $files = $fl->getResults();
+				 foreach ($files as $f) $f->delete();
+
+				 // clear stacks
+				 $sl = new StackList();
+				 foreach ($sl->get() as $c) $c->delete();
+
+				 $home = Page::getByID(HOME_CID);
+				 $blocks = $home->getBlocks();
+				 foreach ($blocks as $b) $b->deleteBlock();
+
+				 $pageTypes = PageType::getList();
+				 foreach ($pageTypes as $ct) $ct->delete();
+
+				 $startingPointFolder = $package->getPackagePath() . '/starting_points/'. $package->startingPoint;
+
+				 // Import Files
+				 if (is_dir($startingPointFolder . '/content_files')) {
+						 $ch = new ContentImporter();
+						 $computeThumbnails = true;
+						 if ($package->contentProvidesFileThumbnails()) $computeThumbnails = false;
+						 $ch->importFiles($startingPointFolder . '/content_files', true );
+				 }
+
+				 // Install the starting point.
+				 if (is_file($startingPointFolder . '/content.xml')) :
+					 // var_dump($startingPointFolder); die(' TS ');
+						 $ci = new ContentImporter();
+						 $ci->importContentFile($startingPointFolder . '/content.xml');
+				 endif;
+
+				 // Set it as default for the page theme
+				 $this->setPresetAsDefault($package);
+
+				 // Restore Cache
+				 \Core::make('cache/request')->enable();
+		 }
+ 	}
+
+ }

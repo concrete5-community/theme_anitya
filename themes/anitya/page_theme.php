@@ -245,7 +245,6 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
 					$geometry[4] = array('class'=>'footer-item col-md-2 last', 'name'=>'Footer 4');
 					break;
 			endswitch;
-
 		endif;
 
 	return $geometry;
@@ -259,28 +258,17 @@ class PageTheme extends \Concrete\Core\Page\Theme\Theme  implements ThemeProvide
     $tagsObject = new StdClass();
     $tagsObject->tags = $tagsObject->pageTags = array();
     $ak = CollectionAttributeKey::getByHandle('tags');
-    $db = Loader::db();
 
-    foreach ($pages as $key => $page):
-    		if ($page->getAttribute('tags')) :
+		foreach ($pages as $key => $page):
+    		if ($tags = $page->getAttribute('tags')) :
+    				foreach($tags->getSelectedOptions() as $value) :
+                $result = $value->getSelectAttributeOptionDisplayValue();
+    						$handle = preg_replace('/\s*/', '', strtolower($result));
 
-    				$v = array($page->getCollectionID(), $page->getVersionID(), $ak->getAttributeKeyID());
-    				$avID = $db->GetOne("SELECT avID FROM CollectionAttributeValues WHERE cID = ? AND cvID = ? AND akID = ?", $v);
-    				if (!$avID) continue;
-
-    				$query = $db->GetAll("
-    						SELECT opt.value
-    						FROM atSelectOptions opt,
-    						atSelectOptionsSelected sel
-
-    						WHERE sel.avID = ?
-    						AND sel.atSelectOptionID = opt.ID",$avID);
-
-    				foreach($query as $opt) {
-    						$handle = preg_replace('/\s*/', '', strtolower($opt['value']));
     						$tagsObject->pageTags[$page->getCollectionID()][] =  $handle ;
-    						$tagsObject->tags[$handle] = $opt['value'];
-    				}
+                $tagsObject->pageTagsName[$page->getCollectionID()][] =  $result;
+    						$tagsObject->tags[$handle] = $result;
+    				endforeach;
     		endif ;
     endforeach;
     return $tagsObject;

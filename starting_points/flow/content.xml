@@ -57,7 +57,7 @@
             <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="tags"/>
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
-            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/>
+            <!-- <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/> -->
           </set>
           <set name="Content" description="This block is only for basic example. Edit the page to add layouts and blocks">
             <control custom-template="" custom-label="" description="" output-control-id="H1c17EYw" type="block" handle="content"/>
@@ -86,7 +86,7 @@
       <composer>
         <formlayout>
           <set name="Basics" description="">
-            <control custom-template="" required="1" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/>
+            <!-- <control custom-template="" required="1" custom-label="" description="The Parent page for this mega-menu. The parent page need to be a root page." type="collection_attribute" handle="megamenu_parent_page"/> -->
             <control custom-template="" required="1" custom-label="" description="This is only for a visibility in the sitemap. Type a clear name for you" type="core_page_property" handle="name"/>
             <control custom-template="" custom-label="" description="This block is only for basic example. Edit the page to add layouts and blocks" output-control-id="ET3XTMwH" type="block" handle="content"/>
           </set>

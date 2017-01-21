@@ -36,6 +36,7 @@ class PresetColors extends RouteController {
 
 
 	function GetColorsFromPage () {
+
         $c = $_REQUEST['cID'] ? Page::getByID($_REQUEST['cID']) : Page::getCurrentPage();
         if (!$c) die(t('Can\'t retrieve a Page to get Preset color'));
         $cID = $c->getCollectionID();
@@ -45,6 +46,8 @@ class PresetColors extends RouteController {
         $presets = $pt->getThemeCustomizableStylePresets();
         // On recupère le preset par defaut
         foreach ($presets as $preset) { if ($preset->isDefaultPreset()) $defaultPreset = $preset; }
+
+        if (!is_object($defaultPreset)) return false;
 
         $colorsObject = new stdClass();
 
