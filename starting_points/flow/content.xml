@@ -537,7 +537,7 @@
         </blocks>
       </area>
     </page>
-    <page name="Home" path="" filename="" pagetype="" template="full" user="admin" description="" package="">
+    <page name="Home" path="" filename="" pagetype="page" template="full" user="admin" description="" package="">
       <attributes>
         <attributekey handle="number_of_main_areas">
           <value>

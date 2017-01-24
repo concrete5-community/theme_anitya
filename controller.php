@@ -297,42 +297,6 @@ class Controller extends \Concrete\Core\Package\Package {
 			);
 	}
 
-	function setPresetAsDefault ($package) {
-			$presetHandle = $package->startingPoint;
-			$outputError = false;
-			$baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
-			$pt = PageTheme::getByHandle('anitya');
-			$preset = $pt->getThemeCustomizablePreset($presetHandle);
-			if (!is_object($preset)) {
-					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
-					return;
-			}
-			$styleList = $pt->getThemeCustomizableStyleList();
-			if (!is_object($styleList)) {
-					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style List from ' . $presetHandle));
-					return;
-			}
-			$valueList = $preset->getStyleValueList();
-			$vl = new ValueList();
-
-			$sets = $styleList->getSets();
-			if (!is_array($sets)) {
-					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style Set from ' . $presetHandle));
-					return;
-			}
-
-			foreach ($sets as $set) :
-			 foreach($set->getStyles() as $style)  :
-					$valueObject = $style->getValueFromList($valueList);
-					if (is_object($valueObject))
-							$vl->addValue($valueObject);
-			 endforeach;
-			endforeach;
-
-			$vl->save();
-			$pt->setCustomStyleObject($vl, $preset);
-	}
-
 	function compat_is_version_8() {
 			return interface_exists('\Concrete\Core\Export\ExportableInterface');
 	 }
@@ -394,5 +358,40 @@ class MclContentSwapper extends ContentSwapper {
 				 \Core::make('cache/request')->enable();
 		 }
  	}
+	function setPresetAsDefault ($package) {
+			$presetHandle = $package->startingPoint;
+			$outputError = false;
+			$baseExceptionText = t('The theme and the Starting point has been installed correctly but it\'s ');
+			$pt = PageTheme::getByHandle('anitya');
+			$preset = $pt->getThemeCustomizablePreset($presetHandle);
+			if (!is_object($preset)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Preset selected : ' . $presetHandle));
+					return;
+			}
+			$styleList = $pt->getThemeCustomizableStyleList();
+			if (!is_object($styleList)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style List from ' . $presetHandle));
+					return;
+			}
+			$valueList = $preset->getStyleValueList();
+			$vl = new ValueList();
+
+			$sets = $styleList->getSets();
+			if (!is_array($sets)) {
+					if($outputError) throw new \Exception($baseExceptionText . t('impossible to retrieve the Style Set from ' . $presetHandle));
+					return;
+			}
+
+			foreach ($sets as $set) :
+			 foreach($set->getStyles() as $style)  :
+					$valueObject = $style->getValueFromList($valueList);
+					if (is_object($valueObject))
+							$vl->addValue($valueObject);
+			 endforeach;
+			endforeach;
+
+			$vl->save();
+			$pt->setCustomStyleObject($vl, $preset);
+	}
 
  }

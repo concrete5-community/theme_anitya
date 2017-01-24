@@ -32,7 +32,7 @@ class Controller extends DefaultController  {
 		$r->requireAsset('css', 'chosenicon');
 
 		$icons = AwesomeArray::getAwesomeArray();
-		// $inputname = $this->field('value');
+		$inputname = $this->field('value');
 
 		if (is_object($this->attributeValue)) {
 			$selected = $this->getAttributeValue()->getValue();

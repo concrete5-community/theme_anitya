@@ -60,7 +60,7 @@
             <control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="tags"/>
             <control custom-template="" custom-label="" description="" type="collection_attribute" handle="thumbnail"/>
-            <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/>
+            <!-- <control custom-template="" custom-label="" description="" type="collection_attribute" handle="icon"/> -->
           </set>
           <set name="Content" description="">
             <control custom-template="" custom-label="" description="" output-control-id="75Dsckms" type="block" handle="content"/>
@@ -1034,7 +1034,7 @@
       <area name="Page Footer"/>
       <area name="Footer"/>
     </page>
-    <page name="Home" path="" filename="" pagetype="" template="full" user="admin" description="" package="">
+    <page name="Home" path="" filename="" pagetype="page" template="full" user="admin" description="" package="">
       <attributes>
         <attributekey handle="number_of_main_areas">
           <value>
@@ -2530,12 +2530,6 @@
   </pages>
   <trees>
     <tree type="topic" name="Blog Entries">
-        <topic_category name="Reviews">
-            <topic name="Gadgets"/>
-            <topic name="Movies"/>
-            <topic name="Books"/>
-            <topic name="Music"/>
-        </topic_category>
         <topic name="Projects"/>
         <topic name="Sports"/>
         <topic name="Humor"/>
