@@ -663,7 +663,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:Laptop.svg}</fID>
+                        <fID>{ccm:export:file:Laptop.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -695,7 +695,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:travel.svg}</fID>
+                        <fID>{ccm:export:file:travel.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -713,7 +713,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:Map.svg}</fID>
+                        <fID>{ccm:export:file:Map.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -833,7 +833,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:Phone.svg}</fID>
+                        <fID>{ccm:export:file:Phone.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -875,7 +875,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:plane.svg}</fID>
+                        <fID>{ccm:export:file:plane.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>

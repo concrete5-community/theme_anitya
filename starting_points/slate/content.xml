@@ -2225,7 +2225,7 @@
                     </style>
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:Body_Scanner.svg}</fID>
+                        <fID>{ccm:export:file:Body_Scanner.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -2243,7 +2243,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:Camera.svg}</fID>
+                        <fID>{ccm:export:file:Camera.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -2275,7 +2275,7 @@
                   <block type="image" name="">
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:Hotel.svg}</fID>
+                        <fID>{ccm:export:file:Hotel.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>

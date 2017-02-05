@@ -370,7 +370,7 @@
                     </style>
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:abstract.svg}</fID>
+                        <fID>{ccm:export:file:abstract.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -399,7 +399,7 @@
                     </style>
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:planet.svg}</fID>
+                        <fID>{ccm:export:file:planet.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
@@ -428,7 +428,7 @@
                     </style>
                     <data table="btContentImage">
                       <record>
-                        <fID>{ccm:export:file:satelit.svg}</fID>
+                        <fID>{ccm:export:file:satelit.png}</fID>
                         <maxWidth><![CDATA[0]]></maxWidth>
                         <maxHeight><![CDATA[0]]></maxHeight>
                         <externalLink><![CDATA[]]></externalLink>
