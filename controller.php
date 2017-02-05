@@ -40,7 +40,7 @@ class Controller extends \Concrete\Core\Package\Package {
 	protected $pkgHandle = 'theme_anitya';
 	protected $themeHandle = 'anitya';
 	protected $appVersionRequired = '5.8';
-	protected $pkgVersion = '2.2';
+	protected $pkgVersion = '2.2.01';
 	protected $pkg;
 	protected $pkgAllowsFullContentSwap = true;
 	public $startingPoint;
